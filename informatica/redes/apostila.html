@@ -671,10 +671,7 @@ footer span{color:var(--purple)}
   <!-- ENVIO -->
   <div id="enviar">
     <div class="sub-title">📤 Enviar Respostas para o Google Sheets</div>
-    <p class="sub-note">Cole abaixo a URL do seu Apps Script. Consulte o arquivo <strong>apps-script-redes.js</strong> para configurar a planilha.</p>
-    <div class="url-row">
-      <input class="url-in" id="surl" type="text" placeholder="https://script.google.com/macros/s/SEU_ID/exec">
-    </div>
+    <p class="sub-note">Revise suas respostas e clique em enviar. O professor receberá tudo automaticamente.</p>
     <div class="cnt-row">
       <div class="cnt"><div class="cn" id="ct" style="color:var(--purple)">0</div><div class="cl">RESPONDIDAS</div></div>
       <div class="cnt"><div class="cn" id="cf" style="color:var(--purple)">0/12</div><div class="cl">FECHADAS</div></div>
@@ -692,7 +689,7 @@ footer span{color:var(--purple)}
 </footer>
 
 <script>
-const SCRIPT_URL_FIXO = "";
+const SCRIPT_URL_FIXO = "https://script.google.com/macros/s/AKfycbxKepf4_nyDROjmMq0cNJZzaU5T-u3zqa-3qd9Bxe7AMQAdpjJDzJAP7Xs6Stz5xjLD/exec";
 const FC=[1,3,5,7,9,11,13,15,18,20,23,26,29];
 const AB=[2,4,6,8,10,14,17,19,22,25,28];
 const DI=[12,16,21,24,27,30];
@@ -725,7 +722,7 @@ async function send(){
   const nome=document.getElementById('nome').value.trim();
   const turma=document.getElementById('turma').value.trim();
   const data=document.getElementById('data-ativ').value;
-  const url=document.getElementById('surl').value.trim()||SCRIPT_URL_FIXO;
+  const url=SCRIPT_URL_FIXO;
   if(!nome||!turma){msg('err','Preencha nome e turma antes de enviar.');return;}
   if(!url){msg('err','Cole a URL do Apps Script no campo acima.');return;}
   const btn=document.getElementById('bsend');
