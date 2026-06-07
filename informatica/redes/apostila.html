@@ -405,13 +405,13 @@ footer a{color:var(--p);text-decoration:none;font-weight:500}
   <rect x="8" y="30" width="36" height="36" rx="8" fill="#cffafe"/>
   <text x="26" y="52" text-anchor="middle" font-size="16">🌐</text>
   <text x="26" y="76" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#0e7490">Navegador</text>
-  <path d="M 46 48 L 66 48" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arr)"/>
-  <defs><marker id="arr" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0ea5e9"/></marker></defs>
+  <path d="M 46 48 L 66 48" stroke="#0ea5e9" stroke-width="2" marker-end="url(#dns-a)"/>
+  <defs><marker id="dns-a" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0ea5e9"/></marker></defs>
   <text x="56" y="43" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#0e7490">google.com?</text>
   <rect x="68" y="30" width="40" height="36" rx="8" fill="#a5f3fc"/>
   <text x="88" y="52" text-anchor="middle" font-size="14">🗄</text>
   <text x="88" y="76" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#0e7490">DNS Server</text>
-  <path d="M 110 48 L 130 48" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M 110 48 L 130 48" stroke="#0ea5e9" stroke-width="2" marker-end="url(#dns-a)"/>
   <text x="120" y="43" text-anchor="middle" font-family="monospace" font-size="7" fill="#0e7490">142.250.x.x</text>
   <rect x="132" y="30" width="40" height="36" rx="8" fill="#cffafe"/>
   <text x="152" y="52" text-anchor="middle" font-size="14">✅</text>
@@ -444,9 +444,9 @@ footer a{color:var(--p);text-decoration:none;font-weight:500}
   <rect x="84" y="35" width="46" height="40" rx="10" fill="#fb923c"/>
   <text x="107" y="58" text-anchor="middle" font-size="18">🔀</text>
   <text x="107" y="82" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white" font-weight="700">GATEWAY</text>
-  <path d="M 78 55 L 84 55" stroke="#f97316" stroke-width="2.5" marker-end="url(#arw)"/>
-  <path d="M 130 55 L 148 55" stroke="#f97316" stroke-width="2.5" marker-end="url(#arw)"/>
-  <defs><marker id="arw" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#f97316"/></marker></defs>
+  <path d="M 78 55 L 84 55" stroke="#f97316" stroke-width="2.5" marker-end="url(#gw-a)"/>
+  <path d="M 130 55 L 148 55" stroke="#f97316" stroke-width="2.5" marker-end="url(#gw-a)"/>
+  <defs><marker id="gw-a" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#f97316"/></marker></defs>
   <circle cx="174" cy="55" r="28" fill="#fed7aa" opacity=".5"/>
   <text x="174" y="50" text-anchor="middle" font-size="14">☁</text>
   <text x="174" y="65" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#9a3412">Internet</text>
@@ -561,6 +561,89 @@ footer a{color:var(--p);text-decoration:none;font-weight:500}
       </div>
       <div class="tc-foot">🎯 Questões: 17·24·25</div>
     </div>
+
+    <div class="tc animate-in" id="tc-proxy">
+      <div class="tc-head" style="background:#2563eb">
+        <div class="tc-num">10</div>
+        <div><div class="tc-title">Proxy</div><div class="tc-sub">Servidor Intermediário · Cache · Filtro</div></div>
+      </div>
+      <div class="tc-svg"><svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+  <rect width="220" height="110" rx="10" fill="#f0f9ff"/>
+  <rect x="6" y="30" width="40" height="50" rx="8" fill="#dbeafe"/>
+  <text x="26" y="52" text-anchor="middle" font-size="14">💻</text>
+  <text x="26" y="68" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#1d4ed8">Cliente</text>
+  <defs><marker id="px-a" markerWidth="5" markerHeight="5" refX="5" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#2563eb"/></marker></defs>
+  <line x1="46" y1="55" x2="74" y2="55" stroke="#2563eb" stroke-width="2" marker-end="url(#px-a)"/>
+  <text x="60" y="48" text-anchor="middle" font-family="monospace" font-size="7" fill="#2563eb">req</text>
+  <rect x="76" y="22" width="68" height="66" rx="8" fill="#bfdbfe"/>
+  <text x="110" y="46" text-anchor="middle" font-size="14">🔀</text>
+  <text x="110" y="60" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#1d4ed8" font-weight="700">PROXY</text>
+  <text x="110" y="72" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#1d4ed8">Cache · Filtro</text>
+  <text x="110" y="82" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#1d4ed8">Anonimato</text>
+  <line x1="144" y1="55" x2="170" y2="55" stroke="#2563eb" stroke-width="2" marker-end="url(#px-a)"/>
+  <text x="157" y="48" text-anchor="middle" font-family="monospace" font-size="7" fill="#2563eb">req</text>
+  <rect x="172" y="30" width="42" height="50" rx="8" fill="#dbeafe"/>
+  <text x="193" y="50" text-anchor="middle" font-size="12">☁</text>
+  <text x="193" y="64" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#1d4ed8">Internet</text>
+  <text x="193" y="73" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#1d4ed8">/ Servidor</text>
+  <rect x="6" y="92" width="208" height="13" rx="4" fill="#2563eb" opacity=".08"/>
+  <text x="110" y="101" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#1d4ed8">Forward Proxy (cliente) · Reverse Proxy (servidor)</text>
+</svg></div>
+      <div class="tc-body">
+        <ul class="tc-bullets">
+          <li>Intermediário entre cliente e servidor</li>
+          <li>Forward proxy: cliente oculta seu IP</li>
+          <li>Reverse proxy: servidor distribui carga</li>
+        </ul>
+        <div class="tc-detail" id="det-proxy">
+          <p><b>Forward Proxy:</b> o cliente envia a requisição ao proxy, que repassa ao servidor. Usado para cache, filtro de conteúdo e anonimato (o servidor vê o IP do proxy, não do cliente).</p>
+          <p style="margin-top:8px"><b>Reverse Proxy:</b> fica na frente do servidor. Distribui carga (load balancing), faz cache e protege o servidor real. Exemplos: Nginx, HAProxy.</p>
+          <p style="margin-top:8px"><b>Cache de proxy:</b> guarda respostas de requisições anteriores. Se outro cliente pede o mesmo conteúdo, o proxy responde direto — sem ir até o servidor.</p>
+        </div>
+        <button class="tc-more" onclick="toggleDetail('proxy')">Ver teoria completa ▸</button>
+      </div>
+      <div class="tc-foot">📌 Conteúdo complementar</div>
+    </div>
+    <div class="tc animate-in" id="tc-broadcast">
+      <div class="tc-head" style="background:#7c3aed">
+        <div class="tc-num">11</div>
+        <div><div class="tc-title">Broadcast</div><div class="tc-sub">Envio a Todos · Endereço de Difusão</div></div>
+      </div>
+      <div class="tc-svg"><svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+  <rect width="220" height="110" rx="10" fill="#fdf4ff"/>
+  <circle cx="110" cy="55" r="20" fill="#7c3aed"/>
+  <text x="110" y="50" text-anchor="middle" font-size="12">📡</text>
+  <text x="110" y="64" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">Emissor</text>
+  <defs><marker id="bc-a" markerWidth="5" markerHeight="5" refX="5" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#7c3aed"/></marker></defs>
+  <line x1="91" y1="45" x2="52" y2="22" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#bc-a)"/>
+  <line x1="90" y1="55" x2="30" y2="55" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#bc-a)"/>
+  <line x1="91" y1="65" x2="52" y2="88" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#bc-a)"/>
+  <line x1="129" y1="45" x2="168" y2="22" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#bc-a)"/>
+  <line x1="130" y1="55" x2="190" y2="55" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#bc-a)"/>
+  <line x1="129" y1="65" x2="168" y2="88" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#bc-a)"/>
+  <g font-size="12" text-anchor="middle">
+    <text x="42" y="22">💻</text><text x="20" y="59">💻</text><text x="42" y="94">💻</text>
+    <text x="178" y="22">💻</text><text x="196" y="59">💻</text><text x="178" y="94">💻</text>
+  </g>
+  <rect x="50" y="96" width="120" height="12" rx="4" fill="#7c3aed" opacity=".1"/>
+  <text x="110" y="105" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#6d28d9">Ex: 192.168.1.255 (broadcast da rede)</text>
+</svg></div>
+      <div class="tc-body">
+        <ul class="tc-bullets">
+          <li>Envia dados a todos os dispositivos da rede</li>
+          <li>Endereço: último IP da sub-rede (ex: .255)</li>
+          <li>Usado por DHCP Discover e ARP requests</li>
+        </ul>
+        <div class="tc-detail" id="det-broadcast">
+          <p><b>Broadcast limitado:</b> 255.255.255.255 — alcança todos os dispositivos da rede local, mas não atravessa roteadores.</p>
+          <p style="margin-top:8px"><b>Broadcast direcionado:</b> último endereço da sub-rede. Ex: rede 192.168.1.0/24 → broadcast é 192.168.1.255.</p>
+          <p style="margin-top:8px"><b>Usos comuns:</b> DHCP Discover (computador procura servidor DHCP), ARP (quem tem o IP X?), NetBIOS. Excesso de broadcast pode sobrecarregar a rede — problema chamado <b>broadcast storm</b>.</p>
+          <p style="margin-top:8px"><b>Unicast × Multicast × Broadcast:</b> unicast = um destino, multicast = grupo específico, broadcast = todos da rede.</p>
+        </div>
+        <button class="tc-more" onclick="toggleDetail('broadcast')">Ver teoria completa ▸</button>
+      </div>
+      <div class="tc-foot">📌 Conteúdo complementar</div>
+    </div>
   </div>
   <div style="text-align:center;margin-top:36px" class="animate-in">
     <a href="#questoes" style="display:inline-block;padding:13px 32px;
@@ -588,58 +671,58 @@ footer a{color:var(--p);text-decoration:none;font-weight:500}
       <div class="qdiff-label e">Nível Fácil</div>
       <div class="qdiff-sub e">QUESTÕES 01–10 · IDENTIFICAÇÃO E CONCEITOS BÁSICOS</div></div></div>
 
-    <div class="qc fc"><div class="qh"><span class="qnum">01</span><span class="qbadge fc">Fechada</span><span class="qtag">VPN</span></div>
+    <div class="qc fc"><div class="qh"><span class="qnum">01</span><span class="qbadge fc">Fechada</span></div>
     <div class="qt">João trabalha em casa e precisa acessar os sistemas da empresa com segurança e criptografia, como se estivesse no escritório. Qual tecnologia resolve?</div>
     <div class="opts"><label class="opt"><input type="radio" name="q1" value="a" onchange="upd()"> a) DNS — traduz nomes de domínio em endereços IP</label>
     <label class="opt"><input type="radio" name="q1" value="b" onchange="upd()"> b) DHCP — distribui endereços IP automaticamente</label>
     <label class="opt"><input type="radio" name="q1" value="c" onchange="upd()"> c) VPN — cria túnel criptografado pela internet</label>
     <label class="opt"><input type="radio" name="q1" value="d" onchange="upd()"> d) Gateway — conecta redes distintas</label></div></div>
 
-    <div class="qc ab"><div class="qh"><span class="qnum">02</span><span class="qbadge ab">Aberta</span><span class="qtag">DHCP</span></div>
+    <div class="qc ab"><div class="qh"><span class="qnum">02</span><span class="qbadge ab">Aberta</span></div>
     <div class="qt">Maria liga um computador novo na rede da escola. Sem configurar nada, ele já recebe IP, máscara, gateway e DNS automaticamente. Qual serviço é responsável?</div>
     <input class="ans-in" id="ans2" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
 
-    <div class="qc fc"><div class="qh"><span class="qnum">03</span><span class="qbadge fc">Fechada</span><span class="qtag">IP Privado</span></div>
+    <div class="qc fc"><div class="qh"><span class="qnum">03</span><span class="qbadge fc">Fechada</span></div>
     <div class="qt">O computador de Pedro exibe o endereço IP <strong>192.168.1.20</strong>. Esse endereço é:</div>
     <div class="opts"><label class="opt"><input type="radio" name="q3" value="a" onchange="upd()"> a) IP público, acessível diretamente por qualquer dispositivo na internet</label>
     <label class="opt"><input type="radio" name="q3" value="b" onchange="upd()"> b) IP privado, válido apenas dentro da rede local</label>
     <label class="opt"><input type="radio" name="q3" value="c" onchange="upd()"> c) Endereço IPv6 em formato simplificado</label>
     <label class="opt"><input type="radio" name="q3" value="d" onchange="upd()"> d) Endereço reservado exclusivamente para servidores DNS</label></div></div>
 
-    <div class="qc ab"><div class="qh"><span class="qnum">04</span><span class="qbadge ab">Aberta</span><span class="qtag">DNS</span></div>
+    <div class="qc ab"><div class="qh"><span class="qnum">04</span><span class="qbadge ab">Aberta</span></div>
     <div class="qt">Ana digita <strong>www.youtube.com</strong> no navegador. O computador precisa encontrar o IP correspondente para se conectar. Qual serviço faz essa tradução de nome para IP?</div>
     <input class="ans-in" id="ans4" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
 
-    <div class="qc fc"><div class="qh"><span class="qnum">05</span><span class="qbadge fc">Fechada</span><span class="qtag">LAN</span></div>
+    <div class="qc fc"><div class="qh"><span class="qnum">05</span><span class="qbadge fc">Fechada</span></div>
     <div class="qt">A empresa Alfa conectou todos os computadores do escritório em uma rede, permitindo compartilhamento de arquivos e impressoras. Todos estão no mesmo prédio. Que tipo de rede é essa?</div>
     <div class="opts"><label class="opt"><input type="radio" name="q5" value="a" onchange="upd()"> a) WAN — Wide Area Network</label>
     <label class="opt"><input type="radio" name="q5" value="b" onchange="upd()"> b) VPN — rede privada virtual</label>
     <label class="opt"><input type="radio" name="q5" value="c" onchange="upd()"> c) LAN — Local Area Network</label>
     <label class="opt"><input type="radio" name="q5" value="d" onchange="upd()"> d) MAN — Metropolitan Area Network</label></div></div>
 
-    <div class="qc ab"><div class="qh"><span class="qnum">06</span><span class="qbadge ab">Aberta</span><span class="qtag">IPv6</span></div>
+    <div class="qc ab"><div class="qh"><span class="qnum">06</span><span class="qbadge ab">Aberta</span></div>
     <div class="qt">Analise: <strong>2001:0db8:85a3:0000:0000:8a2e:0370:7334</strong>. A qual versão do protocolo IP pertence? Cite uma característica que permitiu a identificação.</div>
     <input class="ans-in" id="ans6" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
 
-    <div class="qc fc"><div class="qh"><span class="qnum">07</span><span class="qbadge fc">Fechada</span><span class="qtag">Gateway</span></div>
+    <div class="qc fc"><div class="qh"><span class="qnum">07</span><span class="qbadge fc">Fechada</span></div>
     <div class="qt">Carlos não acessa a internet, mas acessa normalmente outros computadores da mesma rede. IP, máscara e DNS estão corretos. Qual configuração deve verificar primeiro?</div>
     <div class="opts"><label class="opt"><input type="radio" name="q7" value="a" onchange="upd()"> a) Endereço DNS</label>
     <label class="opt"><input type="radio" name="q7" value="b" onchange="upd()"> b) Gateway padrão</label>
     <label class="opt"><input type="radio" name="q7" value="c" onchange="upd()"> c) Servidor DHCP</label>
     <label class="opt"><input type="radio" name="q7" value="d" onchange="upd()"> d) Endereço IPv6</label></div></div>
 
-    <div class="qc ab"><div class="qh"><span class="qnum">08</span><span class="qbadge ab">Aberta</span><span class="qtag">DHCP · IP Privado</span></div>
+    <div class="qc ab"><div class="qh"><span class="qnum">08</span><span class="qbadge ab">Aberta</span></div>
     <div class="qt">Quatro dispositivos conectados ao roteador recebem IPs automáticos na faixa <strong>192.168.0.x</strong>. Qual componente distribui esses endereços? Eles são públicos ou privados?</div>
     <input class="ans-in" id="ans8" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
 
-    <div class="qc fc"><div class="qh"><span class="qnum">09</span><span class="qbadge fc">Fechada</span><span class="qtag">IPv4 · IPv6</span></div>
+    <div class="qc fc"><div class="qh"><span class="qnum">09</span><span class="qbadge fc">Fechada</span></div>
     <div class="qt">Com o crescimento de smartphones, câmeras e geladeiras conectadas, qual afirmação sobre o IPv6 está CORRETA?</div>
     <div class="opts"><label class="opt"><input type="radio" name="q9" value="a" onchange="upd()"> a) Usa endereços de 32 bits, igual ao IPv4, porém com novo formato</label>
     <label class="opt"><input type="radio" name="q9" value="b" onchange="upd()"> b) Foi criado antes do IPv4, na década de 1970</label>
     <label class="opt"><input type="radio" name="q9" value="c" onchange="upd()"> c) Permite uma quantidade vastamente maior de endereços que o IPv4</label>
     <label class="opt"><input type="radio" name="q9" value="d" onchange="upd()"> d) Não é compatível com roteadores modernos</label></div></div>
 
-    <div class="qc ab"><div class="qh"><span class="qnum">10</span><span class="qbadge ab">Aberta</span><span class="qtag">IP Público · NAT</span></div>
+    <div class="qc ab"><div class="qh"><span class="qnum">10</span><span class="qbadge ab">Aberta</span></div>
     <div class="qt">Você está em um café. Seu celular recebe <strong>10.0.0.8</strong> e o notebook do colega <strong>10.0.0.9</strong>. Quando alguém de fora tenta descobrir o IP de vocês, qual endereço aparece? Por quê?</div>
     <input class="ans-in" id="ans10" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
   </div>
@@ -650,57 +733,57 @@ footer a{color:var(--p);text-decoration:none;font-weight:500}
       <div class="qdiff-label m">Nível Médio</div>
       <div class="qdiff-sub m">QUESTÕES 11–20 · ANÁLISE E APLICAÇÃO</div></div></div>
 
-    <div class="qc fc"><div class="qh"><span class="qnum">11</span><span class="qbadge fc">Fechada</span><span class="qtag">DHCP</span></div>
+    <div class="qc fc"><div class="qh"><span class="qnum">11</span><span class="qbadge fc">Fechada</span></div>
     <div class="qt">Uma empresa com 200 funcionários quer que cada computador receba <strong>sempre o mesmo IP automaticamente</strong>, sem configuração manual. Qual recurso do DHCP resolve?</div>
     <div class="opts"><label class="opt"><input type="radio" name="q11" value="a" onchange="upd()"> a) DNS reverso</label>
     <label class="opt"><input type="radio" name="q11" value="b" onchange="upd()"> b) Reserva de IP (DHCP Reservation) — associa IP fixo ao MAC address</label>
     <label class="opt"><input type="radio" name="q11" value="c" onchange="upd()"> c) NAT</label>
     <label class="opt"><input type="radio" name="q11" value="d" onchange="upd()"> d) Split tunneling</label></div></div>
 
-    <div class="qc di"><div class="qh"><span class="qnum">12</span><span class="qbadge di">Discursiva</span><span class="qtag">DHCP · LAN</span></div>
+    <div class="qc di"><div class="qh"><span class="qnum">12</span><span class="qbadge di">Discursiva</span></div>
     <div class="qt">Uma escola instalou uma rede com <strong>80 computadores</strong>. O técnico decide entre IPs manuais ou DHCP. Explique vantagens e desvantagens de cada abordagem e indique qual é mais adequada.</div>
     <div class="dhint">💡 Considere manutenção, erros humanos, escalabilidade e rotatividade de dispositivos.</div>
     <textarea class="ans-ta" id="ans12" placeholder="Desenvolva sua resposta aqui…" oninput="upd()"></textarea></div>
 
-    <div class="qc fc"><div class="qh"><span class="qnum">13</span><span class="qbadge fc">Fechada</span><span class="qtag">TCP</span></div>
+    <div class="qc fc"><div class="qh"><span class="qnum">13</span><span class="qbadge fc">Fechada</span></div>
     <div class="qt">Um sistema de internet banking precisa garantir que <strong>nenhum pacote seja perdido</strong> e que os dados cheguem na ordem correta. Qual protocolo é obrigatório?</div>
     <div class="opts"><label class="opt"><input type="radio" name="q13" value="a" onchange="upd()"> a) UDP — mais rápido, sem controle de erros</label>
     <label class="opt"><input type="radio" name="q13" value="b" onchange="upd()"> b) TCP — garante entrega, ordem e integridade</label>
     <label class="opt"><input type="radio" name="q13" value="c" onchange="upd()"> c) DNS — protocolo de resolução de nomes</label>
     <label class="opt"><input type="radio" name="q13" value="d" onchange="upd()"> d) ICMP — protocolo de mensagens de controle</label></div></div>
 
-    <div class="qc ab"><div class="qh"><span class="qnum">14</span><span class="qbadge ab">Aberta</span><span class="qtag">DNS</span></div>
+    <div class="qc ab"><div class="qh"><span class="qnum">14</span><span class="qbadge ab">Aberta</span></div>
     <div class="qt">Ana recebe <em>"Servidor DNS não encontrado"</em>, mas o site abre ao digitar o IP diretamente. O que está com problema? Como confirmar esse diagnóstico?</div>
     <input class="ans-in" id="ans14" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
 
-    <div class="qc fc"><div class="qh"><span class="qnum">15</span><span class="qbadge fc">Fechada</span><span class="qtag">NAT</span></div>
+    <div class="qc fc"><div class="qh"><span class="qnum">15</span><span class="qbadge fc">Fechada</span></div>
     <div class="qt">Quando um funcionário acessa a internet, o roteador substitui o IP privado dele pelo IP público da empresa. Esse mecanismo chama-se:</div>
     <div class="opts"><label class="opt"><input type="radio" name="q15" value="a" onchange="upd()"> a) DNS</label>
     <label class="opt"><input type="radio" name="q15" value="b" onchange="upd()"> b) DHCP</label>
     <label class="opt"><input type="radio" name="q15" value="c" onchange="upd()"> c) NAT — Network Address Translation</label>
     <label class="opt"><input type="radio" name="q15" value="d" onchange="upd()"> d) VPN</label></div></div>
 
-    <div class="qc di"><div class="qh"><span class="qnum">16</span><span class="qbadge di">Discursiva</span><span class="qtag">TCP · UDP</span></div>
+    <div class="qc di"><div class="qh"><span class="qnum">16</span><span class="qbadge di">Discursiva</span></div>
     <div class="qt">Um usuário reclama que a internet "trava" apenas ao assistir vídeos em HD. Navegar em sites e enviar e-mails funciona normalmente. Considerando TCP e UDP, explique por que isso ocorre e qual protocolo é usado para streaming.</div>
     <div class="dhint">💡 Pense nas prioridades — velocidade vs. confiabilidade.</div>
     <textarea class="ans-ta" id="ans16" placeholder="Desenvolva sua resposta aqui…" oninput="upd()"></textarea></div>
 
-    <div class="qc ab"><div class="qh"><span class="qnum">17</span><span class="qbadge ab">Aberta</span><span class="qtag">Sub-redes</span></div>
+    <div class="qc ab"><div class="qh"><span class="qnum">17</span><span class="qbadge ab">Aberta</span></div>
     <div class="qt">Três computadores: <strong>A</strong> (192.168.1.10/24), <strong>B</strong> (192.168.1.50/24), <strong>C</strong> (192.168.2.10/24). Quais se comunicam diretamente sem gateway? C precisa do gateway para falar com as demais? Justifique.</div>
     <input class="ans-in" id="ans17" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
 
-    <div class="qc fc"><div class="qh"><span class="qnum">18</span><span class="qbadge fc">Fechada</span><span class="qtag">VPN</span></div>
+    <div class="qc fc"><div class="qh"><span class="qnum">18</span><span class="qbadge fc">Fechada</span></div>
     <div class="qt">Uma empresa com filiais em três cidades precisa interligá-las com segurança, como uma única rede, sem links físicos dedicados. Qual solução é mais adequada?</div>
     <div class="opts"><label class="opt"><input type="radio" name="q18" value="a" onchange="upd()"> a) Expandir a LAN de cada filial com mais switches</label>
     <label class="opt"><input type="radio" name="q18" value="b" onchange="upd()"> b) Criar uma VPN site-to-site entre as três unidades</label>
     <label class="opt"><input type="radio" name="q18" value="c" onchange="upd()"> c) Configurar servidores DNS em cada filial</label>
     <label class="opt"><input type="radio" name="q18" value="d" onchange="upd()"> d) Aumentar o número de IPs públicos contratados</label></div></div>
 
-    <div class="qc ab"><div class="qh"><span class="qnum">19</span><span class="qbadge ab">Aberta</span><span class="qtag">DHCP · APIPA</span></div>
+    <div class="qc ab"><div class="qh"><span class="qnum">19</span><span class="qbadge ab">Aberta</span></div>
     <div class="qt">O servidor DHCP da empresa foi desligado. Um novo computador é ligado e tenta obter IP automaticamente. O que acontece? Ele terá acesso à rede?</div>
     <input class="ans-in" id="ans19" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
 
-    <div class="qc fc"><div class="qh"><span class="qnum">20</span><span class="qbadge fc">Fechada</span><span class="qtag">IP Público · Privado</span></div>
+    <div class="qc fc"><div class="qh"><span class="qnum">20</span><span class="qbadge fc">Fechada</span></div>
     <div class="qt">Qual das opções abaixo NÃO é uma faixa de IP privado?</div>
     <div class="opts"><label class="opt"><input type="radio" name="q20" value="a" onchange="upd()"> a) 10.0.0.0 – 10.255.255.255</label>
     <label class="opt"><input type="radio" name="q20" value="b" onchange="upd()"> b) 172.16.0.0 – 172.31.255.255</label>
@@ -714,55 +797,55 @@ footer a{color:var(--p);text-decoration:none;font-weight:500}
       <div class="qdiff-label d">Nível Difícil</div>
       <div class="qdiff-sub d">QUESTÕES 21–30 · ANÁLISE CRÍTICA E SÍNTESE</div></div></div>
 
-    <div class="qc di"><div class="qh"><span class="qnum">21</span><span class="qbadge di">Discursiva</span><span class="qtag">TCP · UDP</span></div>
+    <div class="qc di"><div class="qh"><span class="qnum">21</span><span class="qbadge di">Discursiva</span></div>
     <div class="qt">Uma empresa de jogos online precisa escolher protocolo para: <strong>posição dos personagens</strong> (30x/segundo) e <strong>chat de voz em tempo real</strong>. Analise TCP e UDP para cada tipo de dado e justifique a melhor escolha.</div>
     <div class="dhint">💡 Considere latência e tolerância à perda de pacotes.</div>
     <textarea class="ans-ta" id="ans21" style="min-height:100px" placeholder="Desenvolva sua resposta aqui…" oninput="upd()"></textarea></div>
 
-    <div class="qc ab"><div class="qh"><span class="qnum">22</span><span class="qbadge ab">Aberta</span><span class="qtag">DNS Forwarder</span></div>
+    <div class="qc ab"><div class="qh"><span class="qnum">22</span><span class="qbadge ab">Aberta</span></div>
     <div class="qt">Um servidor DNS interno resolve apenas nomes corporativos. Para domínios externos (google.com), repassa automaticamente ao DNS do provedor. Como se chama esse comportamento? Explique brevemente.</div>
     <input class="ans-in" id="ans22" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
 
-    <div class="qc fc"><div class="qh"><span class="qnum">23</span><span class="qbadge fc">Fechada</span><span class="qtag">DNS</span></div>
+    <div class="qc fc"><div class="qh"><span class="qnum">23</span><span class="qbadge fc">Fechada</span></div>
     <div class="qt">Um administrador quer bloquear Instagram e TikTok pelo nome do domínio (não pelo IP, que muda frequentemente). Qual serviço configurar?</div>
     <div class="opts"><label class="opt"><input type="radio" name="q23" value="a" onchange="upd()"> a) DHCP</label>
     <label class="opt"><input type="radio" name="q23" value="b" onchange="upd()"> b) Gateway</label>
     <label class="opt"><input type="radio" name="q23" value="c" onchange="upd()"> c) DNS — configurado para não resolver os domínios bloqueados</label>
     <label class="opt"><input type="radio" name="q23" value="d" onchange="upd()"> d) NAT</label></div></div>
 
-    <div class="qc di"><div class="qh"><span class="qnum">24</span><span class="qbadge di">Discursiva</span><span class="qtag">Diagnóstico</span></div>
+    <div class="qc di"><div class="qh"><span class="qnum">24</span><span class="qbadge di">Discursiva</span></div>
     <div class="qt">Todos os computadores têm IP, máscara, DNS e gateway corretos, mas <strong>nenhum acessa a internet</strong>. A LAN funciona normalmente. Descreva passo a passo o diagnóstico que você faria.</div>
     <div class="dhint">💡 Se a LAN funciona mas internet não, onde está a fronteira?</div>
     <textarea class="ans-ta" id="ans24" style="min-height:100px" placeholder="Descreva seu diagnóstico passo a passo…" oninput="upd()"></textarea></div>
 
-    <div class="qc ab"><div class="qh"><span class="qnum">25</span><span class="qbadge ab">Aberta</span><span class="qtag">IPv4 · IPv6</span></div>
+    <div class="qc ab"><div class="qh"><span class="qnum">25</span><span class="qbadge ab">Aberta</span></div>
     <div class="qt">Compare IPv4 e IPv6: <strong>(a)</strong> quantidade máxima de endereços, <strong>(b)</strong> tamanho em bits, <strong>(c)</strong> uma vantagem nativa do IPv6 que o IPv4 não possui.</div>
     <input class="ans-in" id="ans25" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
 
-    <div class="qc fc"><div class="qh"><span class="qnum">26</span><span class="qbadge fc">Fechada</span><span class="qtag">VPN · Split Tunneling</span></div>
+    <div class="qc fc"><div class="qh"><span class="qnum">26</span><span class="qbadge fc">Fechada</span></div>
     <div class="qt">Um funcionário conectado à VPN com <strong>split tunneling DESATIVADO</strong> acessa um portal de notícias. Como o tráfego é roteado?</div>
     <div class="opts"><label class="opt"><input type="radio" name="q26" value="a" onchange="upd()"> a) O acesso vai direto para a internet, sem passar pela empresa</label>
     <label class="opt"><input type="radio" name="q26" value="b" onchange="upd()"> b) Todo o tráfego passa pela rede da empresa, incluindo o site de notícias</label>
     <label class="opt"><input type="radio" name="q26" value="c" onchange="upd()"> c) Apenas sites externos são bloqueados pelo firewall</label>
     <label class="opt"><input type="radio" name="q26" value="d" onchange="upd()"> d) O DNS redireciona para uma cópia local do site</label></div></div>
 
-    <div class="qc di"><div class="qh"><span class="qnum">27</span><span class="qbadge di">Discursiva</span><span class="qtag">NAT · IP Público</span></div>
+    <div class="qc di"><div class="qh"><span class="qnum">27</span><span class="qbadge di">Discursiva</span></div>
     <div class="qt">Uma empresa tem <strong>1 IP público</strong> e <strong>40 computadores</strong> que acessam a internet simultaneamente. O dono pergunta: <em>"Como é possível com um único IP?"</em> Escreva a explicação de forma clara e didática.</div>
     <div class="dhint">💡 Explique para alguém sem conhecimento técnico profundo.</div>
     <textarea class="ans-ta" id="ans27" style="min-height:100px" placeholder="Escreva a explicação aqui…" oninput="upd()"></textarea></div>
 
-    <div class="qc ab"><div class="qh"><span class="qnum">28</span><span class="qbadge ab">Aberta</span><span class="qtag">TCP · Portas</span></div>
+    <div class="qc ab"><div class="qh"><span class="qnum">28</span><span class="qbadge ab">Aberta</span></div>
     <div class="qt">Dois clientes acessam o mesmo servidor web (mesmo IP, porta 80) simultaneamente. Como o TCP garante que cada resposta chegue ao cliente correto? O que diferencia as duas conexões?</div>
     <input class="ans-in" id="ans28" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
 
-    <div class="qc fc"><div class="qh"><span class="qnum">29</span><span class="qbadge fc">Fechada</span><span class="qtag">DNS · DHCP</span></div>
+    <div class="qc fc"><div class="qh"><span class="qnum">29</span><span class="qbadge fc">Fechada</span></div>
     <div class="qt">Um técnico configura IP, máscara e gateway manualmente, mas esquece o <strong>DNS</strong>. Qual será o sintoma?</div>
     <div class="opts"><label class="opt"><input type="radio" name="q29" value="a" onchange="upd()"> a) Os computadores não receberão endereço IP</label>
     <label class="opt"><input type="radio" name="q29" value="b" onchange="upd()"> b) Os computadores perderão a comunicação com a LAN</label>
     <label class="opt"><input type="radio" name="q29" value="c" onchange="upd()"> c) Os computadores acessarão sites pelo IP, mas não pelo nome de domínio</label>
     <label class="opt"><input type="radio" name="q29" value="d" onchange="upd()"> d) O gateway será ignorado</label></div></div>
 
-    <div class="qc di"><div class="qh"><span class="qnum">30</span><span class="qbadge di">Discursiva</span><span class="qtag">IPv4 · IPv6</span></div>
+    <div class="qc di"><div class="qh"><span class="qnum">30</span><span class="qbadge di">Discursiva</span></div>
     <div class="qt">O gerente pergunta: <em>"O IPv4 funciona há décadas. Por que migrar para IPv6?"</em> Elabore uma resposta técnica e convincente abordando escassez de endereços, crescimento IoT e pelo menos <strong>duas vantagens técnicas</strong> do IPv6.</div>
     <div class="dhint">💡 Combine argumentos técnicos com impacto prático.</div>
     <textarea class="ans-ta" id="ans30" style="min-height:100px" placeholder="Elabore sua resposta aqui…" oninput="upd()"></textarea></div>
