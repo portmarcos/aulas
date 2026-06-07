@@ -8,7 +8,7 @@
 <style>
 :root{
   --bg:#06060a;--card:#0e0e18;--card2:#13131f;--border:rgba(255,255,255,.06);--border-h:rgba(255,255,255,.14);
-  --purple:#ce93d8;--purple2:#e1bee7;--pglow:rgba(206,147,216,.2);--pdim:rgba(206,147,216,.08);
+  --purple:#ce93d8;--pdim:rgba(206,147,216,.08);--pglow:rgba(206,147,216,.2);
   --green:#00e676;--gdim:rgba(0,230,118,.08);--gb:rgba(0,230,118,.3);
   --amber:#ffca28;--adim:rgba(255,202,40,.08);--ab:rgba(255,202,40,.3);
   --red:#ef9a9a;--rdim:rgba(239,154,154,.08);--rb:rgba(239,154,154,.3);
@@ -19,222 +19,189 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Lora',Georgia,serif;background:var(--bg);color:var(--txt);line-height:1.7;min-height:100vh}
+body{font-family:'Lora',Georgia,serif;background:var(--bg);color:var(--txt);line-height:1.7}
 .bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:linear-gradient(rgba(206,147,216,.03) 1px,transparent 1px),
   linear-gradient(90deg,rgba(206,147,216,.03) 1px,transparent 1px);background-size:48px 48px}
 .bg-orb{position:fixed;z-index:0;pointer-events:none;width:700px;height:700px;border-radius:50%;
   background:radial-gradient(circle,rgba(206,147,216,.05),transparent 65%);bottom:-150px;right:-100px}
 
-/* NAV */
-#nav{position:sticky;top:0;z-index:100;background:rgba(6,6,10,.92);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);padding:0 48px;display:flex;align-items:center;
-  justify-content:space-between;gap:16px;min-height:56px;flex-wrap:wrap}
-.tab-group{display:flex;gap:4px}
-.tab{padding:8px 20px;border:none;background:transparent;color:var(--txt3);
-  font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;
-  cursor:pointer;border-radius:8px;transition:all .2s;border:1px solid transparent}
-.tab:hover{color:var(--txt2);background:rgba(255,255,255,.04)}
-.tab.active{background:var(--pdim);border-color:rgba(206,147,216,.3);color:var(--purple)}
+/* ── NAV ── */
+#nav{position:sticky;top:0;z-index:100;background:rgba(6,6,10,.95);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;min-height:52px;flex-wrap:wrap}
+.nav-links{display:flex;gap:4px}
+.nl{padding:7px 14px;border:1px solid transparent;background:transparent;color:var(--txt3);
+  font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.08em;
+  cursor:pointer;border-radius:7px;transition:all .2s;text-decoration:none;display:block}
+.nl:hover{color:var(--txt2);border-color:var(--border-h)}
+.nl.teoria{color:var(--blue)} .nl.questoes{color:var(--green)} .nl.enviar{color:var(--amber)}
 .nav-right{display:flex;gap:8px;align-items:center}
-.btn-sm{padding:6px 14px;border-radius:8px;font-family:'JetBrains Mono',monospace;
-  font-size:.65rem;letter-spacing:.08em;cursor:pointer;border:1px solid;transition:all .2s}
-.btn-print{border-color:rgba(206,147,216,.3);background:var(--pdim);color:var(--purple)}
+#prog-txt{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--txt3)}
+#prog-bar{width:110px;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+#prog-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--cyan));width:0%;border-radius:3px;transition:width .4s}
+.btn-print{padding:5px 13px;border:1px solid rgba(206,147,216,.3);background:var(--pdim);
+  color:var(--purple);font-family:'JetBrains Mono',monospace;font-size:.63rem;
+  letter-spacing:.06em;cursor:pointer;border-radius:7px;transition:.2s}
 .btn-print:hover{background:rgba(206,147,216,.15)}
-#progress-bar{width:120px;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
-#progress-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--cyan));
-  width:0%;border-radius:3px;transition:width .4s}
-#progress-txt{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--txt3)}
 
-/* STUDENT HEADER */
-#student-hdr{position:relative;z-index:1;padding:24px 48px 20px;
-  border-bottom:1px solid var(--border);background:rgba(6,6,10,.6)}
-.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:18px}
-.page-title{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);
-  font-weight:900;letter-spacing:-.02em;line-height:1.1}
+/* ── HEADER ── */
+#hdr{position:relative;z-index:1;padding:28px 40px 22px;border-bottom:1px solid var(--border)}
+.page-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);
+  font-weight:900;letter-spacing:-.02em;margin-bottom:4px}
 .page-title span{color:var(--purple);font-style:italic}
-.hdr-meta{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--txt3);
-  letter-spacing:.12em;margin-top:4px}
-.form-row{display:flex;gap:12px;flex-wrap:wrap}
-.ff{display:flex;flex-direction:column;gap:4px;flex:1;min-width:160px}
-.fl{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--txt3);
-  letter-spacing:.15em;text-transform:uppercase}
+.page-meta{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--txt3);letter-spacing:.12em;margin-bottom:20px}
+.form-row{display:flex;gap:10px;flex-wrap:wrap}
+.ff{display:flex;flex-direction:column;gap:4px;flex:1;min-width:150px}
+.fl{font-family:'JetBrains Mono',monospace;font-size:.56rem;color:var(--txt3);letter-spacing:.14em;text-transform:uppercase}
 .fi{background:rgba(255,255,255,.04);border:1px solid var(--border-h);color:var(--txt);
-  padding:7px 12px;font-family:'Lora',serif;font-size:.85rem;border-radius:6px;
-  outline:none;transition:border-color .2s}
+  padding:7px 11px;font-family:'Lora',serif;font-size:.85rem;border-radius:7px;outline:none;transition:.2s}
 .fi:focus{border-color:rgba(206,147,216,.5)}
 
-/* TABS CONTENT */
-.tab-content{display:none;position:relative;z-index:1}
-.tab-content.active{display:block}
+/* ── SECTION DIVIDERS ── */
+.page-section{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:40px 40px}
+.sec-label{display:flex;align-items:center;gap:12px;margin-bottom:24px;
+  padding-bottom:14px;border-bottom:1px solid var(--border)}
+.sec-ico{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;
+  justify-content:center;font-size:.9rem;border:1px solid;flex-shrink:0}
+.sec-h{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900}
+.sec-sub{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--txt3);letter-spacing:.12em;margin-top:2px}
 
-/* ═══ TEORIA ═══ */
-#tab-teoria{max-width:860px;margin:0 auto;padding:40px 48px 80px}
-.teoria-intro{font-size:.9rem;color:var(--txt2);margin-bottom:32px;padding:16px 20px;
-  background:var(--pdim);border:1px solid rgba(206,147,216,.2);border-radius:12px;
-  border-left:3px solid var(--purple)}
-.teoria-grid{display:flex;flex-direction:column;gap:10px}
-
-/* ACCORDION */
-.acc{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .3s}
+/* ── ACCORDION ── */
+.teoria-grid{display:flex;flex-direction:column;gap:8px}
+.acc{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .3s}
 .acc:hover{border-color:var(--border-h)}
-.acc-btn{width:100%;display:flex;align-items:center;gap:14px;padding:16px 20px;
-  background:transparent;border:none;cursor:pointer;text-align:left;transition:background .2s}
+.acc-btn{width:100%;display:flex;align-items:center;gap:12px;padding:14px 18px;
+  background:transparent;border:none;cursor:pointer;text-align:left;transition:.2s}
 .acc-btn:hover{background:rgba(255,255,255,.03)}
-.acc-ico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;
-  justify-content:center;font-size:1.1rem;flex-shrink:0;border:1px solid}
-.acc-title{flex:1;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;
-  color:var(--txt)}
-.acc-sub{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--txt3);
-  letter-spacing:.1em;margin-top:2px}
-.acc-arrow{color:var(--txt3);font-size:.8rem;transition:transform .3s;margin-left:auto;flex-shrink:0}
+.acc-ico{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;border:1px solid}
+.acc-title{flex:1;font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700}
+.acc-sub{font-family:'JetBrains Mono',monospace;font-size:.57rem;color:var(--txt3);letter-spacing:.08em;margin-top:1px}
+.acc-arrow{color:var(--txt3);font-size:.75rem;transition:transform .3s;flex-shrink:0}
 .acc.open .acc-arrow{transform:rotate(90deg)}
-.acc-body{display:none;padding:0 20px 20px}
+.acc-body{display:none;padding:0 18px 18px}
 .acc.open .acc-body{display:block}
-
-/* Theory content */
-.t-p{font-size:.88rem;color:var(--txt2);line-height:1.75;margin-bottom:12px}
-.t-h{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;
-  text-transform:uppercase;margin:18px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--border)}
-.t-box{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;
-  padding:12px 16px;margin:10px 0;font-family:'JetBrains Mono',monospace;font-size:.78rem;
-  color:var(--txt2);line-height:1.7}
+.t-p{font-size:.87rem;color:var(--txt2);line-height:1.75;margin-bottom:10px}
+.t-h{font-family:'JetBrains Mono',monospace;font-size:.67rem;letter-spacing:.12em;
+  text-transform:uppercase;margin:16px 0 7px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+.t-box{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:7px;
+  padding:10px 14px;margin:8px 0;font-family:'JetBrains Mono',monospace;
+  font-size:.76rem;color:var(--txt2);line-height:1.7}
 .t-box .hl{color:var(--purple);font-weight:700}
-.t-box .good{color:var(--green)}
-.t-box .bad{color:var(--red)}
-.t-table{width:100%;border-collapse:collapse;font-size:.8rem;margin:10px 0}
-.t-table th{background:rgba(255,255,255,.05);color:var(--txt2);padding:8px 12px;
-  font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.08em;
-  text-align:left;border-bottom:1px solid var(--border)}
-.t-table td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.03);color:var(--txt2);vertical-align:top}
-.t-table tr:last-child td{border-bottom:none}
-.t-alert{padding:10px 14px;border-radius:8px;font-size:.82rem;margin:10px 0;border:1px solid}
+.t-box .gd{color:var(--green)} .t-box .bd{color:var(--red)}
+.t-tbl{width:100%;border-collapse:collapse;font-size:.78rem;margin:8px 0}
+.t-tbl th{background:rgba(255,255,255,.05);color:var(--txt2);padding:7px 11px;
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.07em;text-align:left;border-bottom:1px solid var(--border)}
+.t-tbl td{padding:7px 11px;border-bottom:1px solid rgba(255,255,255,.03);color:var(--txt2);vertical-align:top}
+.t-tbl tr:last-child td{border-bottom:none}
+.t-alert{padding:9px 13px;border-radius:7px;font-size:.8rem;margin:8px 0;border:1px solid}
 .t-alert.info{background:var(--bdim);border-color:var(--bb);color:var(--blue)}
 .t-alert.warn{background:var(--adim);border-color:var(--ab);color:var(--amber)}
 .t-alert.tip{background:var(--gdim);border-color:var(--gb);color:var(--green)}
-.t-ul{margin:8px 0 8px 16px;font-size:.85rem;color:var(--txt2);line-height:1.8}
-.t-ul li{margin-bottom:4px}
-.acc-foot{margin-top:16px;padding:10px 14px;background:var(--pdim);
-  border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:.65rem;
-  color:var(--purple);letter-spacing:.06em}
-.dora{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
-.dora-step{background:var(--card2);border:1px solid var(--border);border-radius:8px;
-  padding:10px;text-align:center}
-.dora-letter{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900}
-.dora-name{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--txt3);
-  letter-spacing:.08em;margin-top:2px}
-.dora-desc{font-size:.72rem;color:var(--txt2);margin-top:4px;line-height:1.4}
-.tcp-udp{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
-.proto-box{padding:14px;border-radius:10px;border:1px solid}
-.proto-box.tcp{background:var(--bdim);border-color:var(--bb)}
-.proto-box.udp{background:var(--odim);border-color:var(--ob)}
-.proto-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:900;margin-bottom:8px}
-.proto-box.tcp .proto-title{color:var(--blue)}
-.proto-box.udp .proto-title{color:var(--orange)}
-.cidr-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.84rem}
-.cidr-row:last-child{border-bottom:none}
-.cidr-code{font-family:'JetBrains Mono',monospace;color:var(--purple);min-width:40px;font-weight:700}
+.t-ul{margin:6px 0 6px 14px;font-size:.84rem;color:var(--txt2);line-height:1.8}
+.dora{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:10px 0}
+.dstep{background:var(--card2);border:1px solid var(--border);border-radius:7px;padding:9px;text-align:center}
+.dl{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900}
+.dn{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--txt3);letter-spacing:.07em;margin-top:2px}
+.dd{font-size:.7rem;color:var(--txt2);margin-top:3px;line-height:1.4}
+.tcp-udp{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+.pbox{padding:12px;border-radius:9px;border:1px solid}
+.pbox.tcp{background:var(--bdim);border-color:var(--bb)}
+.pbox.udp{background:var(--odim);border-color:var(--ob)}
+.ptitle{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:900;margin-bottom:6px}
+.pbox.tcp .ptitle{color:var(--blue)} .pbox.udp .ptitle{color:var(--orange)}
+.acc-foot{margin-top:12px;padding:8px 12px;background:var(--pdim);border-radius:7px;
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--purple);letter-spacing:.05em}
 
-/* ═══ QUESTÕES ═══ */
-#tab-questoes{max-width:900px;margin:0 auto;padding:40px 48px 40px}
-.sec{margin-bottom:48px}
-.sec-hdr{display:flex;align-items:center;gap:14px;margin-bottom:24px;
-  padding-bottom:14px;border-bottom:1px solid var(--border)}
-.sec-ico{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;
-  justify-content:center;font-size:1rem;font-weight:900;font-family:'JetBrains Mono',monospace;border:1px solid}
-.sec-ico.e{background:var(--gdim);border-color:var(--gb);color:var(--green)}
-.sec-ico.m{background:var(--adim);border-color:var(--ab);color:var(--amber)}
-.sec-ico.d{background:var(--rdim);border-color:var(--rb);color:var(--red)}
-.sec-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900}
-.sec-title.e{color:var(--green)} .sec-title.m{color:var(--amber)} .sec-title.d{color:var(--red)}
-.sec-meta{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--txt3);letter-spacing:.12em;margin-top:2px}
-.qc{background:var(--card);border:1px solid var(--border);border-radius:14px;
-  padding:22px;margin-bottom:14px;transition:border-color .3s;position:relative;overflow:hidden}
-.qc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:.6}
+/* ── QUESTÕES ── */
+.qsec{margin-bottom:40px}
+.qsec-hdr{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.qico{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-size:.9rem;font-weight:900;border:1px solid;flex-shrink:0}
+.qico.e{background:var(--gdim);border-color:var(--gb);color:var(--green)}
+.qico.m{background:var(--adim);border-color:var(--ab);color:var(--amber)}
+.qico.d{background:var(--rdim);border-color:var(--rb);color:var(--red)}
+.qtitle{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900}
+.qtitle.e{color:var(--green)} .qtitle.m{color:var(--amber)} .qtitle.d{color:var(--red)}
+.qmeta{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--txt3);letter-spacing:.1em;margin-top:1px}
+.qc{background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:20px;margin-bottom:12px;transition:border-color .3s;position:relative;overflow:hidden}
+.qc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:.7}
 .qc.fc::before{background:linear-gradient(90deg,var(--purple),transparent)}
 .qc.ab::before{background:linear-gradient(90deg,var(--blue),transparent)}
 .qc.di::before{background:linear-gradient(90deg,var(--cyan),transparent)}
 .qc:hover{border-color:var(--border-h)}
-.qh{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-.qn{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--txt3);font-weight:700;min-width:26px}
-.qb{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.12em;
-  text-transform:uppercase;padding:3px 9px;border-radius:20px;font-weight:700;border:1px solid}
+.qh{display:flex;align-items:center;gap:7px;margin-bottom:11px;flex-wrap:wrap}
+.qn{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--txt3);font-weight:700;min-width:24px}
+.qb{font-family:'JetBrains Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:2px 8px;border-radius:20px;font-weight:700;border:1px solid}
 .qb.fc{color:var(--purple);border-color:rgba(206,147,216,.3);background:var(--pdim)}
 .qb.ab{color:var(--blue);border-color:var(--bb);background:var(--bdim)}
 .qb.di{color:var(--cyan);border-color:var(--cb);background:var(--cdim)}
-.qt-tag{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--txt3);
-  border:1px solid var(--border);padding:3px 9px;border-radius:20px}
-.qt{font-size:.9rem;color:var(--txt);line-height:1.7;margin-bottom:14px}
+.qtag{font-family:'JetBrains Mono',monospace;font-size:.56rem;color:var(--txt3);border:1px solid var(--border);padding:2px 8px;border-radius:20px}
+.qt{font-size:.88rem;color:var(--txt);line-height:1.7;margin-bottom:13px}
 .qt strong{color:var(--purple)} .qt em{color:var(--txt2);font-style:italic}
-.opts{display:flex;flex-direction:column;gap:7px}
-.opt{display:flex;align-items:flex-start;gap:10px;padding:9px 13px;
-  border:1px solid var(--border);border-radius:8px;cursor:pointer;
-  transition:all .2s;font-size:.87rem;color:var(--txt2)}
+.opts{display:flex;flex-direction:column;gap:6px}
+.opt{display:flex;align-items:flex-start;gap:9px;padding:8px 12px;border:1px solid var(--border);
+  border-radius:7px;cursor:pointer;transition:.2s;font-size:.85rem;color:var(--txt2)}
 .opt:hover{border-color:rgba(206,147,216,.35);background:var(--pdim);color:var(--txt)}
-.opt input[type=radio]{accent-color:var(--purple);margin-top:3px;min-width:14px}
+.opt input[type=radio]{accent-color:var(--purple);margin-top:3px;min-width:13px}
 .ans-in{width:100%;background:rgba(255,255,255,.03);border:none;
-  border-bottom:2px solid rgba(206,147,216,.2);color:var(--txt);padding:8px 4px;
-  font-family:'Lora',serif;font-size:.9rem;outline:none;transition:border-color .2s}
+  border-bottom:2px solid rgba(206,147,216,.2);color:var(--txt);padding:7px 3px;
+  font-family:'Lora',serif;font-size:.9rem;outline:none;transition:.2s}
 .ans-in:focus{border-bottom-color:rgba(206,147,216,.6)}
 .ans-in::placeholder{color:var(--txt3);font-style:italic}
 .ans-ta{width:100%;background:rgba(255,255,255,.03);border:1px solid var(--border);
-  border-radius:8px;color:var(--txt);padding:12px;font-family:'Lora',serif;
-  font-size:.88rem;outline:none;resize:vertical;min-height:90px;
-  transition:border-color .2s;line-height:1.65}
+  border-radius:7px;color:var(--txt);padding:11px;font-family:'Lora',serif;
+  font-size:.86rem;outline:none;resize:vertical;min-height:85px;transition:.2s;line-height:1.65}
 .ans-ta:focus{border-color:rgba(206,147,216,.4)}
-.ans-ta::placeholder{color:var(--txt3);font-style:italic;font-size:.85rem}
-.disc-hint{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--txt3);
-  letter-spacing:.06em;margin-bottom:8px}
+.ans-ta::placeholder{color:var(--txt3);font-style:italic;font-size:.83rem}
+.dhint{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--txt3);letter-spacing:.05em;margin-bottom:7px}
 
-/* SUBMIT */
-#submit-sec{background:var(--card);border:1px solid var(--border);border-radius:16px;
-  padding:28px;margin-top:32px}
-.sub-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;
-  color:var(--txt);margin-bottom:6px}
-.sub-note{font-size:.83rem;color:var(--txt2);margin-bottom:20px}
-.url-row{display:flex;gap:8px;margin-bottom:20px}
-.url-input{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(206,147,216,.3);
-  color:var(--txt);padding:9px 12px;font-family:'JetBrains Mono',monospace;
-  font-size:.75rem;border-radius:8px;outline:none}
-.url-input:focus{border-color:var(--purple)}
-.url-input::placeholder{color:var(--txt3)}
-#counter-box{display:flex;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+/* ── ENVIO ── */
+#enviar{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;margin-top:12px}
+.sub-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:900;margin-bottom:5px}
+.sub-note{font-size:.82rem;color:var(--txt2);margin-bottom:18px}
+.url-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.url-in{flex:1;min-width:200px;background:rgba(255,255,255,.04);border:1px solid rgba(206,147,216,.3);
+  color:var(--txt);padding:9px 11px;font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;border-radius:7px;outline:none}
+.url-in:focus{border-color:var(--purple)}
+.url-in::placeholder{color:var(--txt3)}
+.cnt-row{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
 .cnt{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;
-  padding:10px 16px;flex:1;min-width:100px;text-align:center}
-.cnt-n{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900}
-.cnt-l{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--txt3);letter-spacing:.08em}
-.btn-submit{width:100%;padding:14px;background:linear-gradient(135deg,var(--purple),var(--purple2));
-  color:#0d0014;font-family:'JetBrains Mono',monospace;font-size:.85rem;font-weight:700;
-  letter-spacing:.1em;border:none;border-radius:10px;cursor:pointer;transition:all .3s}
-.btn-submit:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 8px 24px var(--pglow)}
-.btn-submit:disabled{opacity:.4;cursor:not-allowed;transform:none}
-#submit-msg{display:none;margin-top:16px;padding:14px 18px;border-radius:10px;
-  font-size:.88rem;border:1px solid}
-#submit-msg.ok{background:var(--gdim);border-color:var(--gb);color:var(--green)}
-#submit-msg.err{background:var(--rdim);border-color:var(--rb);color:var(--red)}
-#submit-msg.loading{background:var(--pdim);border-color:rgba(206,147,216,.3);color:var(--purple)}
+  padding:10px 14px;flex:1;min-width:90px;text-align:center}
+.cn{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900}
+.cl{font-family:'JetBrains Mono',monospace;font-size:.57rem;color:var(--txt3);letter-spacing:.07em}
+.btn-send{width:100%;padding:13px;background:linear-gradient(135deg,var(--purple),#e1bee7);
+  color:#0d0014;font-family:'JetBrains Mono',monospace;font-size:.82rem;font-weight:700;
+  letter-spacing:.1em;border:none;border-radius:9px;cursor:pointer;transition:all .3s}
+.btn-send:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 8px 24px var(--pglow)}
+.btn-send:disabled{opacity:.4;cursor:not-allowed;transform:none}
+#smsg{display:none;margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.86rem;border:1px solid}
+#smsg.ok{background:var(--gdim);border-color:var(--gb);color:var(--green)}
+#smsg.err{background:var(--rdim);border-color:var(--rb);color:var(--red)}
+#smsg.loading{background:var(--pdim);border-color:rgba(206,147,216,.3);color:var(--purple)}
 
-/* FOOTER */
-footer{position:relative;z-index:1;padding:20px 48px;border-top:1px solid var(--border);
-  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
-  font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--txt3)}
+footer{position:relative;z-index:1;padding:18px 40px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--txt3)}
 footer span{color:var(--purple)}
 
 @media print{
-  #nav,#student-hdr .hdr-top button,.nav-right,footer{display:none!important}
-  body,#tab-questoes,#tab-teoria{background:#fff;color:#111;padding:0}
-  .tab-content{display:block!important}
-  #tab-teoria{display:none!important}
+  #nav,.btn-print,footer{display:none!important}
+  body,#hdr,.page-section{background:#fff;color:#111;padding:10px;z-index:auto}
+  .bg-grid,.bg-orb{display:none}
   .qc{background:#fff;border:1px solid #ccc;break-inside:avoid;border-radius:4px}
   .qc::before{display:none}
-  .qt,.opt{color:#111}
-  .ans-in,.ans-ta{border-color:#999;color:#111;background:#fff}
-  #submit-sec{display:none!important}
+  .qt,.opt{color:#111} .ans-in,.ans-ta{border-color:#999;color:#111;background:#fff}
+  #enviar{display:none!important}
+  .acc-body{display:block!important}
 }
-@media(max-width:768px){
-  #nav,#student-hdr,#tab-questoes,#tab-teoria,footer{padding-left:20px;padding-right:20px}
-  .form-row{flex-direction:column}
-  .tcp-udp,.dora{grid-template-columns:1fr}
+@media(max-width:700px){
+  #nav,#hdr,.page-section,footer{padding-left:16px;padding-right:16px}
+  .form-row,.tcp-udp,.dora{flex-direction:column;grid-template-columns:1fr}
+  .nav-links{flex-wrap:wrap}
 }
 </style>
 </head>
@@ -243,584 +210,481 @@ footer span{color:var(--purple)}
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="tab-group">
-    <button class="tab active" onclick="switchTab('teoria')">📚 TEORIA</button>
-    <button class="tab" onclick="switchTab('questoes')">📝 QUESTÕES</button>
+  <div class="nav-links">
+    <a class="nl teoria" href="#teoria">📚 Teoria</a>
+    <a class="nl questoes" href="#questoes">📝 Questões</a>
+    <a class="nl enviar" href="#enviar">📤 Enviar</a>
   </div>
   <div class="nav-right">
-    <span id="progress-txt">0 / 30 respondidas</span>
-    <div id="progress-bar"><div id="progress-fill"></div></div>
-    <button class="btn-sm btn-print" onclick="window.print()">🖨 Imprimir</button>
+    <span id="prog-txt">0 / 30</span>
+    <div id="prog-bar"><div id="prog-fill"></div></div>
+    <button class="btn-print" onclick="window.print()">🖨 Imprimir</button>
   </div>
 </nav>
 
-<!-- STUDENT HEADER -->
-<div id="student-hdr">
-  <div class="hdr-top">
-    <div>
-      <h1 class="page-title">Redes de <span>Computadores</span></h1>
-      <div class="hdr-meta">PROF. MARCOS CRUZ · INFORMÁTICA TÉCNICA · E.E. PREFEITO ODÍLIO FERNANDES COSTA</div>
-    </div>
-  </div>
+<!-- HEADER -->
+<div id="hdr">
+  <h1 class="page-title">Redes de <span>Computadores</span></h1>
+  <div class="page-meta">PROF. MARCOS CRUZ · INFORMÁTICA TÉCNICA · E.E. PREFEITO ODÍLIO FERNANDES COSTA</div>
   <div class="form-row">
-    <div class="ff"><label class="fl">Nome do aluno</label><input class="fi" id="nome" type="text" placeholder="Nome completo" oninput="updateCounter()"></div>
+    <div class="ff"><label class="fl">Nome do aluno</label><input class="fi" id="nome" type="text" placeholder="Nome completo" oninput="upd()"></div>
     <div class="ff"><label class="fl">Turma</label><input class="fi" id="turma" type="text" placeholder="Ex: 2º Ano A"></div>
     <div class="ff"><label class="fl">Data</label><input class="fi" id="data-ativ" type="date"></div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     TAB: TEORIA
-═══════════════════════════════════════ -->
-<div id="tab-teoria" class="tab-content active">
-<div id="tab-teoria-inner">
-<div style="max-width:860px;margin:0 auto;padding:40px 48px 80px;position:relative;z-index:1">
-
-<div class="teoria-intro">
-  📖 Leia cada seção antes de responder as questões. Clique no título para expandir o conteúdo.
-  Todos os tópicos abaixo aparecem nas 30 questões da atividade.
-</div>
-
-<div class="teoria-grid">
-
-<!-- 1. IP -->
-<div class="acc" id="acc-ip">
-  <button class="acc-btn" onclick="toggleAcc('acc-ip')">
-    <div class="acc-ico" style="background:var(--bdim);border-color:var(--bb);color:var(--blue)">🌐</div>
-    <div><div class="acc-title">1. Endereço IP</div>
-    <div class="acc-sub">IPv4 · IPv6 · IP Público · IP Privado</div></div>
-    <span class="acc-arrow">▸</span>
-  </button>
-  <div class="acc-body">
-    <p class="t-p">O endereço IP é um código numérico que identifica cada dispositivo em uma rede — como um "CEP" digital. Sem ele, os dados não saberiam para onde ir.</p>
-    <div class="t-h" style="color:var(--blue)">IPv4 — 32 bits</div>
-    <p class="t-p">Escrito em 4 grupos decimais separados por ponto. Cada grupo vai de 0 a 255.</p>
-    <div class="t-box">Exemplo: <span class="hl">192.168.1.10</span><br>
-    Formato: <span class="hl">XXX.XXX.XXX.XXX</span> → 4 octetos × 8 bits = 32 bits<br>
-    Total de endereços: <span class="hl">~4,3 bilhões</span></div>
-    <div class="t-h" style="color:var(--blue)">IPv6 — 128 bits</div>
-    <p class="t-p">Escrito em 8 grupos hexadecimais separados por dois pontos. Criado para suprir o esgotamento do IPv4.</p>
-    <div class="t-box">Exemplo: <span class="hl">2001:0db8:85a3:0000:0000:8a2e:0370:7334</span><br>
-    Formato: <span class="hl">XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX</span><br>
-    Total de endereços: <span class="hl">~340 undecilhões (3,4 × 10³⁸)</span></div>
-    <div class="t-h" style="color:var(--blue)">IP Público vs IP Privado</div>
-    <table class="t-table">
-      <tr><th>Característica</th><th>IP Público</th><th>IP Privado</th></tr>
-      <tr><td>Visível na internet?</td><td class="good">✅ Sim</td><td class="bad" style="color:var(--red)">❌ Não</td></tr>
-      <tr><td>Atribuído por</td><td>Provedor de internet</td><td>Roteador/DHCP local</td></tr>
-      <tr><td>Único no mundo?</td><td class="good">✅ Sim</td><td class="bad" style="color:var(--red)">❌ Não (repetido em redes diferentes)</td></tr>
-      <tr><td>Exemplo</td><td>189.40.22.117</td><td>192.168.1.10</td></tr>
-    </table>
-    <div class="t-h" style="color:var(--blue)">Faixas de IP Privado (RFC 1918)</div>
-    <div class="t-box">
-      <span class="hl">Classe A:</span> 10.0.0.0 – 10.255.255.255<br>
-      <span class="hl">Classe B:</span> 172.16.0.0 – 172.31.255.255<br>
-      <span class="hl">Classe C:</span> 192.168.0.0 – 192.168.255.255
-    </div>
-    <div class="t-alert tip">💡 Regra prática: IP começa com 192.168, 10. ou 172.16 a 172.31? É PRIVADO.</div>
-    <div class="acc-foot">🎯 Aparece nas questões: 03 · 08 · 10 · 15 · 20 · 25 · 27</div>
+<!-- ══════════════════════════ TEORIA ══════════════════════════ -->
+<div class="page-section" id="teoria">
+  <div class="sec-label">
+    <div class="sec-ico" style="background:var(--bdim);border-color:var(--bb);color:var(--blue)">📚</div>
+    <div><div class="sec-h" style="color:var(--blue)">Teoria</div>
+    <div class="sec-sub">LEIA ANTES DE RESPONDER · CLIQUE PARA EXPANDIR CADA TÓPICO</div></div>
   </div>
-</div>
+  <div class="teoria-grid">
 
-<!-- 2. LAN -->
-<div class="acc" id="acc-lan">
-  <button class="acc-btn" onclick="toggleAcc('acc-lan')">
-    <div class="acc-ico" style="background:var(--gdim);border-color:var(--gb);color:var(--green)">🖥</div>
-    <div><div class="acc-title">2. LAN — Rede Local</div>
-    <div class="acc-sub">Local Area Network · Tipos de rede</div></div>
-    <span class="acc-arrow">▸</span>
-  </button>
-  <div class="acc-body">
-    <p class="t-p">LAN (Local Area Network) é uma rede que conecta dispositivos em uma área geográfica pequena — sala, andar, prédio ou campus. Alta velocidade, baixa latência, gerenciada pela própria organização.</p>
-    <table class="t-table">
-      <tr><th>Tipo</th><th>Nome completo</th><th>Alcance</th><th>Exemplo</th></tr>
-      <tr><td style="color:var(--green);font-weight:700">LAN</td><td>Local Area Network</td><td>Sala / prédio</td><td>Laboratório de informática</td></tr>
-      <tr><td style="color:var(--amber);font-weight:700">MAN</td><td>Metropolitan Area Network</td><td>Cidade</td><td>Rede de uma universidade</td></tr>
-      <tr><td style="color:var(--red);font-weight:700">WAN</td><td>Wide Area Network</td><td>País / mundo</td><td>Internet</td></tr>
-    </table>
-    <p class="t-p">Dispositivos comuns em uma LAN: switch (interliga dispositivos), roteador (conecta à internet), access point (Wi-Fi), computadores, impressoras.</p>
-    <div class="t-alert tip">💡 Em uma LAN, dispositivos com IPs na mesma faixa se comunicam diretamente, sem precisar do gateway.</div>
-    <div class="acc-foot">🎯 Aparece nas questões: 05 · 12 · 17 · 18 · 24</div>
+  <div class="acc" id="a1">
+    <button class="acc-btn" onclick="tog('a1')">
+      <div class="acc-ico" style="background:var(--bdim);border-color:var(--bb);color:var(--blue)">🌐</div>
+      <div><div class="acc-title">1. Endereço IP</div><div class="acc-sub">IPv4 · IPv6 · IP Público · IP Privado</div></div>
+      <span class="acc-arrow">▸</span>
+    </button>
+    <div class="acc-body">
+      <p class="t-p">O IP é um código numérico que identifica cada dispositivo em uma rede — como um "CEP" digital.</p>
+      <div class="t-h" style="color:var(--blue)">IPv4 — 32 bits</div>
+      <div class="t-box">Formato: <span class="hl">XXX.XXX.XXX.XXX</span> — 4 grupos decimais (0-255)<br>Exemplo: <span class="hl">192.168.1.10</span><br>Total de endereços: <span class="hl">~4,3 bilhões</span></div>
+      <div class="t-h" style="color:var(--blue)">IPv6 — 128 bits</div>
+      <div class="t-box">Formato: <span class="hl">XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX</span> — 8 grupos hexadecimais<br>Exemplo: <span class="hl">2001:0db8:85a3:0000:0000:8a2e:0370:7334</span><br>Total: <span class="hl">~340 undecilhões (3,4 × 10³⁸)</span></div>
+      <div class="t-h" style="color:var(--blue)">IP Público × IP Privado</div>
+      <table class="t-tbl">
+        <tr><th>Característica</th><th>IP Público</th><th>IP Privado</th></tr>
+        <tr><td>Visível na internet?</td><td class="gd">✅ Sim</td><td class="bd" style="color:var(--red)">❌ Não</td></tr>
+        <tr><td>Atribuído por</td><td>Provedor de internet</td><td>Roteador/DHCP local</td></tr>
+        <tr><td>Exemplo</td><td>189.40.22.117</td><td>192.168.1.10</td></tr>
+      </table>
+      <div class="t-h" style="color:var(--blue)">Faixas de IP Privado (RFC 1918)</div>
+      <div class="t-box">
+        <span class="hl">10.0.0.0</span> – 10.255.255.255 (Classe A)<br>
+        <span class="hl">172.16.0.0</span> – 172.31.255.255 (Classe B)<br>
+        <span class="hl">192.168.0.0</span> – 192.168.255.255 (Classe C)
+      </div>
+      <div class="t-alert tip">💡 Começa com 192.168, 10. ou 172.16 a 172.31? É PRIVADO.</div>
+      <div class="acc-foot">🎯 Questões: 03 · 08 · 10 · 15 · 20 · 25 · 27</div>
+    </div>
   </div>
-</div>
 
-<!-- 3. VPN -->
-<div class="acc" id="acc-vpn">
-  <button class="acc-btn" onclick="toggleAcc('acc-vpn')">
-    <div class="acc-ico" style="background:var(--pdim);border-color:rgba(206,147,216,.3);color:var(--purple)">🔒</div>
-    <div><div class="acc-title">3. VPN — Rede Privada Virtual</div>
-    <div class="acc-sub">Virtual Private Network · Split Tunneling</div></div>
-    <span class="acc-arrow">▸</span>
-  </button>
-  <div class="acc-body">
-    <p class="t-p">VPN (Virtual Private Network) cria um <strong style="color:var(--purple)">túnel criptografado</strong> através da internet, permitindo que dispositivos remotos se conectem a uma rede privada com segurança — como se estivessem presentes fisicamente.</p>
-    <div class="t-h" style="color:var(--purple)">Como funciona</div>
-    <div class="t-box">
-      1. Dispositivo do usuário criptografa o tráfego<br>
-      2. Envia pelo túnel VPN pela internet<br>
-      3. Servidor VPN da empresa descriptografa<br>
-      4. Acessa os recursos internos normalmente
+  <div class="acc" id="a2">
+    <button class="acc-btn" onclick="tog('a2')">
+      <div class="acc-ico" style="background:var(--gdim);border-color:var(--gb);color:var(--green)">🖥</div>
+      <div><div class="acc-title">2. LAN — Rede Local</div><div class="acc-sub">Local Area Network · Tipos de rede</div></div>
+      <span class="acc-arrow">▸</span>
+    </button>
+    <div class="acc-body">
+      <p class="t-p">LAN conecta dispositivos em uma área pequena (sala, prédio, campus) com alta velocidade e baixa latência.</p>
+      <table class="t-tbl">
+        <tr><th>Tipo</th><th>Alcance</th><th>Exemplo</th></tr>
+        <tr><td style="color:var(--green);font-weight:700">LAN</td><td>Sala / prédio</td><td>Laboratório de informática</td></tr>
+        <tr><td style="color:var(--amber);font-weight:700">MAN</td><td>Cidade</td><td>Rede de universidade</td></tr>
+        <tr><td style="color:var(--red);font-weight:700">WAN</td><td>País / mundo</td><td>Internet</td></tr>
+      </table>
+      <div class="t-alert tip">💡 Dispositivos na mesma LAN (mesmo IP de rede) se comunicam diretamente, sem gateway.</div>
+      <div class="acc-foot">🎯 Questões: 05 · 12 · 17 · 18 · 24</div>
     </div>
-    <div class="t-h" style="color:var(--purple)">Tipos de VPN</div>
-    <ul class="t-ul">
-      <li><strong style="color:var(--purple)">Acesso remoto:</strong> funcionário em casa acessa a rede da empresa</li>
-      <li><strong style="color:var(--purple)">Site-to-site:</strong> interliga filiais de uma empresa como se fossem uma única LAN</li>
-    </ul>
-    <div class="t-h" style="color:var(--purple)">Split Tunneling</div>
-    <table class="t-table">
-      <tr><th>Split Tunneling</th><th>O que acontece</th></tr>
-      <tr><td style="color:var(--green)">ATIVADO ✅</td><td>Tráfego corporativo vai pela VPN. Internet pessoal vai direto (mais rápido).</td></tr>
-      <tr><td style="color:var(--red)">DESATIVADO ❌</td><td>TODO o tráfego passa pela VPN e pelos servidores da empresa — inclusive acesso a sites externos.</td></tr>
-    </table>
-    <div class="t-alert warn">⚠ Com split tunneling DESATIVADO, até um site de notícias qualquer passa pelo servidor da empresa.</div>
-    <div class="acc-foot">🎯 Aparece nas questões: 01 · 18 · 26 · 27</div>
   </div>
-</div>
 
-<!-- 4. DHCP -->
-<div class="acc" id="acc-dhcp">
-  <button class="acc-btn" onclick="toggleAcc('acc-dhcp')">
-    <div class="acc-ico" style="background:var(--adim);border-color:var(--ab);color:var(--amber)">⚙</div>
-    <div><div class="acc-title">4. DHCP</div>
-    <div class="acc-sub">Dynamic Host Configuration Protocol · DORA · APIPA</div></div>
-    <span class="acc-arrow">▸</span>
-  </button>
-  <div class="acc-body">
-    <p class="t-p">DHCP distribui automaticamente as configurações de rede para cada dispositivo que se conecta.</p>
-    <div class="t-h" style="color:var(--amber)">O que o DHCP fornece</div>
-    <div class="t-box">
-      ✦ Endereço IP<br>✦ Máscara de sub-rede<br>✦ Gateway padrão<br>✦ Endereço do servidor DNS
+  <div class="acc" id="a3">
+    <button class="acc-btn" onclick="tog('a3')">
+      <div class="acc-ico" style="background:var(--pdim);border-color:rgba(206,147,216,.3);color:var(--purple)">🔒</div>
+      <div><div class="acc-title">3. VPN</div><div class="acc-sub">Virtual Private Network · Split Tunneling</div></div>
+      <span class="acc-arrow">▸</span>
+    </button>
+    <div class="acc-body">
+      <p class="t-p">VPN cria um <strong style="color:var(--purple)">túnel criptografado</strong> pela internet, permitindo acesso remoto seguro a uma rede privada.</p>
+      <ul class="t-ul">
+        <li><strong style="color:var(--purple)">Acesso remoto:</strong> funcionário em casa acessa a rede da empresa</li>
+        <li><strong style="color:var(--purple)">Site-to-site:</strong> interliga filiais como uma única LAN</li>
+      </ul>
+      <div class="t-h" style="color:var(--purple)">Split Tunneling</div>
+      <table class="t-tbl">
+        <tr><th>Split Tunneling</th><th>O que acontece</th></tr>
+        <tr><td style="color:var(--green)">ATIVADO</td><td>Tráfego corporativo vai pela VPN; internet pessoal vai direto.</td></tr>
+        <tr><td style="color:var(--red)">DESATIVADO</td><td>TODO o tráfego passa pela empresa — inclusive sites externos.</td></tr>
+      </table>
+      <div class="acc-foot">🎯 Questões: 01 · 18 · 26 · 27</div>
     </div>
-    <div class="t-h" style="color:var(--amber)">Processo DORA</div>
-    <div class="dora">
-      <div class="dora-step"><div class="dora-letter" style="color:var(--amber)">D</div><div class="dora-name">DISCOVER</div><div class="dora-desc">Dispositivo grita: "Tem servidor DHCP?"</div></div>
-      <div class="dora-step"><div class="dora-letter" style="color:var(--amber)">O</div><div class="dora-name">OFFER</div><div class="dora-desc">Servidor responde: "Ofereço o IP 192.168.1.50"</div></div>
-      <div class="dora-step"><div class="dora-letter" style="color:var(--amber)">R</div><div class="dora-name">REQUEST</div><div class="dora-desc">Dispositivo pede: "Posso usar esse IP?"</div></div>
-      <div class="dora-step"><div class="dora-letter" style="color:var(--amber)">A</div><div class="dora-name">ACKNOWLEDGE</div><div class="dora-desc">Servidor confirma: "Confirmado! Use por X horas"</div></div>
-    </div>
-    <div class="t-h" style="color:var(--amber)">DHCP Reservation</div>
-    <p class="t-p">Associa o <strong style="color:var(--amber)">MAC address</strong> (endereço físico) de um dispositivo a um IP específico. Resultado: o dispositivo sempre recebe o mesmo IP automaticamente — sem configuração manual.</p>
-    <div class="t-h" style="color:var(--amber)">Sem DHCP: APIPA</div>
-    <div class="t-box">
-      Se o servidor DHCP não responder, o Windows atribui automaticamente um endereço <span class="hl">APIPA: 169.254.x.x</span><br>
-      Com APIPA: <span class="bad">sem gateway, sem DNS, sem acesso à rede ou internet</span>
-    </div>
-    <div class="acc-foot">🎯 Aparece nas questões: 02 · 08 · 11 · 12 · 19 · 29</div>
   </div>
-</div>
 
-<!-- 5. DNS -->
-<div class="acc" id="acc-dns">
-  <button class="acc-btn" onclick="toggleAcc('acc-dns')">
-    <div class="acc-ico" style="background:var(--cdim);border-color:var(--cb);color:var(--cyan)">🔍</div>
-    <div><div class="acc-title">5. DNS</div>
-    <div class="acc-sub">Domain Name System · Forwarder · Bloqueio de sites</div></div>
-    <span class="acc-arrow">▸</span>
-  </button>
-  <div class="acc-body">
-    <p class="t-p">DNS (Domain Name System) traduz nomes de domínio em endereços IP — funciona como a "lista telefônica" da internet.</p>
-    <div class="t-box">
-      Você digita: <span class="hl">www.google.com</span><br>
-      DNS resolve: <span class="hl">142.250.218.14</span><br>
-      Navegador acessa: <span class="hl">142.250.218.14</span>
+  <div class="acc" id="a4">
+    <button class="acc-btn" onclick="tog('a4')">
+      <div class="acc-ico" style="background:var(--adim);border-color:var(--ab);color:var(--amber)">⚙</div>
+      <div><div class="acc-title">4. DHCP</div><div class="acc-sub">Configuração automática de rede · DORA · APIPA</div></div>
+      <span class="acc-arrow">▸</span>
+    </button>
+    <div class="acc-body">
+      <p class="t-p">DHCP distribui automaticamente: <strong style="color:var(--amber)">IP · Máscara · Gateway · DNS</strong></p>
+      <div class="t-h" style="color:var(--amber)">Processo DORA</div>
+      <div class="dora">
+        <div class="dstep"><div class="dl" style="color:var(--amber)">D</div><div class="dn">DISCOVER</div><div class="dd">Tem servidor DHCP?</div></div>
+        <div class="dstep"><div class="dl" style="color:var(--amber)">O</div><div class="dn">OFFER</div><div class="dd">Ofereço o IP 192.168.1.50</div></div>
+        <div class="dstep"><div class="dl" style="color:var(--amber)">R</div><div class="dn">REQUEST</div><div class="dd">Posso usar esse IP?</div></div>
+        <div class="dstep"><div class="dl" style="color:var(--amber)">A</div><div class="dn">ACK</div><div class="dd">Confirmado! Use por X horas</div></div>
+      </div>
+      <div class="t-h" style="color:var(--amber)">DHCP Reservation</div>
+      <p class="t-p">Associa o MAC address de um dispositivo a um IP específico. O dispositivo sempre recebe o mesmo IP automaticamente.</p>
+      <div class="t-h" style="color:var(--amber)">Sem DHCP: APIPA</div>
+      <div class="t-box">Windows atribui IP <span class="hl">169.254.x.x</span> (APIPA)<br><span class="bd">Sem gateway · Sem DNS · Sem acesso à rede ou internet</span></div>
+      <div class="acc-foot">🎯 Questões: 02 · 08 · 11 · 12 · 19 · 29</div>
     </div>
-    <div class="t-h" style="color:var(--cyan)">Servidores DNS públicos</div>
-    <div class="t-box">
-      8.8.8.8 e 8.8.4.4 → Google<br>
-      1.1.1.1 → Cloudflare
+  </div>
+
+  <div class="acc" id="a5">
+    <button class="acc-btn" onclick="tog('a5')">
+      <div class="acc-ico" style="background:var(--cdim);border-color:var(--cb);color:var(--cyan)">🔍</div>
+      <div><div class="acc-title">5. DNS</div><div class="acc-sub">Domain Name System · Forwarder · Bloqueio</div></div>
+      <span class="acc-arrow">▸</span>
+    </button>
+    <div class="acc-body">
+      <p class="t-p">DNS traduz nomes de domínio em IPs — a "lista telefônica" da internet.</p>
+      <div class="t-box">Você digita: <span class="hl">www.google.com</span><br>DNS resolve: <span class="hl">142.250.218.14</span> → navegador acessa o IP</div>
+      <ul class="t-ul">
+        <li><strong style="color:var(--cyan)">DNS público:</strong> 8.8.8.8 (Google), 1.1.1.1 (Cloudflare)</li>
+        <li><strong style="color:var(--cyan)">DNS Forwarder:</strong> DNS interno repassa consultas externas para DNS externo</li>
+        <li><strong style="color:var(--cyan)">Bloqueio por DNS:</strong> servidor configurado para não resolver certos domínios</li>
+      </ul>
+      <div class="t-alert warn">⚠ Sem DNS: sites abrem pelo IP mas não pelo nome de domínio.</div>
+      <div class="acc-foot">🎯 Questões: 04 · 14 · 22 · 23 · 24 · 29</div>
     </div>
-    <div class="t-h" style="color:var(--cyan)">DNS Forwarder</div>
-    <p class="t-p">Servidor DNS interno que, ao não conhecer um domínio externo, repassa a consulta para um servidor DNS externo e retorna a resposta ao usuário. Combina resolução local (servidores internos) com acesso externo (internet).</p>
-    <div class="t-h" style="color:var(--cyan)">Bloqueio de sites pelo DNS</div>
-    <p class="t-p">O servidor DNS pode ser configurado para não resolver determinados domínios — retornando erro quando alguém tenta acessar o site pelo nome. Funciona mesmo que o IP do site mude frequentemente.</p>
-    <div class="t-alert warn">⚠ Sem DNS: o site só abre se digitar o IP diretamente. Navegar por nomes fica impossível.</div>
-    <div class="acc-foot">🎯 Aparece nas questões: 04 · 14 · 22 · 23 · 24 · 29</div>
   </div>
-</div>
 
-<!-- 6. Gateway -->
-<div class="acc" id="acc-gw">
-  <button class="acc-btn" onclick="toggleAcc('acc-gw')">
-    <div class="acc-ico" style="background:var(--odim);border-color:var(--ob);color:var(--orange)">🚪</div>
-    <div><div class="acc-title">6. Gateway</div>
-    <div class="acc-sub">Gateway Padrão · Roteador · Fronteira da rede</div></div>
-    <span class="acc-arrow">▸</span>
-  </button>
-  <div class="acc-body">
-    <p class="t-p">O <strong style="color:var(--orange)">gateway padrão</strong> é o dispositivo (geralmente o roteador) que serve como "portão de saída" da rede local para outras redes — incluindo a internet.</p>
-    <div class="t-alert info">🏢 Analogia: o gateway é a portaria de um condomínio. Pacotes internos (mesma rede) não precisam passar pela portaria. Pacotes externos passam obrigatoriamente.</div>
-    <div class="t-h" style="color:var(--orange)">Sem gateway configurado</div>
-    <table class="t-table">
-      <tr><th>Atividade</th><th>Funciona?</th></tr>
-      <tr><td>Comunicação dentro da LAN</td><td class="good">✅ Sim</td></tr>
-      <tr><td>Acesso à internet</td><td class="bad" style="color:var(--red)">❌ Não</td></tr>
-      <tr><td>Acesso a sites de outras redes</td><td class="bad" style="color:var(--red)">❌ Não</td></tr>
-    </table>
-    <div class="t-box">Como verificar: abra o CMD e digite <span class="hl">ipconfig</span><br>A linha <span class="hl">"Gateway Padrão"</span> mostra o endereço do gateway.</div>
-    <div class="acc-foot">🎯 Aparece nas questões: 07 · 17 · 24</div>
+  <div class="acc" id="a6">
+    <button class="acc-btn" onclick="tog('a6')">
+      <div class="acc-ico" style="background:var(--odim);border-color:var(--ob);color:var(--orange)">🚪</div>
+      <div><div class="acc-title">6. Gateway</div><div class="acc-sub">Portão de saída da rede · Roteador</div></div>
+      <span class="acc-arrow">▸</span>
+    </button>
+    <div class="acc-body">
+      <p class="t-p">O <strong style="color:var(--orange)">gateway padrão</strong> é o roteador que serve como "portão de saída" da LAN para a internet.</p>
+      <table class="t-tbl">
+        <tr><th>Sem gateway configurado</th><th>Resultado</th></tr>
+        <tr><td>Comunicação dentro da LAN</td><td class="gd">✅ Funciona</td></tr>
+        <tr><td>Acesso à internet</td><td style="color:var(--red)">❌ Não funciona</td></tr>
+      </table>
+      <div class="t-box">Como verificar: <span class="hl">ipconfig</span> no CMD → linha "Gateway Padrão"</div>
+      <div class="acc-foot">🎯 Questões: 07 · 17 · 24</div>
+    </div>
   </div>
-</div>
 
-<!-- 7. TCP vs UDP -->
-<div class="acc" id="acc-tcp">
-  <button class="acc-btn" onclick="toggleAcc('acc-tcp')">
-    <div class="acc-ico" style="background:var(--rdim);border-color:var(--rb);color:var(--red)">📡</div>
-    <div><div class="acc-title">7. TCP vs UDP</div>
-    <div class="acc-sub">Protocolos de Transporte · Portas · Sockets</div></div>
-    <span class="acc-arrow">▸</span>
-  </button>
-  <div class="acc-body">
-    <div class="tcp-udp">
-      <div class="proto-box tcp">
-        <div class="proto-title">TCP</div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--txt3);margin-bottom:10px">Transmission Control Protocol</div>
-        <ul class="t-ul" style="margin-left:12px">
-          <li>Orientado a conexão (handshake)</li>
-          <li>Garante entrega de todos os pacotes</li>
-          <li>Garante ordem correta</li>
-          <li>Detecta e corrige erros</li>
-          <li>Mais lento (overhead de confirmações)</li>
-        </ul>
-        <div style="margin-top:10px;font-size:.78rem;color:var(--blue)">
-          Uso: HTTP/HTTPS, e-mail, banco online, FTP, download de arquivos
+  <div class="acc" id="a7">
+    <button class="acc-btn" onclick="tog('a7')">
+      <div class="acc-ico" style="background:var(--rdim);border-color:var(--rb);color:var(--red)">📡</div>
+      <div><div class="acc-title">7. TCP vs UDP</div><div class="acc-sub">Protocolos de Transporte · Portas · Sockets</div></div>
+      <span class="acc-arrow">▸</span>
+    </button>
+    <div class="acc-body">
+      <div class="tcp-udp">
+        <div class="pbox tcp">
+          <div class="ptitle">TCP</div>
+          <ul class="t-ul" style="margin-left:10px;font-size:.8rem">
+            <li>Orientado a conexão (handshake)</li>
+            <li>Garante entrega e ordem</li>
+            <li>Mais lento</li>
+            <li>Uso: HTTP, e-mail, banco online</li>
+          </ul>
+        </div>
+        <div class="pbox udp">
+          <div class="ptitle">UDP</div>
+          <ul class="t-ul" style="margin-left:10px;font-size:.8rem">
+            <li>Sem conexão prévia</li>
+            <li>Sem garantia de entrega</li>
+            <li>Muito rápido</li>
+            <li>Uso: streaming, VoIP, jogos</li>
+          </ul>
         </div>
       </div>
-      <div class="proto-box udp">
-        <div class="proto-title">UDP</div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--txt3);margin-bottom:10px">User Datagram Protocol</div>
-        <ul class="t-ul" style="margin-left:12px">
-          <li>Sem conexão prévia</li>
-          <li>Sem garantia de entrega</li>
-          <li>Sem garantia de ordem</li>
-          <li>Sem verificação de erros</li>
-          <li>Muito rápido (sem overhead)</li>
-        </ul>
-        <div style="margin-top:10px;font-size:.78rem;color:var(--orange)">
-          Uso: streaming de vídeo, VoIP, jogos online, consultas DNS
-        </div>
+      <p class="t-p" style="margin-top:10px"><strong style="color:var(--red)">Sockets:</strong> o TCP identifica cada conexão por IP de origem + porta de origem + IP de destino + porta de destino. Cada cliente usa uma porta de origem diferente (ephemeral port), permitindo múltiplas conexões simultâneas ao mesmo servidor.</p>
+      <div class="t-alert tip">💡 Dados críticos (banco, e-mail) → TCP. Dados em tempo real (streaming, jogos) → UDP.</div>
+      <div class="acc-foot">🎯 Questões: 13 · 16 · 21 · 28</div>
+    </div>
+  </div>
+
+  <div class="acc" id="a8">
+    <button class="acc-btn" onclick="tog('a8')">
+      <div class="acc-ico" style="background:var(--gdim);border-color:var(--gb);color:var(--green)">🔄</div>
+      <div><div class="acc-title">8. NAT</div><div class="acc-sub">Network Address Translation · IP compartilhado</div></div>
+      <span class="acc-arrow">▸</span>
+    </button>
+    <div class="acc-body">
+      <p class="t-p">NAT permite que múltiplos dispositivos com IPs privados compartilhem um único IP público.</p>
+      <div class="t-box">
+        1. PC (192.168.1.10:<span class="hl">52000</span>) envia pacote para google.com<br>
+        2. Roteador substitui pelo IP público (200.10.1.1:<span class="hl">45001</span>)<br>
+        3. Google responde para 200.10.1.1:45001<br>
+        4. Roteador consulta tabela → encaminha para 192.168.1.10:52000
       </div>
+      <div class="t-alert info">🏢 Analogia: edifício com 40 funcionários usando o mesmo ramal externo, cada um com ramal interno diferente.</div>
+      <div class="acc-foot">🎯 Questões: 10 · 15 · 20 · 27</div>
     </div>
-    <div class="t-h" style="color:var(--red)">Portas e Sockets</div>
-    <p class="t-p">O TCP identifica cada conexão por um <strong style="color:var(--red)">socket</strong>: combinação de IP de origem + porta de origem + IP de destino + porta de destino. As portas de origem são geradas automaticamente pelo SO (ephemeral ports, geralmente > 1024), permitindo que dois clientes acessem o mesmo servidor simultaneamente sem confusão.</p>
-    <div class="t-alert tip">💡 Regra simples: dados onde a perda é aceitável → UDP. Dados onde a integridade é crítica → TCP.</div>
-    <div class="acc-foot">🎯 Aparece nas questões: 13 · 16 · 21 · 28</div>
+  </div>
+
+  <div class="acc" id="a9">
+    <button class="acc-btn" onclick="tog('a9')">
+      <div class="acc-ico" style="background:var(--adim);border-color:var(--ab);color:var(--amber)">📐</div>
+      <div><div class="acc-title">9. Máscara de Rede e CIDR</div><div class="acc-sub">Sub-redes · Notação /24 · Hosts por rede</div></div>
+      <span class="acc-arrow">▸</span>
+    </button>
+    <div class="acc-body">
+      <p class="t-p">A máscara define qual parte do IP identifica a rede e qual identifica o dispositivo (host).</p>
+      <table class="t-tbl">
+        <tr><th>CIDR</th><th>Máscara</th><th>Máx. dispositivos</th></tr>
+        <tr><td style="color:var(--amber);font-weight:700">/8</td><td>255.0.0.0</td><td>~16,7 milhões</td></tr>
+        <tr><td style="color:var(--amber);font-weight:700">/16</td><td>255.255.0.0</td><td>65.534</td></tr>
+        <tr><td style="color:var(--amber);font-weight:700">/24</td><td>255.255.255.0</td><td>254</td></tr>
+      </table>
+      <div class="t-box">
+        Com /24, os <span class="hl">3 primeiros octetos</span> identificam a rede:<br>
+        192.168.<span class="hl">1</span>.10 e 192.168.<span class="hl">1</span>.50 → <span class="gd">mesma rede ✅ comunicam diretamente</span><br>
+        192.168.<span class="hl">1</span>.10 e 192.168.<span class="hl">2</span>.10 → <span class="bd" style="color:var(--red)">redes diferentes ❌ precisam do gateway</span>
+      </div>
+      <div class="acc-foot">🎯 Questões: 17 · 24 · 25</div>
+    </div>
+  </div>
+
+  </div><!-- teoria-grid -->
+  <div style="text-align:center;margin-top:28px">
+    <a href="#questoes" style="display:inline-block;padding:11px 28px;background:linear-gradient(135deg,var(--purple),#e1bee7);color:#0d0014;font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-decoration:none;border-radius:9px">📝 IR PARA AS QUESTÕES →</a>
   </div>
 </div>
 
-<!-- 8. NAT -->
-<div class="acc" id="acc-nat">
-  <button class="acc-btn" onclick="toggleAcc('acc-nat')">
-    <div class="acc-ico" style="background:var(--gdim);border-color:var(--gb);color:var(--green)">🔄</div>
-    <div><div class="acc-title">8. NAT — Tradução de Endereços</div>
-    <div class="acc-sub">Network Address Translation · IP Público compartilhado</div></div>
-    <span class="acc-arrow">▸</span>
-  </button>
-  <div class="acc-body">
-    <p class="t-p">NAT (Network Address Translation) permite que múltiplos dispositivos com IPs privados compartilhem um único IP público para acessar a internet.</p>
-    <div class="t-h" style="color:var(--green)">Como funciona</div>
-    <div class="t-box">
-      1. PC interno (192.168.1.10:<span class="hl">52000</span>) envia pacote para google.com<br>
-      2. Roteador substitui pelo IP público (200.10.1.1:<span class="hl">45001</span>)<br>
-      3. Google responde para 200.10.1.1:45001<br>
-      4. Roteador consulta tabela → encaminha para 192.168.1.10:52000<br><br>
-      O roteador usa <span class="hl">portas diferentes</span> para distinguir cada dispositivo.
+<!-- ══════════════════════════ QUESTÕES ══════════════════════════ -->
+<div class="page-section" id="questoes">
+  <div class="sec-label">
+    <div class="sec-ico" style="background:var(--gdim);border-color:var(--gb);color:var(--green)">📝</div>
+    <div><div class="sec-h" style="color:var(--green)">Questões</div>
+    <div class="sec-sub">30 QUESTÕES SITUACIONAIS · FÁCIL · MÉDIO · DIFÍCIL</div></div>
+  </div>
+
+  <!-- FÁCIL -->
+  <div class="qsec">
+  <div class="qsec-hdr"><div class="qico e">F</div><div><div class="qtitle e">Nível Fácil</div><div class="qmeta">QUESTÕES 01–10 · IDENTIFICAÇÃO E CONCEITOS BÁSICOS EM CONTEXTO</div></div></div>
+
+  <div class="qc fc"><div class="qh"><span class="qn">01</span><span class="qb fc">Fechada</span><span class="qtag">VPN</span></div>
+  <div class="qt">João trabalha em casa e precisa acessar os sistemas da empresa com segurança e criptografia, como se estivesse no escritório. Qual tecnologia resolve?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="q1" value="a" onchange="upd()"> a) DNS — traduz nomes de domínio em endereços IP</label>
+    <label class="opt"><input type="radio" name="q1" value="b" onchange="upd()"> b) DHCP — distribui endereços IP automaticamente</label>
+    <label class="opt"><input type="radio" name="q1" value="c" onchange="upd()"> c) VPN — cria túnel criptografado pela internet</label>
+    <label class="opt"><input type="radio" name="q1" value="d" onchange="upd()"> d) Gateway — conecta redes distintas</label>
+  </div></div>
+
+  <div class="qc ab"><div class="qh"><span class="qn">02</span><span class="qb ab">Aberta</span><span class="qtag">DHCP</span></div>
+  <div class="qt">Maria liga um computador novo na rede da escola. Sem configurar nada, ele já recebe IP, máscara, gateway e DNS automaticamente. Qual serviço é responsável?</div>
+  <input class="ans-in" id="ans2" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
+
+  <div class="qc fc"><div class="qh"><span class="qn">03</span><span class="qb fc">Fechada</span><span class="qtag">IP Privado</span></div>
+  <div class="qt">O computador de Pedro exibe o endereço IP <strong>192.168.1.20</strong>. Esse endereço é:</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="q3" value="a" onchange="upd()"> a) IP público, acessível diretamente por qualquer dispositivo na internet</label>
+    <label class="opt"><input type="radio" name="q3" value="b" onchange="upd()"> b) IP privado, válido apenas dentro da rede local</label>
+    <label class="opt"><input type="radio" name="q3" value="c" onchange="upd()"> c) Endereço IPv6 em formato simplificado</label>
+    <label class="opt"><input type="radio" name="q3" value="d" onchange="upd()"> d) Endereço reservado exclusivamente para servidores DNS</label>
+  </div></div>
+
+  <div class="qc ab"><div class="qh"><span class="qn">04</span><span class="qb ab">Aberta</span><span class="qtag">DNS</span></div>
+  <div class="qt">Ana digita <strong>www.youtube.com</strong> no navegador. O computador precisa encontrar o IP correspondente para se conectar. Qual serviço faz essa tradução de nome para IP?</div>
+  <input class="ans-in" id="ans4" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
+
+  <div class="qc fc"><div class="qh"><span class="qn">05</span><span class="qb fc">Fechada</span><span class="qtag">LAN</span></div>
+  <div class="qt">A empresa Alfa conectou todos os computadores do escritório em uma rede, permitindo compartilhamento de arquivos e impressoras. Todos estão no mesmo prédio. Que tipo de rede é essa?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="q5" value="a" onchange="upd()"> a) WAN — Wide Area Network</label>
+    <label class="opt"><input type="radio" name="q5" value="b" onchange="upd()"> b) VPN — rede privada virtual</label>
+    <label class="opt"><input type="radio" name="q5" value="c" onchange="upd()"> c) LAN — Local Area Network</label>
+    <label class="opt"><input type="radio" name="q5" value="d" onchange="upd()"> d) MAN — Metropolitan Area Network</label>
+  </div></div>
+
+  <div class="qc ab"><div class="qh"><span class="qn">06</span><span class="qb ab">Aberta</span><span class="qtag">IPv6</span></div>
+  <div class="qt">Analise: <strong>2001:0db8:85a3:0000:0000:8a2e:0370:7334</strong>. A qual versão do protocolo IP pertence? Cite uma característica que permitiu a identificação.</div>
+  <input class="ans-in" id="ans6" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
+
+  <div class="qc fc"><div class="qh"><span class="qn">07</span><span class="qb fc">Fechada</span><span class="qtag">Gateway</span></div>
+  <div class="qt">Carlos não acessa a internet, mas acessa normalmente outros computadores da mesma rede. IP, máscara e DNS estão corretos. Qual configuração deve verificar primeiro?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="q7" value="a" onchange="upd()"> a) Endereço DNS</label>
+    <label class="opt"><input type="radio" name="q7" value="b" onchange="upd()"> b) Gateway padrão</label>
+    <label class="opt"><input type="radio" name="q7" value="c" onchange="upd()"> c) Servidor DHCP</label>
+    <label class="opt"><input type="radio" name="q7" value="d" onchange="upd()"> d) Endereço IPv6</label>
+  </div></div>
+
+  <div class="qc ab"><div class="qh"><span class="qn">08</span><span class="qb ab">Aberta</span><span class="qtag">DHCP · IP Privado</span></div>
+  <div class="qt">Quatro dispositivos conectados ao roteador recebem IPs automáticos na faixa <strong>192.168.0.x</strong>. Qual componente distribui esses endereços? Eles são públicos ou privados?</div>
+  <input class="ans-in" id="ans8" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
+
+  <div class="qc fc"><div class="qh"><span class="qn">09</span><span class="qb fc">Fechada</span><span class="qtag">IPv4 · IPv6</span></div>
+  <div class="qt">Com o crescimento de smartphones, câmeras e geladeiras conectadas, qual afirmação sobre o IPv6 está CORRETA?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="q9" value="a" onchange="upd()"> a) Usa endereços de 32 bits, igual ao IPv4, porém com novo formato</label>
+    <label class="opt"><input type="radio" name="q9" value="b" onchange="upd()"> b) Foi criado antes do IPv4, na década de 1970</label>
+    <label class="opt"><input type="radio" name="q9" value="c" onchange="upd()"> c) Permite uma quantidade vastamente maior de endereços que o IPv4</label>
+    <label class="opt"><input type="radio" name="q9" value="d" onchange="upd()"> d) Não é compatível com roteadores modernos</label>
+  </div></div>
+
+  <div class="qc ab"><div class="qh"><span class="qn">10</span><span class="qb ab">Aberta</span><span class="qtag">IP Público · NAT</span></div>
+  <div class="qt">Você está em um café. Seu celular recebe o IP <strong>10.0.0.8</strong> e o notebook do colega <strong>10.0.0.9</strong>. Quando alguém de fora tenta descobrir o IP de vocês, qual endereço aparece? Por quê?</div>
+  <input class="ans-in" id="ans10" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
+  </div>
+
+  <!-- MÉDIO -->
+  <div class="qsec">
+  <div class="qsec-hdr"><div class="qico m">M</div><div><div class="qtitle m">Nível Médio</div><div class="qmeta">QUESTÕES 11–20 · ANÁLISE E APLICAÇÃO</div></div></div>
+
+  <div class="qc fc"><div class="qh"><span class="qn">11</span><span class="qb fc">Fechada</span><span class="qtag">DHCP</span></div>
+  <div class="qt">Uma empresa com 200 funcionários quer que cada computador receba <strong>sempre o mesmo IP automaticamente</strong>, sem configuração manual. Qual recurso do DHCP resolve?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="q11" value="a" onchange="upd()"> a) DNS reverso</label>
+    <label class="opt"><input type="radio" name="q11" value="b" onchange="upd()"> b) Reserva de IP (DHCP Reservation) — associa IP fixo ao MAC address</label>
+    <label class="opt"><input type="radio" name="q11" value="c" onchange="upd()"> c) NAT</label>
+    <label class="opt"><input type="radio" name="q11" value="d" onchange="upd()"> d) Split tunneling</label>
+  </div></div>
+
+  <div class="qc di"><div class="qh"><span class="qn">12</span><span class="qb di">Discursiva</span><span class="qtag">DHCP · LAN</span></div>
+  <div class="qt">Uma escola instalou uma rede com <strong>80 computadores</strong>. O técnico decide entre IPs manuais ou DHCP. Explique vantagens e desvantagens de cada abordagem e indique qual é mais adequada para o contexto escolar.</div>
+  <div class="dhint">ORIENTAÇÃO: Considere manutenção, erros humanos, escalabilidade e rotatividade de dispositivos.</div>
+  <textarea class="ans-ta" id="ans12" placeholder="Desenvolva sua resposta aqui…" oninput="upd()"></textarea></div>
+
+  <div class="qc fc"><div class="qh"><span class="qn">13</span><span class="qb fc">Fechada</span><span class="qtag">TCP</span></div>
+  <div class="qt">Um sistema de internet banking precisa garantir que <strong>nenhum pacote seja perdido</strong> e que os dados cheguem na ordem correta. Qual protocolo é obrigatório?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="q13" value="a" onchange="upd()"> a) UDP — mais rápido, sem controle de erros</label>
+    <label class="opt"><input type="radio" name="q13" value="b" onchange="upd()"> b) TCP — garante entrega, ordem e integridade</label>
+    <label class="opt"><input type="radio" name="q13" value="c" onchange="upd()"> c) DNS — protocolo de resolução de nomes</label>
+    <label class="opt"><input type="radio" name="q13" value="d" onchange="upd()"> d) ICMP — protocolo de mensagens de controle</label>
+  </div></div>
+
+  <div class="qc ab"><div class="qh"><span class="qn">14</span><span class="qb ab">Aberta</span><span class="qtag">DNS</span></div>
+  <div class="qt">Ana recebe <em>"Servidor DNS não encontrado"</em>, mas o site abre ao digitar o IP diretamente. O que está com problema? Como confirmar esse diagnóstico?</div>
+  <input class="ans-in" id="ans14" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
+
+  <div class="qc fc"><div class="qh"><span class="qn">15</span><span class="qb fc">Fechada</span><span class="qtag">NAT</span></div>
+  <div class="qt">Quando um funcionário acessa a internet, o roteador substitui o IP privado dele pelo IP público da empresa. Esse mecanismo chama-se:</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="q15" value="a" onchange="upd()"> a) DNS</label>
+    <label class="opt"><input type="radio" name="q15" value="b" onchange="upd()"> b) DHCP</label>
+    <label class="opt"><input type="radio" name="q15" value="c" onchange="upd()"> c) NAT — Network Address Translation</label>
+    <label class="opt"><input type="radio" name="q15" value="d" onchange="upd()"> d) VPN</label>
+  </div></div>
+
+  <div class="qc di"><div class="qh"><span class="qn">16</span><span class="qb di">Discursiva</span><span class="qtag">TCP · UDP</span></div>
+  <div class="qt">Um usuário reclama que a internet "trava" apenas ao assistir vídeos em HD. Navegar em sites e enviar e-mails funciona normalmente. Considerando TCP e UDP, explique por que isso ocorre e qual protocolo é usado para streaming de vídeo.</div>
+  <div class="dhint">ORIENTAÇÃO: Pense nas prioridades — velocidade vs. confiabilidade.</div>
+  <textarea class="ans-ta" id="ans16" placeholder="Desenvolva sua resposta aqui…" oninput="upd()"></textarea></div>
+
+  <div class="qc ab"><div class="qh"><span class="qn">17</span><span class="qb ab">Aberta</span><span class="qtag">Sub-redes · Gateway</span></div>
+  <div class="qt">Três computadores: <strong>A</strong> (192.168.1.10/24), <strong>B</strong> (192.168.1.50/24), <strong>C</strong> (192.168.2.10/24). Quais se comunicam diretamente sem gateway? C precisa do gateway para falar com as demais? Justifique.</div>
+  <input class="ans-in" id="ans17" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
+
+  <div class="qc fc"><div class="qh"><span class="qn">18</span><span class="qb fc">Fechada</span><span class="qtag">VPN</span></div>
+  <div class="qt">Uma empresa com filiais em três cidades precisa interligá-las com segurança, como uma única rede, sem links físicos dedicados. Qual solução é mais adequada?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="q18" value="a" onchange="upd()"> a) Expandir a LAN de cada filial com mais switches</label>
+    <label class="opt"><input type="radio" name="q18" value="b" onchange="upd()"> b) Criar uma VPN site-to-site entre as três unidades</label>
+    <label class="opt"><input type="radio" name="q18" value="c" onchange="upd()"> c) Configurar servidores DNS em cada filial</label>
+    <label class="opt"><input type="radio" name="q18" value="d" onchange="upd()"> d) Aumentar o número de IPs públicos contratados</label>
+  </div></div>
+
+  <div class="qc ab"><div class="qh"><span class="qn">19</span><span class="qb ab">Aberta</span><span class="qtag">DHCP · APIPA</span></div>
+  <div class="qt">O servidor DHCP da empresa foi desligado. Um novo computador é ligado e tenta obter IP automaticamente. O que acontece? Ele terá acesso à rede?</div>
+  <input class="ans-in" id="ans19" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
+
+  <div class="qc fc"><div class="qh"><span class="qn">20</span><span class="qb fc">Fechada</span><span class="qtag">IP Público · Privado</span></div>
+  <div class="qt">Qual das opções abaixo NÃO é uma faixa de IP privado?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="q20" value="a" onchange="upd()"> a) 10.0.0.0 – 10.255.255.255</label>
+    <label class="opt"><input type="radio" name="q20" value="b" onchange="upd()"> b) 172.16.0.0 – 172.31.255.255</label>
+    <label class="opt"><input type="radio" name="q20" value="c" onchange="upd()"> c) 192.168.0.0 – 192.168.255.255</label>
+    <label class="opt"><input type="radio" name="q20" value="d" onchange="upd()"> d) 200.200.100.0 – 200.200.100.255</label>
+  </div></div>
+  </div>
+
+  <!-- DIFÍCIL -->
+  <div class="qsec">
+  <div class="qsec-hdr"><div class="qico d">D</div><div><div class="qtitle d">Nível Difícil</div><div class="qmeta">QUESTÕES 21–30 · ANÁLISE CRÍTICA E SÍNTESE</div></div></div>
+
+  <div class="qc di"><div class="qh"><span class="qn">21</span><span class="qb di">Discursiva</span><span class="qtag">TCP · UDP</span></div>
+  <div class="qt">Uma empresa de jogos online precisa escolher protocolo para: <strong>posição dos personagens</strong> (30x/segundo) e <strong>chat de voz em tempo real</strong>. Analise TCP e UDP para cada tipo de dado e justifique a melhor escolha.</div>
+  <div class="dhint">ORIENTAÇÃO: Considere latência e tolerância à perda de pacotes.</div>
+  <textarea class="ans-ta" id="ans21" style="min-height:100px" placeholder="Desenvolva sua resposta aqui…" oninput="upd()"></textarea></div>
+
+  <div class="qc ab"><div class="qh"><span class="qn">22</span><span class="qb ab">Aberta</span><span class="qtag">DNS Forwarder</span></div>
+  <div class="qt">Um servidor DNS interno resolve apenas nomes corporativos. Para domínios externos (google.com), repassa a consulta automaticamente para o DNS do provedor. Como se chama esse comportamento? Explique brevemente como funciona.</div>
+  <input class="ans-in" id="ans22" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
+
+  <div class="qc fc"><div class="qh"><span class="qn">23</span><span class="qb fc">Fechada</span><span class="qtag">DNS</span></div>
+  <div class="qt">Um administrador quer bloquear Instagram e TikTok pelo nome do domínio (não pelo IP, que muda frequentemente). Qual serviço configurar?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="q23" value="a" onchange="upd()"> a) DHCP</label>
+    <label class="opt"><input type="radio" name="q23" value="b" onchange="upd()"> b) Gateway</label>
+    <label class="opt"><input type="radio" name="q23" value="c" onchange="upd()"> c) DNS — configurado para não resolver os domínios bloqueados</label>
+    <label class="opt"><input type="radio" name="q23" value="d" onchange="upd()"> d) NAT</label>
+  </div></div>
+
+  <div class="qc di"><div class="qh"><span class="qn">24</span><span class="qb di">Discursiva</span><span class="qtag">Diagnóstico de Rede</span></div>
+  <div class="qt">Todos os computadores têm IP, máscara, DNS e gateway corretos, mas <strong>nenhum acessa a internet</strong>. A LAN funciona normalmente. Descreva passo a passo o diagnóstico que você faria.</div>
+  <div class="dhint">ORIENTAÇÃO: Se a LAN funciona mas internet não, onde está a fronteira?</div>
+  <textarea class="ans-ta" id="ans24" style="min-height:100px" placeholder="Descreva seu diagnóstico passo a passo…" oninput="upd()"></textarea></div>
+
+  <div class="qc ab"><div class="qh"><span class="qn">25</span><span class="qb ab">Aberta</span><span class="qtag">IPv4 · IPv6</span></div>
+  <div class="qt">Compare IPv4 e IPv6: <strong>(a)</strong> quantidade máxima de endereços, <strong>(b)</strong> tamanho em bits, <strong>(c)</strong> uma vantagem nativa do IPv6 que o IPv4 não possui.</div>
+  <input class="ans-in" id="ans25" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
+
+  <div class="qc fc"><div class="qh"><span class="qn">26</span><span class="qb fc">Fechada</span><span class="qtag">VPN · Split Tunneling</span></div>
+  <div class="qt">Um funcionário conectado à VPN com <strong>split tunneling DESATIVADO</strong> acessa um portal de notícias. Como o tráfego é roteado?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="q26" value="a" onchange="upd()"> a) O acesso vai direto para a internet, sem passar pela empresa</label>
+    <label class="opt"><input type="radio" name="q26" value="b" onchange="upd()"> b) Todo o tráfego passa pela rede da empresa, incluindo o site de notícias</label>
+    <label class="opt"><input type="radio" name="q26" value="c" onchange="upd()"> c) Apenas sites externos são bloqueados pelo firewall</label>
+    <label class="opt"><input type="radio" name="q26" value="d" onchange="upd()"> d) O DNS redireciona o acesso para uma cópia local do site</label>
+  </div></div>
+
+  <div class="qc di"><div class="qh"><span class="qn">27</span><span class="qb di">Discursiva</span><span class="qtag">NAT · IP Público</span></div>
+  <div class="qt">Uma empresa tem <strong>1 IP público</strong> e <strong>40 computadores</strong> que acessam a internet simultaneamente. O dono pergunta: <em>"Como é possível com um único IP?"</em> Escreva a explicação de forma clara e didática.</div>
+  <div class="dhint">ORIENTAÇÃO: Explique para alguém sem conhecimento técnico profundo.</div>
+  <textarea class="ans-ta" id="ans27" style="min-height:100px" placeholder="Escreva a explicação aqui…" oninput="upd()"></textarea></div>
+
+  <div class="qc ab"><div class="qh"><span class="qn">28</span><span class="qb ab">Aberta</span><span class="qtag">TCP · Portas</span></div>
+  <div class="qt">Dois clientes acessam o mesmo servidor web (mesmo IP, porta 80) simultaneamente. Como o TCP garante que cada resposta chegue ao cliente correto? O que diferencia as duas conexões?</div>
+  <input class="ans-in" id="ans28" type="text" placeholder="Escreva sua resposta aqui…" oninput="upd()"></div>
+
+  <div class="qc fc"><div class="qh"><span class="qn">29</span><span class="qb fc">Fechada</span><span class="qtag">DNS · DHCP</span></div>
+  <div class="qt">Um técnico configura IP, máscara e gateway manualmente, mas esquece o <strong>DNS</strong>. Qual será o sintoma?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="q29" value="a" onchange="upd()"> a) Os computadores não receberão endereço IP</label>
+    <label class="opt"><input type="radio" name="q29" value="b" onchange="upd()"> b) Os computadores perderão a comunicação com a LAN</label>
+    <label class="opt"><input type="radio" name="q29" value="c" onchange="upd()"> c) Os computadores acessarão sites pelo IP, mas não pelo nome de domínio</label>
+    <label class="opt"><input type="radio" name="q29" value="d" onchange="upd()"> d) O gateway será ignorado</label>
+  </div></div>
+
+  <div class="qc di"><div class="qh"><span class="qn">30</span><span class="qb di">Discursiva</span><span class="qtag">IPv4 · IPv6</span></div>
+  <div class="qt">O gerente pergunta: <em>"O IPv4 funciona há décadas. Por que migrar para IPv6?"</em> Elabore uma resposta técnica e convincente, abordando escassez de endereços, crescimento IoT e pelo menos <strong>duas vantagens técnicas</strong> do IPv6.</div>
+  <div class="dhint">ORIENTAÇÃO: Combine argumentos técnicos com impacto prático.</div>
+  <textarea class="ans-ta" id="ans30" style="min-height:100px" placeholder="Elabore sua resposta aqui…" oninput="upd()"></textarea></div>
+  </div>
+
+  <!-- ENVIO -->
+  <div id="enviar">
+    <div class="sub-title">📤 Enviar Respostas para o Google Sheets</div>
+    <p class="sub-note">Cole abaixo a URL do seu Apps Script. Consulte o arquivo <strong>apps-script-redes.js</strong> para configurar a planilha.</p>
+    <div class="url-row">
+      <input class="url-in" id="surl" type="text" placeholder="https://script.google.com/macros/s/SEU_ID/exec">
     </div>
-    <div class="t-alert info">🏢 Analogia: edifício onde todos os funcionários usam o mesmo ramal externo, mas cada um tem um ramal interno diferente. Para quem liga de fora, o número é sempre o mesmo.</div>
-    <div class="t-h" style="color:var(--green)">NAT e IP Público/Privado</div>
-    <div class="t-box">
-      ✦ Sem NAT: cada dispositivo precisaria de um IP público próprio<br>
-      ✦ Com NAT: 40 computadores com IPs privados → 1 único IP público<br>
-      ✦ Sites externos veem sempre o IP público do roteador
+    <div class="cnt-row">
+      <div class="cnt"><div class="cn" id="ct" style="color:var(--purple)">0</div><div class="cl">RESPONDIDAS</div></div>
+      <div class="cnt"><div class="cn" id="cf" style="color:var(--purple)">0/12</div><div class="cl">FECHADAS</div></div>
+      <div class="cnt"><div class="cn" id="ca" style="color:var(--blue)">0/11</div><div class="cl">ABERTAS</div></div>
+      <div class="cnt"><div class="cn" id="cd" style="color:var(--cyan)">0/7</div><div class="cl">DISCURSIVAS</div></div>
     </div>
-    <div class="acc-foot">🎯 Aparece nas questões: 10 · 15 · 20 · 27</div>
+    <button class="btn-send" id="bsend" onclick="send()">📊 ENVIAR RESPOSTAS PARA O GOOGLE SHEETS</button>
+    <div id="smsg"></div>
   </div>
 </div>
-
-<!-- 9. CIDR -->
-<div class="acc" id="acc-cidr">
-  <button class="acc-btn" onclick="toggleAcc('acc-cidr')">
-    <div class="acc-ico" style="background:var(--adim);border-color:var(--ab);color:var(--amber)">📐</div>
-    <div><div class="acc-title">9. Máscara de Rede e CIDR</div>
-    <div class="acc-sub">Sub-redes · Notação /24 · Hosts por rede</div></div>
-    <span class="acc-arrow">▸</span>
-  </button>
-  <div class="acc-body">
-    <p class="t-p">A máscara de sub-rede define qual parte do endereço IP identifica a <strong style="color:var(--amber)">rede</strong> e qual parte identifica o <strong style="color:var(--amber)">host</strong> (dispositivo).</p>
-    <div class="t-h" style="color:var(--amber)">Notação CIDR</div>
-    <p class="t-p">O número após a barra (/) indica quantos bits estão "ligados" na máscara (identificando a rede).</p>
-    <div class="cidr-row"><span class="cidr-code">/8</span><span style="color:var(--txt2)">= 255.0.0.0 → 8 bits de rede · 24 bits de host → ~16,7 milhões de dispositivos</span></div>
-    <div class="cidr-row"><span class="cidr-code">/16</span><span style="color:var(--txt2)">= 255.255.0.0 → 16 bits de rede · 16 bits de host → 65.534 dispositivos</span></div>
-    <div class="cidr-row"><span class="cidr-code">/24</span><span style="color:var(--txt2)">= 255.255.255.0 → 24 bits de rede · 8 bits de host → 254 dispositivos</span></div>
-    <div class="t-h" style="color:var(--amber)">Identificar se dois IPs estão na mesma rede</div>
-    <div class="t-box">
-      Com máscara <span class="hl">/24</span>, os 3 primeiros octetos devem ser iguais:<br><br>
-      192.168.<span class="hl">1</span>.10 e 192.168.<span class="hl">1</span>.50 → <span class="good">mesma rede ✅ se comunicam diretamente</span><br>
-      192.168.<span class="hl">1</span>.10 e 192.168.<span class="hl">2</span>.10 → <span class="bad" style="color:var(--red)">redes diferentes ❌ precisam do gateway</span>
-    </div>
-    <div class="t-box" style="margin-top:8px">
-      <span class="hl">/24 em binário:</span><br>
-      11111111.11111111.11111111.00000000<br>
-      &nbsp;&nbsp;&nbsp;8 bits&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;8 bits&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;8 bits&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;0 bits = <span class="hl">24</span>
-    </div>
-    <div class="acc-foot">🎯 Aparece nas questões: 17 · 24 · 25</div>
-  </div>
-</div>
-
-</div><!-- .teoria-grid -->
-<div style="text-align:center;margin-top:32px">
-  <button onclick="switchTab('questoes')" style="padding:12px 32px;background:linear-gradient(135deg,var(--purple),var(--purple2));color:#0d0014;font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:700;letter-spacing:.1em;border:none;border-radius:10px;cursor:pointer">
-    📝 IR PARA AS QUESTÕES →
-  </button>
-</div>
-
-</div><!-- inner -->
-</div><!-- tab-teoria -->
-
-
-<!-- ═══════════════════════════════════════
-     TAB: QUESTÕES
-═══════════════════════════════════════ -->
-<div id="tab-questoes" class="tab-content">
-<div id="tab-questoes-inner">
-<div style="max-width:900px;margin:0 auto;padding:40px 48px 40px;position:relative;z-index:1">
-
-<!-- FÁCIL -->
-<div class="sec">
-<div class="sec-hdr">
-  <div class="sec-ico e">F</div>
-  <div><div class="sec-title e">Nível Fácil</div>
-  <div class="sec-meta">QUESTÕES 01–10 · IDENTIFICAÇÃO E CONCEITOS BÁSICOS EM CONTEXTO</div></div>
-</div>
-
-<div class="qc fc"><div class="qh"><span class="qn">01</span><span class="qb fc">Fechada</span><span class="qt-tag">VPN</span></div>
-<div class="qt">João trabalha em casa e precisa acessar os arquivos e sistemas da empresa como se estivesse fisicamente no escritório, com total segurança e criptografia. Qual tecnologia resolve essa situação?</div>
-<div class="opts">
-  <label class="opt"><input type="radio" name="q1" value="a" onchange="updateCounter()"> a) DNS — sistema que traduz nomes de domínio em endereços IP</label>
-  <label class="opt"><input type="radio" name="q1" value="b" onchange="updateCounter()"> b) DHCP — serviço que distribui endereços IP automaticamente</label>
-  <label class="opt"><input type="radio" name="q1" value="c" onchange="updateCounter()"> c) VPN — rede privada virtual que cria um túnel seguro pela internet</label>
-  <label class="opt"><input type="radio" name="q1" value="d" onchange="updateCounter()"> d) Gateway — dispositivo que conecta redes distintas</label>
-</div></div>
-
-<div class="qc ab"><div class="qh"><span class="qn">02</span><span class="qb ab">Aberta</span><span class="qt-tag">DHCP</span></div>
-<div class="qt">Maria acaba de ligar um computador novo na rede da escola. Sem configurar absolutamente nada manualmente, ele já recebe automaticamente IP, máscara, gateway e DNS. Qual serviço de rede é responsável por essa distribuição automática?</div>
-<input class="ans-in" id="ans2" type="text" placeholder="Escreva sua resposta aqui…" oninput="updateCounter()"></div>
-
-<div class="qc fc"><div class="qh"><span class="qn">03</span><span class="qb fc">Fechada</span><span class="qt-tag">IP Privado</span></div>
-<div class="qt">O computador de Pedro exibe o endereço IP <strong>192.168.1.20</strong>. Com base nesse endereço, é correto afirmar que se trata de:</div>
-<div class="opts">
-  <label class="opt"><input type="radio" name="q3" value="a" onchange="updateCounter()"> a) IP público, acessível diretamente por qualquer dispositivo na internet</label>
-  <label class="opt"><input type="radio" name="q3" value="b" onchange="updateCounter()"> b) IP privado, válido apenas dentro da rede local onde Pedro está</label>
-  <label class="opt"><input type="radio" name="q3" value="c" onchange="updateCounter()"> c) Endereço IPv6 em formato simplificado</label>
-  <label class="opt"><input type="radio" name="q3" value="d" onchange="updateCounter()"> d) Endereço reservado exclusivamente para servidores DNS</label>
-</div></div>
-
-<div class="qc ab"><div class="qh"><span class="qn">04</span><span class="qb ab">Aberta</span><span class="qt-tag">DNS</span></div>
-<div class="qt">Ana digita <strong>www.youtube.com</strong> no navegador. O computador precisa descobrir o endereço IP correspondente para conseguir se conectar ao servidor, pois redes trabalham com números, não com nomes. Qual serviço realiza essa "tradução"?</div>
-<input class="ans-in" id="ans4" type="text" placeholder="Escreva sua resposta aqui…" oninput="updateCounter()"></div>
-
-<div class="qc fc"><div class="qh"><span class="qn">05</span><span class="qb fc">Fechada</span><span class="qt-tag">LAN</span></div>
-<div class="qt">A empresa Alfa conectou todos os computadores de seu escritório em uma única rede, permitindo compartilhamento de arquivos, impressoras e um servidor interno. Todos os dispositivos estão no mesmo prédio. Que tipo de rede é essa?</div>
-<div class="opts">
-  <label class="opt"><input type="radio" name="q5" value="a" onchange="updateCounter()"> a) WAN — Wide Area Network, rede de longa distância</label>
-  <label class="opt"><input type="radio" name="q5" value="b" onchange="updateCounter()"> b) VPN — rede privada virtual</label>
-  <label class="opt"><input type="radio" name="q5" value="c" onchange="updateCounter()"> c) LAN — Local Area Network, rede de área local</label>
-  <label class="opt"><input type="radio" name="q5" value="d" onchange="updateCounter()"> d) MAN — Metropolitan Area Network, rede metropolitana</label>
-</div></div>
-
-<div class="qc ab"><div class="qh"><span class="qn">06</span><span class="qb ab">Aberta</span><span class="qt-tag">IPv6</span></div>
-<div class="qt">Analise o endereço: <strong>2001:0db8:85a3:0000:0000:8a2e:0370:7334</strong>. A qual versão do protocolo IP ele pertence? Cite pelo menos uma característica que permitiu sua identificação.</div>
-<input class="ans-in" id="ans6" type="text" placeholder="Escreva sua resposta aqui…" oninput="updateCounter()"></div>
-
-<div class="qc fc"><div class="qh"><span class="qn">07</span><span class="qb fc">Fechada</span><span class="qt-tag">Gateway</span></div>
-<div class="qt">Carlos não consegue acessar nenhum site da internet, mas acessa normalmente arquivos e impressoras de outros computadores da mesma rede. Seu IP, máscara e DNS estão configurados corretamente. Qual configuração ele deve verificar primeiro?</div>
-<div class="opts">
-  <label class="opt"><input type="radio" name="q7" value="a" onchange="updateCounter()"> a) Endereço DNS — pode estar apontando para servidor errado</label>
-  <label class="opt"><input type="radio" name="q7" value="b" onchange="updateCounter()"> b) Gateway padrão — pode estar ausente ou incorreto</label>
-  <label class="opt"><input type="radio" name="q7" value="c" onchange="updateCounter()"> c) Servidor DHCP — pode ter parado de funcionar</label>
-  <label class="opt"><input type="radio" name="q7" value="d" onchange="updateCounter()"> d) Endereço IPv6 — pode estar conflitando com o IPv4</label>
-</div></div>
-
-<div class="qc ab"><div class="qh"><span class="qn">08</span><span class="qb ab">Aberta</span><span class="qt-tag">DHCP · IP Privado</span></div>
-<div class="qt">Em uma residência, quatro dispositivos estão conectados ao roteador Wi-Fi: notebook, celular, smart TV e tablet. Cada um recebe automaticamente um endereço IP diferente dentro da faixa <strong>192.168.0.x</strong>. Qual componente distribui esses endereços? Eles são públicos ou privados?</div>
-<input class="ans-in" id="ans8" type="text" placeholder="Escreva sua resposta aqui…" oninput="updateCounter()"></div>
-
-<div class="qc fc"><div class="qh"><span class="qn">09</span><span class="qb fc">Fechada</span><span class="qt-tag">IPv4 · IPv6</span></div>
-<div class="qt">Com o crescimento de smartphones, câmeras, smart TVs e geladeiras conectadas, um problema grave surgiu com o protocolo mais antigo. Qual afirmação sobre o IPv6 está CORRETA nesse contexto?</div>
-<div class="opts">
-  <label class="opt"><input type="radio" name="q9" value="a" onchange="updateCounter()"> a) O IPv6 usa endereços de 32 bits, igual ao IPv4, porém com novo formato</label>
-  <label class="opt"><input type="radio" name="q9" value="b" onchange="updateCounter()"> b) O IPv6 foi criado antes do IPv4, na década de 1970</label>
-  <label class="opt"><input type="radio" name="q9" value="c" onchange="updateCounter()"> c) O IPv6 permite uma quantidade vastamente maior de endereços do que o IPv4</label>
-  <label class="opt"><input type="radio" name="q9" value="d" onchange="updateCounter()"> d) O IPv6 não é compatível com roteadores e provedores modernos</label>
-</div></div>
-
-<div class="qc ab"><div class="qh"><span class="qn">10</span><span class="qb ab">Aberta</span><span class="qt-tag">IP Público · NAT</span></div>
-<div class="qt">Você está em um café com Wi-Fi público. Seu celular recebe o IP <strong>10.0.0.8</strong> e o notebook do seu colega recebe <strong>10.0.0.9</strong>. Quando alguém de fora tenta descobrir o IP de vocês, qual endereço aparece? Por quê?</div>
-<input class="ans-in" id="ans10" type="text" placeholder="Escreva sua resposta aqui…" oninput="updateCounter()"></div>
-</div>
-
-<!-- MÉDIO -->
-<div class="sec">
-<div class="sec-hdr">
-  <div class="sec-ico m">M</div>
-  <div><div class="sec-title m">Nível Médio</div>
-  <div class="sec-meta">QUESTÕES 11–20 · ANÁLISE E APLICAÇÃO DE CONCEITOS</div></div>
-</div>
-
-<div class="qc fc"><div class="qh"><span class="qn">11</span><span class="qb fc">Fechada</span><span class="qt-tag">DHCP</span></div>
-<div class="qt">Uma empresa com 200 funcionários quer que o computador de cada um receba <strong>sempre o mesmo endereço IP automaticamente</strong>, sem configuração manual. Qual recurso específico do DHCP resolve isso?</div>
-<div class="opts">
-  <label class="opt"><input type="radio" name="q11" value="a" onchange="updateCounter()"> a) DNS reverso — converte IPs em nomes automaticamente</label>
-  <label class="opt"><input type="radio" name="q11" value="b" onchange="updateCounter()"> b) Reserva de IP (DHCP Reservation) — associa um IP fixo ao MAC address</label>
-  <label class="opt"><input type="radio" name="q11" value="c" onchange="updateCounter()"> c) NAT — traduz IPs privados em públicos</label>
-  <label class="opt"><input type="radio" name="q11" value="d" onchange="updateCounter()"> d) Split tunneling — divide o tráfego de VPN</label>
-</div></div>
-
-<div class="qc di"><div class="qh"><span class="qn">12</span><span class="qb di">Discursiva</span><span class="qt-tag">DHCP · LAN</span></div>
-<div class="qt">Uma escola acabou de instalar uma rede com <strong>80 computadores</strong> em três laboratórios. O técnico precisa decidir entre configurar IPs <strong>manualmente</strong> ou usar um <strong>servidor DHCP</strong>. Explique vantagens e desvantagens de cada abordagem e indique qual é mais adequada para esse contexto escolar.</div>
-<div class="disc-hint">ORIENTAÇÃO: Considere manutenção, erros humanos, escalabilidade e rotatividade de dispositivos.</div>
-<textarea class="ans-ta" id="ans12" placeholder="Desenvolva sua resposta aqui…" oninput="updateCounter()"></textarea></div>
-
-<div class="qc fc"><div class="qh"><span class="qn">13</span><span class="qb fc">Fechada</span><span class="qt-tag">TCP</span></div>
-<div class="qt">Um sistema de internet banking precisa garantir que <strong>nenhum pacote seja perdido</strong> durante uma transferência financeira, e que os dados cheguem na ordem correta. Qual protocolo de transporte é obrigatório?</div>
-<div class="opts">
-  <label class="opt"><input type="radio" name="q13" value="a" onchange="updateCounter()"> a) UDP — mais rápido, sem controle de erros</label>
-  <label class="opt"><input type="radio" name="q13" value="b" onchange="updateCounter()"> b) TCP — garante entrega, ordem e integridade dos dados</label>
-  <label class="opt"><input type="radio" name="q13" value="c" onchange="updateCounter()"> c) DNS — protocolo de resolução de nomes</label>
-  <label class="opt"><input type="radio" name="q13" value="d" onchange="updateCounter()"> d) ICMP — protocolo de mensagens de controle</label>
-</div></div>
-
-<div class="qc ab"><div class="qh"><span class="qn">14</span><span class="qb ab">Aberta</span><span class="qt-tag">DNS</span></div>
-<div class="qt">Ana recebe a mensagem <em>"Servidor DNS não encontrado"</em>. Curiosa, ela digita o IP do site diretamente no navegador — a página abre normalmente. O que está com problema? Como ela poderia confirmar o diagnóstico?</div>
-<input class="ans-in" id="ans14" type="text" placeholder="Escreva sua resposta aqui…" oninput="updateCounter()"></div>
-
-<div class="qc fc"><div class="qh"><span class="qn">15</span><span class="qb fc">Fechada</span><span class="qt-tag">NAT</span></div>
-<div class="qt">Quando um funcionário acessa um site externo, o roteador substitui o IP privado dele pelo único IP público da empresa antes de enviar para a internet. Esse mecanismo se chama:</div>
-<div class="opts">
-  <label class="opt"><input type="radio" name="q15" value="a" onchange="updateCounter()"> a) DNS — tradução de nomes em IPs</label>
-  <label class="opt"><input type="radio" name="q15" value="b" onchange="updateCounter()"> b) DHCP — distribuição automática de IPs</label>
-  <label class="opt"><input type="radio" name="q15" value="c" onchange="updateCounter()"> c) NAT — Network Address Translation</label>
-  <label class="opt"><input type="radio" name="q15" value="d" onchange="updateCounter()"> d) VPN — rede privada virtual criptografada</label>
-</div></div>
-
-<div class="qc di"><div class="qh"><span class="qn">16</span><span class="qb di">Discursiva</span><span class="qt-tag">TCP · UDP</span></div>
-<div class="qt">Um usuário reclama que a internet "trava" apenas ao assistir vídeos em HD, mas navegar em sites e enviar e-mails funciona normalmente. Considerando TCP e UDP, explique por que isso pode ocorrer e qual protocolo é usado para streaming de vídeo e por quê.</div>
-<div class="disc-hint">ORIENTAÇÃO: Pense nas prioridades de cada aplicação — velocidade vs. confiabilidade.</div>
-<textarea class="ans-ta" id="ans16" placeholder="Desenvolva sua resposta aqui…" oninput="updateCounter()"></textarea></div>
-
-<div class="qc ab"><div class="qh"><span class="qn">17</span><span class="qb ab">Aberta</span><span class="qt-tag">Sub-redes · Gateway</span></div>
-<div class="qt">Três computadores: <strong>Máquina A</strong> com IP 192.168.1.10/24, <strong>Máquina B</strong> com IP 192.168.1.50/24 e <strong>Máquina C</strong> com IP 192.168.2.10/24. Quais se comunicam diretamente sem gateway? A Máquina C precisa do gateway para falar com as demais? Justifique.</div>
-<input class="ans-in" id="ans17" type="text" placeholder="Escreva sua resposta aqui…" oninput="updateCounter()"></div>
-
-<div class="qc fc"><div class="qh"><span class="qn">18</span><span class="qb fc">Fechada</span><span class="qt-tag">VPN</span></div>
-<div class="qt">Uma empresa com filiais em três cidades precisa interligá-las com segurança, como uma única rede local, sem contratar links físicos dedicados entre as cidades. Qual solução é mais adequada?</div>
-<div class="opts">
-  <label class="opt"><input type="radio" name="q18" value="a" onchange="updateCounter()"> a) Expandir a LAN de cada filial com mais switches e cabos</label>
-  <label class="opt"><input type="radio" name="q18" value="b" onchange="updateCounter()"> b) Criar uma VPN site-to-site entre as três unidades</label>
-  <label class="opt"><input type="radio" name="q18" value="c" onchange="updateCounter()"> c) Configurar servidores DNS em cada filial</label>
-  <label class="opt"><input type="radio" name="q18" value="d" onchange="updateCounter()"> d) Aumentar o número de IPs públicos contratados</label>
-</div></div>
-
-<div class="qc ab"><div class="qh"><span class="qn">19</span><span class="qb ab">Aberta</span><span class="qt-tag">DHCP · APIPA</span></div>
-<div class="qt">O servidor DHCP de uma empresa foi desligado acidentalmente. Um novo computador é ligado na rede e tenta obter IP automaticamente. Descreva o que acontece e qual o estado final do computador — ele terá acesso à rede?</div>
-<input class="ans-in" id="ans19" type="text" placeholder="Escreva sua resposta aqui…" oninput="updateCounter()"></div>
-
-<div class="qc fc"><div class="qh"><span class="qn">20</span><span class="qb fc">Fechada</span><span class="qt-tag">IP Público · Privado</span></div>
-<div class="qt">Um técnico precisa identificar qual faixa de endereços NÃO é reservada para uso privado — ou seja, qual pertence ao espaço de IPs públicos roteáveis na internet.</div>
-<div class="opts">
-  <label class="opt"><input type="radio" name="q20" value="a" onchange="updateCounter()"> a) 10.0.0.0 – 10.255.255.255</label>
-  <label class="opt"><input type="radio" name="q20" value="b" onchange="updateCounter()"> b) 172.16.0.0 – 172.31.255.255</label>
-  <label class="opt"><input type="radio" name="q20" value="c" onchange="updateCounter()"> c) 192.168.0.0 – 192.168.255.255</label>
-  <label class="opt"><input type="radio" name="q20" value="d" onchange="updateCounter()"> d) 200.200.100.0 – 200.200.100.255</label>
-</div></div>
-</div>
-
-<!-- DIFÍCIL -->
-<div class="sec">
-<div class="sec-hdr">
-  <div class="sec-ico d">D</div>
-  <div><div class="sec-title d">Nível Difícil</div>
-  <div class="sec-meta">QUESTÕES 21–30 · ANÁLISE CRÍTICA, DIAGNÓSTICO E SÍNTESE</div></div>
-</div>
-
-<div class="qc di"><div class="qh"><span class="qn">21</span><span class="qb di">Discursiva</span><span class="qt-tag">TCP · UDP</span></div>
-<div class="qt">Uma empresa de jogos online precisa escolher protocolo para: <strong>posição dos personagens</strong> (atualizada 30x/segundo) e <strong>chat de voz em tempo real</strong>. Analise TCP e UDP para cada tipo de dado, cite prós e contras e justifique a melhor escolha para cada um.</div>
-<div class="disc-hint">ORIENTAÇÃO: Considere latência, tolerância à perda de pacotes e consequências de atraso.</div>
-<textarea class="ans-ta" id="ans21" style="min-height:110px" placeholder="Desenvolva sua resposta aqui…" oninput="updateCounter()"></textarea></div>
-
-<div class="qc ab"><div class="qh"><span class="qn">22</span><span class="qb ab">Aberta</span><span class="qt-tag">DNS Forwarder</span></div>
-<div class="qt">Um servidor DNS interno resolve apenas nomes corporativos (ex.: <em>erp.empresa.local</em>). Para domínios externos (google.com), repassa a consulta automaticamente para o DNS do provedor (8.8.8.8) e retorna a resposta. Como se chama esse comportamento? Explique em 2–3 linhas como funciona.</div>
-<input class="ans-in" id="ans22" type="text" placeholder="Escreva sua resposta aqui…" oninput="updateCounter()"></div>
-
-<div class="qc fc"><div class="qh"><span class="qn">23</span><span class="qb fc">Fechada</span><span class="qt-tag">DNS</span></div>
-<div class="qt">Um administrador quer bloquear Instagram e TikTok durante o expediente. Como esses serviços mudam de IP frequentemente, bloquear por IP seria ineficiente. Qual serviço deve ser configurado para bloquear pelo <strong>nome do domínio</strong>?</div>
-<div class="opts">
-  <label class="opt"><input type="radio" name="q23" value="a" onchange="updateCounter()"> a) DHCP — para impedir que os dispositivos recebam IP</label>
-  <label class="opt"><input type="radio" name="q23" value="b" onchange="updateCounter()"> b) Gateway — para bloquear todo o tráfego externo</label>
-  <label class="opt"><input type="radio" name="q23" value="c" onchange="updateCounter()"> c) DNS — configurado para não resolver os domínios bloqueados</label>
-  <label class="opt"><input type="radio" name="q23" value="d" onchange="updateCounter()"> d) NAT — para impedir a tradução de IPs privados em públicos</label>
-</div></div>
-
-<div class="qc di"><div class="qh"><span class="qn">24</span><span class="qb di">Discursiva</span><span class="qt-tag">Gateway · DNS · LAN</span></div>
-<div class="qt">Todos os computadores de uma empresa têm IP, máscara, DNS e gateway configurados corretamente, mas <strong>nenhum acessa a internet</strong>. A LAN funciona normalmente. Descreva passo a passo o diagnóstico que você faria, citando equipamentos e configurações verificados em ordem.</div>
-<div class="disc-hint">ORIENTAÇÃO: Se a LAN funciona mas internet não, onde está a fronteira entre os dois?</div>
-<textarea class="ans-ta" id="ans24" style="min-height:110px" placeholder="Descreva seu processo de diagnóstico passo a passo…" oninput="updateCounter()"></textarea></div>
-
-<div class="qc ab"><div class="qh"><span class="qn">25</span><span class="qb ab">Aberta</span><span class="qt-tag">IPv4 · IPv6</span></div>
-<div class="qt">Compare IPv4 e IPv6 nos seguintes aspectos: <strong>(a)</strong> quantidade máxima de endereços, <strong>(b)</strong> tamanho em bits e <strong>(c)</strong> uma vantagem nativa do IPv6 que o IPv4 não possui.</div>
-<input class="ans-in" id="ans25" type="text" placeholder="Escreva sua resposta aqui…" oninput="updateCounter()"></div>
-
-<div class="qc fc"><div class="qh"><span class="qn">26</span><span class="qb fc">Fechada</span><span class="qt-tag">VPN · Split Tunneling</span></div>
-<div class="qt">Um funcionário conectado à VPN corporativa com <strong>split tunneling DESATIVADO</strong> abre um portal de notícias qualquer. Como o tráfego desse acesso é roteado?</div>
-<div class="opts">
-  <label class="opt"><input type="radio" name="q26" value="a" onchange="updateCounter()"> a) O acesso vai direto para a internet, sem passar pela empresa</label>
-  <label class="opt"><input type="radio" name="q26" value="b" onchange="updateCounter()"> b) Todo o tráfego passa pela rede da empresa, incluindo o acesso ao site de notícias</label>
-  <label class="opt"><input type="radio" name="q26" value="c" onchange="updateCounter()"> c) Apenas acessos a sites externos são bloqueados pelo firewall</label>
-  <label class="opt"><input type="radio" name="q26" value="d" onchange="updateCounter()"> d) O DNS da empresa redireciona o acesso para uma cópia local do site</label>
-</div></div>
-
-<div class="qc di"><div class="qh"><span class="qn">27</span><span class="qb di">Discursiva</span><span class="qt-tag">NAT · IP Público · Privado</span></div>
-<div class="qt">Uma empresa tem <strong>1 IP público</strong> e <strong>40 computadores</strong> que acessam a internet simultaneamente. O dono pergunta: <em>"Como é possível com apenas um IP?"</em> Escreva a explicação que você daria, de forma clara e didática, mencionando os conceitos envolvidos.</div>
-<div class="disc-hint">ORIENTAÇÃO: A explicação deve ser compreensível para alguém sem conhecimento técnico profundo.</div>
-<textarea class="ans-ta" id="ans27" style="min-height:110px" placeholder="Escreva a explicação aqui…" oninput="updateCounter()"></textarea></div>
-
-<div class="qc ab"><div class="qh"><span class="qn">28</span><span class="qb ab">Aberta</span><span class="qt-tag">TCP · Portas</span></div>
-<div class="qt">Dois clientes acessam simultaneamente o mesmo servidor web (mesmo IP, porta 80). Como o TCP garante que a resposta chegue ao cliente correto? O que tecnicamente diferencia as duas conexões?</div>
-<input class="ans-in" id="ans28" type="text" placeholder="Escreva sua resposta aqui…" oninput="updateCounter()"></div>
-
-<div class="qc fc"><div class="qh"><span class="qn">29</span><span class="qb fc">Fechada</span><span class="qt-tag">DNS · DHCP</span></div>
-<div class="qt">Um técnico configura tudo manualmente nos computadores mas esquece de preencher o campo <strong>DNS</strong>. Qual será o sintoma mais provável?</div>
-<div class="opts">
-  <label class="opt"><input type="radio" name="q29" value="a" onchange="updateCounter()"> a) Os computadores não receberão endereço IP</label>
-  <label class="opt"><input type="radio" name="q29" value="b" onchange="updateCounter()"> b) Os computadores perderão a comunicação com outros da LAN</label>
-  <label class="opt"><input type="radio" name="q29" value="c" onchange="updateCounter()"> c) Os computadores conseguirão acessar sites pelo IP, mas não pelo nome de domínio</label>
-  <label class="opt"><input type="radio" name="q29" value="d" onchange="updateCounter()"> d) O gateway será ignorado e os computadores ficarão sem rota para a internet</label>
-</div></div>
-
-<div class="qc di"><div class="qh"><span class="qn">30</span><span class="qb di">Discursiva</span><span class="qt-tag">IPv4 · IPv6</span></div>
-<div class="qt">O gerente pergunta: <em>"O IPv4 funciona há décadas. Por que precisaríamos do IPv6?"</em> Elabore uma resposta técnica e convincente, abordando: escassez de endereços IPv4, crescimento de dispositivos IoT e pelo menos <strong>duas vantagens técnicas</strong> do IPv6.</div>
-<div class="disc-hint">ORIENTAÇÃO: Combine argumentos técnicos com impacto prático para o negócio.</div>
-<textarea class="ans-ta" id="ans30" style="min-height:110px" placeholder="Elabore sua resposta aqui…" oninput="updateCounter()"></textarea></div>
-</div>
-
-<!-- SUBMIT -->
-<div id="submit-sec">
-  <div class="sub-title">📤 Enviar Respostas</div>
-  <p class="sub-note">Cole abaixo a URL do seu Apps Script (Google Sheets) para receber as respostas automaticamente.</p>
-  <div class="url-row">
-    <input class="url-input" id="script-url" type="text" placeholder="https://script.google.com/macros/s/SEU_ID_AQUI/exec">
-  </div>
-  <div id="counter-box">
-    <div class="cnt"><div class="cnt-n" id="cnt-total" style="color:var(--purple)">0</div><div class="cnt-l">RESPONDIDAS</div></div>
-    <div class="cnt"><div class="cnt-n" id="cnt-fc" style="color:var(--purple)">0/12</div><div class="cnt-l">FECHADAS</div></div>
-    <div class="cnt"><div class="cnt-n" id="cnt-ab" style="color:var(--blue)">0/11</div><div class="cnt-l">ABERTAS</div></div>
-    <div class="cnt"><div class="cnt-n" id="cnt-di" style="color:var(--cyan)">0/7</div><div class="cnt-l">DISCURSIVAS</div></div>
-  </div>
-  <button class="btn-submit" id="btn-submit" onclick="submitAnswers()">📊 ENVIAR PARA O GOOGLE SHEETS</button>
-  <div id="submit-msg"></div>
-</div>
-
-</div><!-- inner -->
-</div><!-- tab-questoes -->
 
 <footer>
   <div>Prof. <span>Marcos Cruz</span> · Informática Técnica · E.E. Prefeito Odílio Fernandes Costa</div>
@@ -828,99 +692,56 @@ footer span{color:var(--purple)}
 </footer>
 
 <script>
-// ═══════════ CONFIGURAÇÃO ═══════════
-// Cole a URL do Apps Script diretamente aqui OU no campo acima
-const SCRIPT_URL_PADRAO = "";
+const SCRIPT_URL_FIXO = "";
+const FC=[1,3,5,7,9,11,13,15,18,20,23,26,29];
+const AB=[2,4,6,8,10,14,17,19,22,25,28];
+const DI=[12,16,21,24,27,30];
 
-// ═══════════ TABS ═══════════
-function switchTab(t) {
-  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
-  document.getElementById('tab-' + t).classList.add('active');
-  document.querySelectorAll('.tab')[t === 'teoria' ? 0 : 1].classList.add('active');
-  window.scrollTo(0, 0);
+function tog(id){document.getElementById(id).classList.toggle('open')}
+
+function upd(){
+  let fc=0,ab=0,di=0;
+  FC.forEach(n=>{if(document.querySelector(`input[name="q${n}"]:checked`))fc++;});
+  AB.forEach(n=>{const e=document.getElementById('ans'+n);if(e&&e.value.trim())ab++;});
+  DI.forEach(n=>{const e=document.getElementById('ans'+n);if(e&&e.value.trim())di++;});
+  const t=fc+ab+di;
+  document.getElementById('ct').textContent=t;
+  document.getElementById('cf').textContent=fc+'/12';
+  document.getElementById('ca').textContent=ab+'/11';
+  document.getElementById('cd').textContent=di+'/7';
+  document.getElementById('prog-fill').style.width=(t/30*100)+'%';
+  document.getElementById('prog-txt').textContent=t+' / 30';
 }
 
-// ═══════════ ACCORDION ═══════════
-function toggleAcc(id) {
-  const el = document.getElementById(id);
-  el.classList.toggle('open');
-}
-
-// ═══════════ PROGRESS ═══════════
-const CLOSED = [1,3,5,7,9,11,13,15,18,20,23,26,29];
-const OPEN   = [2,4,6,8,10,14,17,19,22,25,28];
-const DISC   = [12,16,21,24,27,30];
-
-function updateCounter() {
-  let fc=0, ab=0, di=0;
-  CLOSED.forEach(n => { if(document.querySelector(`input[name="q${n}"]:checked`)) fc++; });
-  OPEN.forEach(n   => { const el=document.getElementById(`ans${n}`); if(el&&el.value.trim()) ab++; });
-  DISC.forEach(n   => { const el=document.getElementById(`ans${n}`); if(el&&el.value.trim()) di++; });
-  const total = fc+ab+di;
-  document.getElementById('cnt-total').textContent = total;
-  document.getElementById('cnt-fc').textContent = fc+'/12';
-  document.getElementById('cnt-ab').textContent = ab+'/11';
-  document.getElementById('cnt-di').textContent = di+'/7';
-  document.getElementById('progress-fill').style.width = (total/30*100)+'%';
-  document.getElementById('progress-txt').textContent = total+' / 30 respondidas';
-}
-
-// ═══════════ COLETAR RESPOSTAS ═══════════
-function collectAnswers() {
-  const a = {};
-  CLOSED.forEach(n => {
-    const sel = document.querySelector(`input[name="q${n}"]:checked`);
-    a['q'+n] = sel ? sel.value : '(não respondida)';
-  });
-  OPEN.forEach(n => {
-    const el = document.getElementById('ans'+n);
-    a['q'+n] = el ? (el.value.trim()||'(não respondida)') : '(não respondida)';
-  });
-  DISC.forEach(n => {
-    const el = document.getElementById('ans'+n);
-    a['q'+n] = el ? (el.value.trim()||'(não respondida)') : '(não respondida)';
-  });
+function collect(){
+  const a={};
+  FC.forEach(n=>{const s=document.querySelector(`input[name="q${n}"]:checked`);a['q'+n]=s?s.value:'(não respondida)';});
+  AB.forEach(n=>{const e=document.getElementById('ans'+n);a['q'+n]=e?(e.value.trim()||'(não respondida)'):'(não respondida)';});
+  DI.forEach(n=>{const e=document.getElementById('ans'+n);a['q'+n]=e?(e.value.trim()||'(não respondida)'):'(não respondida)';});
   return a;
 }
 
-// ═══════════ ENVIO ═══════════
-async function submitAnswers() {
-  const nome  = document.getElementById('nome').value.trim();
-  const turma = document.getElementById('turma').value.trim();
-  const data  = document.getElementById('data-ativ').value;
-  const url   = document.getElementById('script-url').value.trim() || SCRIPT_URL_PADRAO;
-
-  if (!nome || !turma) { showMsg('err','Preencha nome e turma antes de enviar.'); return; }
-  if (!url)            { showMsg('err','Cole a URL do Apps Script no campo acima.'); return; }
-
-  const payload = { nome, turma, data, ...collectAnswers() };
-  const btn = document.getElementById('btn-submit');
-  btn.disabled = true;
-  showMsg('loading','⏳ Enviando respostas…');
-
-  try {
-    await fetch(url, {
-      method:'POST',
-      mode:'no-cors',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify(payload)
-    });
-    showMsg('ok','✅ Respostas enviadas com sucesso! O professor receberá no Google Sheets.');
-  } catch(e) {
-    showMsg('err','❌ Erro ao enviar. Verifique a URL do Apps Script e tente novamente.');
-    btn.disabled = false;
+async function send(){
+  const nome=document.getElementById('nome').value.trim();
+  const turma=document.getElementById('turma').value.trim();
+  const data=document.getElementById('data-ativ').value;
+  const url=document.getElementById('surl').value.trim()||SCRIPT_URL_FIXO;
+  if(!nome||!turma){msg('err','Preencha nome e turma antes de enviar.');return;}
+  if(!url){msg('err','Cole a URL do Apps Script no campo acima.');return;}
+  const btn=document.getElementById('bsend');
+  btn.disabled=true;
+  msg('loading','⏳ Enviando respostas…');
+  try{
+    await fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({nome,turma,data,...collect()})});
+    msg('ok','✅ Respostas enviadas! O professor receberá no Google Sheets.');
+  }catch(e){
+    msg('err','❌ Erro ao enviar. Verifique a URL do Apps Script.');
+    btn.disabled=false;
   }
 }
 
-function showMsg(type, text) {
-  const el = document.getElementById('submit-msg');
-  el.className = type === 'ok' ? 'ok' : type === 'loading' ? 'loading' : 'err';
-  el.textContent = text;
-  el.style.display = 'block';
-}
-
-updateCounter();
+function msg(t,x){const e=document.getElementById('smsg');e.className=t;e.textContent=x;e.style.display='block';}
+upd();
 </script>
 </body>
 </html>
