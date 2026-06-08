@@ -3,1060 +3,861 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Avaliação — Linux Mint · Prof. Marcos Cruz</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<title>Linux Mint — Avaliação · Prof. Marcos Cruz</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:       #f8fafc;
-  --surface:  #ffffff;
-  --surface2: #f1f5f9;
-  --border:   #e2e8f0;
-  --border2:  #cbd5e1;
-  --txt:      #0f172a;
-  --txt2:     #475569;
-  --txt3:     #94a3b8;
-  --green:    #16a34a;
-  --green2:   #22c55e;
-  --green3:   #4ade80;
-  --green-bg: #f0fdf4;
-  --green-bd: #bbf7d0;
-  --amber:    #d97706;
-  --amber-bg: #fffbeb;
-  --amber-bd: #fde68a;
-  --red:      #dc2626;
-  --red-bg:   #fef2f2;
-  --red-bd:   #fecaca;
-  --blue:     #2563eb;
-  --blue-bg:  #eff6ff;
-  --blue-bd:  #bfdbfe;
-  --purple:   #7c3aed;
-  --purp-bg:  #faf5ff;
-  --purp-bd:  #ddd6fe;
-  --shadow:   0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.06);
-  --shadow2:  0 4px 24px rgba(0,0,0,.08), 0 1px 4px rgba(0,0,0,.04);
+:root{
+  --p:#16a34a;--pl:#22c55e;--pll:#86efac;--pbg:#f0fdf4;
+  --bg:#f0fdf4;--card:#ffffff;--border:#dcfce7;
+  --t:#052e16;--t2:#14532d;--t3:#4ade80;
+  --shadow:0 2px 8px rgba(22,163,74,.1);
+  --shadow2:0 12px 32px rgba(22,163,74,.18);
+  --radius:14px;
 }
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--txt); line-height: 1.6; }
-
-/* ── HEADER ── */
-.header {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; z-index: 100;
-  box-shadow: 0 1px 8px rgba(0,0,0,.05);
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t);line-height:1.6;overflow-x:hidden}
+.hero{background:linear-gradient(-45deg,#dcfce7,#d1fae5,#ecfdf5,#f0fdf4);
+  background-size:400% 400%;animation:gbg 10s ease infinite;
+  padding:40px;position:relative;overflow:hidden}
+@keyframes gbg{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.shape{position:absolute;border-radius:50%;opacity:.15}
+.s1{width:300px;height:300px;background:#16a34a;top:-100px;right:-80px;animation:fl1 7s ease-in-out infinite}
+.s2{width:200px;height:200px;background:#0d9488;bottom:-60px;left:-40px;animation:fl2 9s ease-in-out infinite}
+.s3{width:150px;height:150px;background:#22c55e;top:30%;right:20%;animation:fl1 6s ease-in-out infinite reverse}
+@keyframes fl1{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-25px) scale(1.05)}}
+@keyframes fl2{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-15px) rotate(10deg)}}
+.hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(22,163,74,.12);
+  border:1px solid rgba(22,163,74,.3);color:var(--p);padding:5px 14px;border-radius:30px;
+  font-size:.72rem;font-weight:700;letter-spacing:.08em;margin-bottom:16px}
+.hero-title{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;color:var(--t);
+  letter-spacing:-.03em;line-height:1.1;margin-bottom:6px}
+.hero-title span{background:linear-gradient(135deg,#16a34a,#0d9488);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{color:#14532d;font-size:.9rem;margin-bottom:28px;max-width:660px}
+.student-card{background:white;border-radius:var(--radius);padding:22px;
+  box-shadow:var(--shadow2);border:1px solid var(--border)}
+.sc-title{font-size:.75rem;font-weight:700;color:var(--p);letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:14px}
+.form-row{display:flex;gap:12px;flex-wrap:wrap}
+.ff{display:flex;flex-direction:column;gap:5px;flex:1;min-width:140px}
+.fl{font-size:.7rem;font-weight:600;color:#15803d}
+.fi{background:#f0fdf4;border:1.5px solid var(--border);color:var(--t);
+  padding:9px 13px;font-family:'Inter',sans-serif;font-size:.88rem;
+  border-radius:8px;outline:none;transition:.2s}
+.fi:focus{border-color:var(--pl);background:white;box-shadow:0 0 0 3px rgba(34,197,94,.15)}
+#nav{position:sticky;top:0;z-index:200;background:rgba(240,253,244,.96);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--border);
+  padding:0 40px;display:flex;align-items:center;justify-content:space-between;
+  min-height:52px;gap:12px;flex-wrap:wrap;box-shadow:0 1px 8px rgba(22,163,74,.08)}
+.nav-links{display:flex;gap:4px}
+.nl{padding:7px 16px;border:1px solid transparent;background:transparent;
+  color:#4ade80;font-size:.72rem;font-weight:600;letter-spacing:.06em;
+  cursor:pointer;border-radius:8px;transition:.2s;text-decoration:none;display:block}
+.nl:hover{background:var(--pbg);border-color:rgba(22,163,74,.3);color:var(--p)}
+.nav-right{display:flex;gap:10px;align-items:center}
+#prog-txt{font-size:.7rem;font-weight:600;color:#14532d}
+#prog-bar{width:120px;height:6px;background:#dcfce7;border-radius:3px;overflow:hidden}
+#prog-fill{height:100%;background:linear-gradient(90deg,#16a34a,#0d9488);width:0%;
+  border-radius:3px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.btn-sm{padding:6px 14px;border-radius:8px;font-size:.7rem;font-weight:600;
+  cursor:pointer;border:1.5px solid;transition:.2s;background:white;
+  border-color:var(--border);color:#16a34a}
+.btn-sm:hover{background:var(--pbg)}
+.page-sec{max-width:960px;margin:0 auto;padding:60px 40px}
+.sec-hdr{text-align:center;margin-bottom:40px}
+.sec-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--p);margin-bottom:10px}
+.sec-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:var(--t);letter-spacing:-.02em}
+.sec-desc{color:#14532d;font-size:.9rem;margin-top:8px;max-width:520px;margin-left:auto;margin-right:auto}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 40px}
+.tc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tc{background:white;border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);border:1px solid var(--border);
+  transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.tc:hover{transform:translateY(-5px);box-shadow:var(--shadow2)}
+.tc-head{padding:14px 16px;display:flex;align-items:center;gap:10px;color:white}
+.tc-num{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.25);
+  display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;flex-shrink:0}
+.tc-title{font-size:.88rem;font-weight:700;line-height:1.2}
+.tc-sub{font-size:.6rem;opacity:.85;margin-top:1px}
+.tc-svg{padding:10px;background:#fafbfc;border-bottom:1px solid var(--border)}
+.tc-svg svg{width:100%;height:auto;display:block}
+.tc-body{padding:14px;flex:1;display:flex;flex-direction:column}
+.tc-bullets{margin-left:14px;font-size:.8rem;color:#14532d;line-height:1.8}
+.tc-detail{display:none;margin-top:10px;padding:10px;border-top:1px solid var(--border);
+  font-size:.8rem;color:#14532d;line-height:1.7;background:#f0fdf4;border-radius:6px}
+.tc-detail code{font-family:'JetBrains Mono',monospace;font-size:.8rem;
+  background:#dcfce7;padding:1px 5px;border-radius:3px;color:#14532d}
+.tc-detail.open{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.tc-more{margin-top:10px;background:none;border:none;cursor:pointer;
+  font-size:.72rem;font-weight:600;color:var(--p);padding:0;text-align:left;transition:.2s}
+.tc-more:hover{opacity:.7}
+.tc-foot{padding:8px 14px;background:#f0fdf4;border-top:1px solid var(--border);
+  font-size:.68rem;font-weight:600;color:var(--p);letter-spacing:.04em}
+.qdiff{margin-bottom:40px}
+.qdiff-hdr{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding:14px 18px;border-radius:var(--radius)}
+.qdiff-hdr.e{background:linear-gradient(135deg,#dcfce7,#bbf7d0)}
+.qdiff-hdr.m{background:linear-gradient(135deg,#d1fae5,#a7f3d0)}
+.qdiff-hdr.d{background:linear-gradient(135deg,#ecfdf5,#d1fae5)}
+.qdiff-ico{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;
+  justify-content:center;font-weight:900;font-size:.9rem;flex-shrink:0}
+.qdiff-ico.e{background:#16a34a;color:white}
+.qdiff-ico.m{background:#0d9488;color:white}
+.qdiff-ico.d{background:#1e293b;color:#4ade80}
+.qdiff-label{font-size:1.1rem;font-weight:800}
+.qdiff-label.e{color:#15803d} .qdiff-label.m{color:#0f766e} .qdiff-label.d{color:#1e293b}
+.qdiff-sub{font-size:.65rem;font-weight:600;letter-spacing:.1em;margin-top:1px}
+.qdiff-sub.e{color:#16a34a} .qdiff-sub.m{color:#0d9488} .qdiff-sub.d{color:#374151}
+.qc{background:white;border-radius:var(--radius);padding:22px;margin-bottom:14px;
+  border:1.5px solid var(--border);box-shadow:var(--shadow);
+  transition:all .3s;border-left:4px solid}
+.qc:hover{box-shadow:var(--shadow2);transform:translateX(2px)}
+.qc.fc{border-left-color:#16a34a}
+.qc.ab{border-left-color:#0d9488}
+.qc.di{border-left-color:#1e293b}
+.qh{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.qnum{font-size:.72rem;font-weight:700;color:#86efac}
+.qbadge{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:30px}
+.qbadge.fc{background:#dcfce7;color:#15803d}
+.qbadge.ab{background:#ccfbf1;color:#0f766e}
+.qbadge.di{background:#1e293b;color:#4ade80}
+.qt{font-size:.9rem;color:var(--t);line-height:1.7;margin-bottom:14px}
+.qt strong{color:#16a34a;font-weight:600}
+.qt code,.lc{font-family:'JetBrains Mono',monospace;font-size:.82rem;
+  background:#dcfce7;padding:1px 6px;border-radius:4px;color:#14532d}
+.opts{display:flex;flex-direction:column;gap:6px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;
+  background:#f9fefb;border:1.5px solid var(--border);border-radius:9px;
+  cursor:pointer;transition:.2s;font-size:.86rem;color:#14532d}
+.opt:hover{background:var(--pbg);border-color:var(--pll);color:var(--t)}
+.opt input[type=radio]{accent-color:var(--p);margin-top:3px;min-width:14px}
+.opt:has(input:checked){background:#dcfce7;border-color:var(--pl);color:var(--p);font-weight:500}
+.opt code{background:#bbf7d0;color:#14532d;font-family:'JetBrains Mono',monospace;font-size:.82rem;padding:0 4px;border-radius:3px}
+.ans-in{width:100%;background:#f0fdf4;border:none;border-bottom:2px solid #86efac;
+  color:var(--t);padding:9px 4px;font-family:'JetBrains Mono',monospace;font-size:.9rem;
+  outline:none;transition:.2s}
+.ans-in:focus{border-bottom-color:var(--p);background:#dcfce7}
+.ans-in::placeholder{color:#4ade80;font-style:italic}
+.ans-ta{width:100%;background:#f0fdf4;border:1.5px solid var(--border);border-radius:9px;
+  color:var(--t);padding:12px;font-family:'JetBrains Mono',monospace;font-size:.86rem;
+  outline:none;resize:vertical;min-height:90px;transition:.2s;line-height:1.65}
+.ans-ta:focus{border-color:var(--pl);background:white}
+.ans-ta::placeholder{color:#4ade80;font-style:italic;font-size:.83rem}
+.dhint{font-size:.7rem;font-weight:500;color:#15803d;margin-bottom:8px;
+  padding:7px 12px;background:#dcfce7;border-radius:6px;border-left:3px solid var(--pll)}
+.submit-card{background:white;border-radius:var(--radius);padding:32px;
+  box-shadow:var(--shadow2);border:1px solid var(--border);
+  background:linear-gradient(135deg,white,#f0fdf4);max-width:600px;margin:0 auto}
+.sub-title{font-size:1.2rem;font-weight:800;color:var(--t);margin-bottom:6px}
+.sub-note{font-size:.85rem;color:#14532d;margin-bottom:24px}
+.stats-row{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.stat{background:var(--pbg);border:1.5px solid var(--pll);border-radius:10px;
+  padding:12px 18px;flex:1;min-width:90px;text-align:center}
+.stat-n{font-size:1.5rem;font-weight:800;color:var(--p)}
+.stat-l{font-size:.62rem;font-weight:600;color:#4ade80;letter-spacing:.08em;margin-top:2px}
+.btn-submit{width:100%;padding:15px;background:linear-gradient(135deg,#16a34a,#0d9488);
+  color:white;font-family:'Inter',sans-serif;font-size:.95rem;font-weight:700;
+  letter-spacing:.06em;border:none;border-radius:10px;cursor:pointer;
+  transition:all .3s;box-shadow:0 4px 12px rgba(22,163,74,.3)}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(22,163,74,.4)}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+#smsg{display:none;margin-top:16px;padding:14px 18px;border-radius:10px;font-size:.88rem;border:1.5px solid}
+#smsg.ok{background:#f0fdf4;border-color:#86efac;color:#166534}
+#smsg.err{background:#fef2f2;border-color:#fca5a5;color:#991b1b}
+#smsg.loading{background:var(--pbg);border-color:var(--pll);color:var(--p)}
+.animate-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.animate-in.visible{opacity:1;transform:none}
+footer{text-align:center;padding:24px 40px;border-top:1px solid var(--border);font-size:.72rem;color:#4ade80}
+footer a{color:var(--p);text-decoration:none;font-weight:500}
+@media print{
+  #nav,.hero .shape,.btn-sm,footer{display:none!important}
+  .hero{background:#fff;padding:20px}
+  .tc-detail{display:block!important}
+  .submit-card{display:none!important}
+  body{background:#fff} .qc{break-inside:avoid}
 }
-.header-inner {
-  max-width: 900px; margin: 0 auto;
-  padding: 0 24px;
-  height: 60px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.header-left { display: flex; align-items: center; gap: 12px; }
-.header-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--green2);
-  box-shadow: 0 0 0 3px var(--green-bg);
-}
-.header-titulo { font-weight: 800; font-size: .9rem; color: var(--txt); }
-.header-sub { font-size: .72rem; color: var(--txt3); margin-top: 1px; }
-.header-prog {
-  display: flex; align-items: center; gap: 10px;
-}
-.prog-bar {
-  width: 120px; height: 5px;
-  background: var(--border); border-radius: 99px; overflow: hidden;
-}
-.prog-fill {
-  height: 100%; background: linear-gradient(90deg, var(--green), var(--green2));
-  border-radius: 99px; transition: width .4s ease;
-}
-.prog-txt { font-size: .72rem; color: var(--txt3); white-space: nowrap; }
-.btn-print {
-  padding: 6px 14px; border-radius: 7px;
-  border: 1px solid var(--border2); background: var(--surface2);
-  font-family: 'Nunito', sans-serif; font-size: .75rem; font-weight: 700;
-  color: var(--txt2); cursor: pointer; transition: all .2s;
-}
-.btn-print:hover { border-color: var(--green); color: var(--green); }
-
-/* ── TABS ── */
-.tabs {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-}
-.tabs-inner {
-  max-width: 900px; margin: 0 auto; padding: 0 24px;
-  display: flex; gap: 0; overflow-x: auto;
-}
-.tab {
-  padding: 12px 20px; font-size: .8rem; font-weight: 700;
-  color: var(--txt3); cursor: pointer; white-space: nowrap;
-  border-bottom: 2px solid transparent; transition: all .2s;
-  letter-spacing: .02em;
-}
-.tab:hover { color: var(--txt); }
-.tab.ativa { color: var(--green); border-bottom-color: var(--green); }
-
-/* ── CONTAINER ── */
-.container { max-width: 900px; margin: 0 auto; padding: 32px 24px 80px; }
-
-/* ── IDENTIFICAÇÃO ── */
-.id-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  margin-bottom: 28px;
-  box-shadow: var(--shadow);
-}
-.id-card-top {
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
-  padding: 20px 24px;
-  display: flex; align-items: center; gap: 16px;
-}
-.id-escola-nome { font-weight: 800; font-size: .88rem; color: #fff; line-height: 1.3; }
-.id-escola-end { font-size: .72rem; color: rgba(255,255,255,.6); margin-top: 2px; }
-.id-card-body { padding: 20px 24px; }
-.id-fields {
-  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px;
-}
-.id-field label {
-  display: block; font-size: .7rem; font-weight: 800;
-  color: var(--green); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 5px;
-}
-.id-field input {
-  width: 100%; padding: 9px 13px;
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
-  font-family: 'Nunito', sans-serif; font-size: .9rem; color: var(--txt);
-  background: var(--surface); transition: border-color .2s;
-}
-.id-field input:focus { outline: none; border-color: var(--green2); }
-
-/* ── BANNER SEÇÃO ── */
-.banner {
-  background: linear-gradient(135deg, var(--green) 0%, #15803d 100%);
-  border-radius: 14px; padding: 28px 28px;
-  color: #fff; margin-bottom: 28px;
-  position: relative; overflow: hidden;
-}
-.banner::after {
-  content: '';
-  position: absolute; right: -30px; top: -30px;
-  width: 200px; height: 200px; border-radius: 50%;
-  background: rgba(255,255,255,.05);
-}
-.banner-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .65rem; letter-spacing: .18em; text-transform: uppercase;
-  opacity: .7; margin-bottom: 8px;
-}
-.banner-titulo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; margin-bottom: 6px; }
-.banner-sub { font-size: .88rem; opacity: .85; }
-.banner-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
-.banner-chip {
-  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.2);
-  padding: 4px 12px; border-radius: 20px; font-size: .72rem; font-weight: 700;
-}
-
-/* ── SEÇÃO OCULTA ── */
-.secao { display: none; }
-.secao.ativa { display: block; animation: fadeIn .3s ease; }
-@keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
-
-/* ── BLOCO DE CONTEÚDO ── */
-.bloco {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 14px; overflow: hidden; margin-bottom: 20px;
-  box-shadow: var(--shadow);
-}
-.bloco-header {
-  padding: 16px 24px; border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-}
-.bloco-titulo { font-weight: 800; font-size: .95rem; color: var(--txt); }
-.bloco-sub { font-size: .78rem; color: var(--txt3); margin-top: 2px; }
-.bloco-body { padding: 24px; }
-
-/* TERMINAL */
-.terminal {
-  background: #0f172a; border-radius: 10px;
-  overflow: hidden; margin: 16px 0;
-}
-.term-bar {
-  background: #1e293b; padding: 10px 14px;
-  display: flex; align-items: center; gap: 6px;
-}
-.tdot { width: 10px; height: 10px; border-radius: 50%; }
-.tdot.r{background:#ef4444}.tdot.y{background:#f59e0b}.tdot.g{background:#22c55e}
-.tlbl { color: rgba(255,255,255,.3); font-family: 'JetBrains Mono', monospace; font-size: .7rem; margin-left: 8px; }
-.term-body {
-  padding: 16px 20px;
-  font-family: 'JetBrains Mono', monospace; font-size: .8rem; line-height: 2;
-  color: #94a3b8;
-}
-.tc { color: #22c55e; } .to { color: #60a5fa; } .tk { color: #f59e0b; }
-.tcm { color: #475569; } .ts { color: #a78bfa; }
-
-/* TABELA */
-.tabela { width: 100%; border-collapse: collapse; font-size: .85rem; }
-.tabela th { background: #0f172a; color: #fff; padding: 10px 14px; text-align: left; font-weight: 700; }
-.tabela td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
-.tabela tr:nth-child(even) td { background: var(--surface2); }
-.tabela tr:hover td { background: var(--green-bg); }
-
-/* DESTAQUE */
-.destaque {
-  border-left: 3px solid var(--green); background: var(--green-bg);
-  padding: 12px 16px; border-radius: 0 8px 8px 0;
-  font-size: .88rem; font-weight: 600; color: #15803d;
-  margin: 14px 0;
-}
-.destaque-amber { border-color: var(--amber); background: var(--amber-bg); color: var(--amber); }
-.destaque-blue  { border-color: var(--blue);  background: var(--blue-bg);  color: var(--blue);  }
-
-/* LISTA */
-.lista { margin: 10px 0 10px 20px; }
-.lista li { margin: 6px 0; font-size: .9rem; color: var(--txt2); }
-.lista li strong { color: var(--txt); }
-
-/* ── QUESTÃO FECHADA ── */
-.nivel-tag {
-  display: inline-flex; align-items: center; gap: 5px;
-  padding: 3px 10px; border-radius: 20px;
-  font-size: .68rem; font-weight: 800; letter-spacing: .06em;
-}
-.nivel-f { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-bd); }
-.nivel-m { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-bd); }
-.nivel-a { background: var(--red-bg);   color: var(--red);   border: 1px solid var(--red-bd);   }
-
-.q-fechada {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 14px; overflow: hidden; margin-bottom: 16px;
-  box-shadow: var(--shadow);
-}
-.q-fechada-top {
-  padding: 14px 20px; border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; gap: 10px;
-  background: var(--surface2);
-}
-.q-num { font-weight: 900; font-size: .85rem; color: var(--txt); }
-.q-body { padding: 18px 20px; }
-.q-enunciado { font-size: .93rem; color: var(--txt); margin-bottom: 16px; line-height: 1.65; font-weight: 600; }
-.q-enunciado code { background: var(--surface2); padding: 1px 7px; border-radius: 5px; font-family: 'JetBrains Mono', monospace; font-size: .85em; color: var(--green); }
-
-.alts { display: flex; flex-direction: column; gap: 8px; }
-.alt {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 16px; border-radius: 9px;
-  border: 1.5px solid var(--border);
-  cursor: pointer; transition: all .2s; background: var(--surface);
-}
-.alt:hover { border-color: var(--green-bd); background: var(--green-bg); }
-.alt.sel { border-color: var(--green2); background: var(--green-bg); }
-.alt-letra {
-  width: 26px; height: 26px; border-radius: 50%;
-  border: 1.5px solid var(--border2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: .75rem; font-weight: 800; color: var(--txt3);
-  flex-shrink: 0; transition: all .2s;
-}
-.alt.sel .alt-letra { background: var(--green); border-color: var(--green); color: #fff; }
-.alt-txt { font-size: .88rem; color: var(--txt2); line-height: 1.5; padding-top: 2px; }
-.alt.sel .alt-txt { color: var(--txt); font-weight: 600; }
-.q-sel-info { font-size: .75rem; color: var(--txt3); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
-.q-sel-info.respondida { color: var(--green); }
-
-/* ── QUESTÃO ABERTA ── */
-.q-aberta {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 14px; overflow: hidden; margin-bottom: 16px;
-  box-shadow: var(--shadow);
-}
-.q-aberta-top {
-  padding: 14px 20px; border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; gap: 10px;
-  background: var(--surface2);
-}
-.q-aberta-body { padding: 18px 20px; }
-.q-aberta-body textarea {
-  width: 100%; min-height: 100px;
-  padding: 12px 14px; border: 1.5px solid var(--border);
-  border-radius: 9px; font-family: 'Nunito', sans-serif;
-  font-size: .9rem; resize: vertical; transition: border-color .2s;
-  background: var(--surface); color: var(--txt); line-height: 1.65;
-}
-.q-aberta-body textarea:focus { outline: none; border-color: var(--green2); }
-.q-aberta-body textarea.ok { border-color: var(--green-bd); }
-.char-count { font-size: .72rem; color: var(--txt3); text-align: right; margin-top: 5px; }
-
-/* ── PRÁTICA ── */
-.pratica {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 14px; overflow: hidden; margin-bottom: 20px;
-  box-shadow: var(--shadow);
-}
-.pratica-header {
-  padding: 16px 24px; border-bottom: 1px solid var(--border);
-  background: linear-gradient(135deg, #0f172a, #1e3a8a);
-  display: flex; align-items: center; justify-content: space-between;
-}
-.pratica-num { font-family: 'JetBrains Mono', monospace; font-size: .7rem; color: rgba(255,255,255,.5); letter-spacing: .1em; }
-.pratica-titulo { font-weight: 800; font-size: .95rem; color: #fff; }
-.pratica-badge {
-  padding: 4px 12px; border-radius: 20px; font-size: .68rem; font-weight: 800;
-  background: rgba(255,255,255,.1); color: rgba(255,255,255,.8); border: 1px solid rgba(255,255,255,.15);
-}
-.pratica-body { padding: 24px; }
-.passo { display: flex; gap: 14px; margin: 10px 0; align-items: flex-start; }
-.passo-n {
-  width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
-  background: var(--green); color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-size: .72rem; font-weight: 900; margin-top: 2px;
-}
-.passo-txt { font-size: .9rem; color: var(--txt2); flex: 1; line-height: 1.6; }
-.passo-txt code { background: var(--surface2); padding: 1px 7px; border-radius: 5px; font-family: 'JetBrains Mono', monospace; font-size: .85em; color: var(--green); }
-.campo-pr {
-  width: 100%; padding: 9px 13px; margin: 8px 0;
-  border: 1.5px solid var(--border); border-radius: 8px;
-  font-family: 'Nunito', sans-serif; font-size: .88rem; color: var(--txt);
-  background: var(--surface2); transition: all .2s;
-}
-.campo-pr:focus { outline: none; border-color: var(--green2); background: var(--surface); }
-.ref-lbl { font-size: .78rem; font-weight: 800; color: var(--green); margin-top: 14px; display: block; letter-spacing: .04em; }
-.ref-area {
-  width: 100%; min-height: 80px; margin-top: 6px;
-  padding: 11px 13px; border: 1.5px solid var(--border); border-radius: 8px;
-  font-family: 'Nunito', sans-serif; font-size: .88rem; resize: vertical;
-  background: var(--surface2); color: var(--txt); transition: all .2s;
-}
-.ref-area:focus { outline: none; border-color: var(--green2); background: var(--surface); }
-
-/* ── DIVISOR NÍVEL ── */
-.nivel-divisor {
-  display: flex; align-items: center; gap: 14px;
-  margin: 28px 0 20px; font-size: .72rem; font-weight: 800;
-  color: var(--txt3); letter-spacing: .1em; text-transform: uppercase;
-}
-.nivel-divisor::before, .nivel-divisor::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-/* ── ENVIO ── */
-.envio-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 16px; overflow: hidden;
-  box-shadow: var(--shadow2); margin-top: 8px;
-}
-.envio-top {
-  background: linear-gradient(135deg, var(--green) 0%, #15803d 100%);
-  padding: 24px 28px;
-}
-.envio-top h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 900; color: #fff; margin-bottom: 5px; }
-.envio-top p { font-size: .85rem; color: rgba(255,255,255,.8); }
-.envio-body { padding: 24px 28px; }
-.envio-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
-.envio-field label { display: block; font-size: .7rem; font-weight: 800; color: var(--txt2); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 5px; }
-.envio-field input {
-  width: 100%; padding: 10px 14px;
-  border: 1.5px solid var(--border); border-radius: 9px;
-  font-family: 'Nunito', sans-serif; font-size: .92rem; color: var(--txt);
-  background: var(--surface); transition: border-color .2s;
-}
-.envio-field input:focus { outline: none; border-color: var(--green2); }
-.btn-enviar {
-  width: 100%; padding: 14px;
-  background: linear-gradient(135deg, var(--green), #15803d);
-  color: #fff; border: none; border-radius: 10px;
-  font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1rem;
-  cursor: pointer; transition: all .25s; letter-spacing: .02em;
-  box-shadow: 0 4px 18px rgba(22,163,74,.3);
-}
-.btn-enviar:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(22,163,74,.4); }
-.btn-enviar:disabled { opacity: .6; cursor: not-allowed; transform: none; }
-.msg-envio {
-  display: none; margin-top: 14px; padding: 14px 18px;
-  border-radius: 10px; font-weight: 700; font-size: .9rem;
-}
-.msg-ok  { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-bd); }
-.msg-err { background: var(--red-bg);   color: var(--red);   border: 1px solid var(--red-bd);   }
-
+@media(max-width:900px){.tc-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){
-  .id-fields { grid-template-columns: 1fr; }
-  .envio-fields { grid-template-columns: 1fr; }
-  .header-prog { display: none; }
-  .container { padding: 20px 16px 60px; }
-}
-@media print {
-  .header, .tabs { display: none !important; }
-  .secao { display: block !important; }
+  .tc-grid{grid-template-columns:1fr}
+  .hero,.page-sec,#nav,footer{padding-left:16px;padding-right:16px}
+  .form-row{flex-direction:column}
 }
 </style>
 </head>
 <body>
-
-<!-- HEADER -->
-<div class="header">
-  <div class="header-inner">
-    <div class="header-left">
-      <div class="header-dot"></div>
-      <div>
-        <div class="header-titulo">Avaliação — Linux Mint</div>
-        <div class="header-sub">Prof. Marcos Cruz · Informática Técnica</div>
+<div class="hero">
+  <div class="shape s1"></div><div class="shape s2"></div><div class="shape s3"></div>
+  <div class="hero-inner">
+    <div class="badge">💻 INFORMÁTICA TÉCNICA · PROF. MARCOS CRUZ</div>
+    <h1 class="hero-title">Avaliação — <span>Linux Mint</span></h1>
+    <p class="hero-sub">Sistema operacional · Interface gráfica · Terminal · Sistema de arquivos · APT · Usuários · Processos · Rede · Comparação com Windows</p>
+    <div class="student-card">
+      <div class="sc-title">✏️ IDENTIFICAÇÃO DO ALUNO</div>
+      <div class="form-row">
+        <div class="ff"><label class="fl">Nome completo</label><input class="fi" id="nome" type="text" placeholder="Seu nome" oninput="upd()"></div>
+        <div class="ff"><label class="fl">Turma</label><input class="fi" id="turma" type="text" placeholder="Ex: 2º Ano A"></div>
+        <div class="ff"><label class="fl">Data</label><input class="fi" id="data-ativ" type="date"></div>
       </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:14px">
-      <div class="header-prog">
-        <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
-        <span class="prog-txt" id="prog-txt">0/10 respondidas</span>
-      </div>
-      <button class="btn-print" onclick="window.print()">Imprimir</button>
     </div>
   </div>
 </div>
 
-<!-- TABS -->
-<div class="tabs">
-  <div class="tabs-inner">
-    <div class="tab ativa" onclick="aba('conteudo',this)">Conteúdo</div>
-    <div class="tab" onclick="aba('fechadas',this)">Questões Fechadas</div>
-    <div class="tab" onclick="aba('abertas',this)">Questões Abertas</div>
-    <div class="tab" onclick="aba('praticas',this)">Práticas</div>
-    <div class="tab" onclick="aba('enviar',this)">Enviar</div>
+<nav id="nav">
+  <div class="nav-links">
+    <a class="nl" href="#teoria">📚 Teoria</a>
+    <a class="nl" href="#questoes">📝 Questões</a>
+    <a class="nl" href="#enviar">📤 Enviar</a>
   </div>
-</div>
+  <div class="nav-right">
+    <span id="prog-txt">0 / 20 respondidas</span>
+    <div id="prog-bar"><div id="prog-fill"></div></div>
+    <button class="btn-sm" onclick="window.print()">🖨 Imprimir</button>
+  </div>
+</nav>
 
-<div class="container">
-
-  <!-- IDENTIFICAÇÃO -->
-  <div class="id-card">
-    <div class="id-card-top">
-      <div>
-        <div class="id-escola-nome">E.E. Prefeito Odílio Fernandes Costa</div>
-        <div class="id-escola-end">Praça Sete de Setembro, 84 · Santo Antônio do Retiro — MG · (38) 3824-8114</div>
+<!-- TEORIA -->
+<section class="page-sec" id="teoria">
+  <div class="sec-hdr animate-in">
+    <div class="sec-eyebrow">📚 Teoria</div>
+    <h2 class="sec-title">Fundamentos do Linux Mint</h2>
+    <p class="sec-desc">9 tópicos essenciais para a avaliação. Clique em cada card para expandir o conteúdo completo.</p>
+  </div>
+  <div class="tc-grid">
+    
+    <div class="tc animate-in" id="tc-intro">
+      <div class="tc-head" style="background:#16a34a">
+        <div class="tc-num">1</div>
+        <div><div class="tc-title">O que é Linux e Linux Mint</div><div class="tc-sub">Kernel · Distribuições · Edições Mint</div></div>
       </div>
+      <div class="tc-svg"><svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+  <rect width="220" height="110" rx="10" fill="#f0fdf4"/>
+  <circle cx="44" cy="55" r="30" fill="#16a34a"/>
+  <ellipse cx="44" cy="68" rx="18" ry="8" fill="#14532d"/>
+  <circle cx="36" cy="48" r="6" fill="white"/><circle cx="52" cy="48" r="6" fill="white"/>
+  <circle cx="36" cy="48" r="3" fill="#1a1a1a"/><circle cx="52" cy="48" r="3" fill="#1a1a1a"/>
+  <path d="M37 58 Q44 63 51 58" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="44" y="100" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#15803d" font-weight="700">Tux — mascote Linux</text>
+  <rect x="84" y="14" width="128" height="82" rx="8" fill="#dcfce7"/>
+  <text x="148" y="30" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#166534" font-weight="700">Linux Mint</text>
+  <circle cx="100" cy="50" r="12" fill="#16a34a" opacity=".8"/>
+  <text x="100" y="54" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white" font-weight="700">Mint</text>
+  <circle cx="128" cy="50" r="12" fill="#ea580c" opacity=".8"/>
+  <text x="128" y="54" text-anchor="middle" font-family="sans-serif" font-size="6" fill="white" font-weight="700">Ubuntu</text>
+  <circle cx="156" cy="50" r="12" fill="#dc2626" opacity=".8"/>
+  <text x="156" y="54" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="white" font-weight="700">Fedora</text>
+  <circle cx="184" cy="50" r="12" fill="#2563eb" opacity=".8"/>
+  <text x="184" y="54" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="white" font-weight="700">Debian</text>
+  <text x="148" y="80" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#166534">Baseado no Ubuntu/Debian</text>
+  <text x="148" y="91" text-anchor="middle" font-family="monospace" font-size="7" fill="#15803d">Cinnamon · MATE · Xfce</text>
+</svg></div>
+      <div class="tc-body">
+        <ul class="tc-bullets"><li>Linux é um kernel de código aberto criado por Linus Torvalds em 1991</li><li>Linux Mint é uma distribuição baseada no Ubuntu/Debian, fácil de usar</li><li>Edições: Cinnamon (padrão), MATE (leve) e Xfce (muito leve)</li></ul>
+        <div class="tc-detail" id="det-intro"><p><b>Kernel:</b> núcleo do sistema operacional. O Linux é o kernel; a "distribuição" é o sistema completo (kernel + programas + interface).</p>
+<p style="margin-top:8px"><b>Linux Mint:</b> lançado em 2006, baseado no Ubuntu (que é baseado no Debian). Foco em facilidade de uso para quem vem do Windows.</p>
+<p style="margin-top:8px"><b>Edições:</b> Cinnamon → interface moderna (padrão, mais recursos); MATE → clássico e rápido; Xfce → ideal para hardware muito antigo.</p>
+<p style="margin-top:8px"><b>Open source:</b> o código-fonte é público, pode ser estudado, modificado e redistribuído gratuitamente. Licença GPL.</p></div>
+        <button class="tc-more" onclick="toggleDetail('intro')">Ver teoria completa ▸</button>
+      </div>
+      <div class="tc-foot">🎯 Questões: 01·02·03·15</div>
     </div>
-    <div class="id-card-body">
-      <div class="id-fields">
-        <div class="id-field"><label>Aluno(a)</label><input id="nome" type="text" placeholder="Nome completo" oninput="sv('nome',this.value)"></div>
-        <div class="id-field"><label>Turma</label><input id="turma" type="text" placeholder="Ex: Inf.T3" oninput="sv('turma',this.value)"></div>
-        <div class="id-field"><label>Data</label><input id="data-av" type="text" placeholder="dd/mm/aaaa" oninput="sv('data-av',this.value)"></div>
+
+    <div class="tc animate-in" id="tc-desktop">
+      <div class="tc-head" style="background:#0d9488">
+        <div class="tc-num">2</div>
+        <div><div class="tc-title">Interface Gráfica — Desktop</div><div class="tc-sub">Cinnamon · Painel · Menu · Gerenciador de Janelas</div></div>
       </div>
+      <div class="tc-svg"><svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+  <rect width="220" height="110" rx="10" fill="#1e3a2f"/>
+  <rect x="8" y="8" width="204" height="80" rx="6" fill="#2d6a4f"/>
+  <rect x="8" y="8" width="204" height="14" rx="4" fill="#1b4332"/>
+  <circle cx="16" cy="15" r="3" fill="#ef4444"/><circle cx="24" cy="15" r="3" fill="#f59e0b"/><circle cx="32" cy="15" r="3" fill="#22c55e"/>
+  <text x="110" y="18" text-anchor="middle" font-family="sans-serif" font-size="6" fill="#86efac">Linux Mint — Cinnamon Desktop</text>
+  <rect x="14" y="28" width="50" height="36" rx="4" fill="#1b4332" stroke="#4ade80" stroke-width=".5"/>
+  <text x="39" y="42" text-anchor="middle" font-size="10">📁</text>
+  <text x="39" y="56" text-anchor="middle" font-family="sans-serif" font-size="6" fill="#86efac">Arquivos</text>
+  <rect x="70" y="28" width="76" height="36" rx="4" fill="#0f2d1f" stroke="#4ade80" stroke-width=".5"/>
+  <text x="108" y="38" text-anchor="middle" font-family="monospace" font-size="7" fill="#4ade80">$ ls -la</text>
+  <text x="108" y="48" text-anchor="middle" font-family="monospace" font-size="6" fill="#86efac">total 48</text>
+  <text x="108" y="57" text-anchor="middle" font-family="monospace" font-size="6" fill="#86efac">drwxr-xr-x user</text>
+  <rect x="152" y="28" width="54" height="36" rx="4" fill="#1b4332" stroke="#4ade80" stroke-width=".5"/>
+  <text x="179" y="42" text-anchor="middle" font-size="10">⚙</text>
+  <text x="179" y="56" text-anchor="middle" font-family="sans-serif" font-size="6" fill="#86efac">Config.</text>
+  <rect x="8" y="90" width="204" height="10" rx="0 0 4 4" fill="#1b4332"/>
+  <text x="20" y="97" font-family="sans-serif" font-size="6" fill="#86efac">🌿 Menu</text>
+  <text x="110" y="97" text-anchor="middle" font-family="sans-serif" font-size="6" fill="#86efac">09:45 · 07/06/2026</text>
+</svg></div>
+      <div class="tc-body">
+        <ul class="tc-bullets"><li>Cinnamon: painel na base, menu iniciar, bandeja do sistema</li><li>Área de trabalho com ícones, janelas e múltiplos espaços de trabalho</li><li>Centro de Controle: configura tema, rede, som, usuários, impressoras</li></ul>
+        <div class="tc-detail" id="det-desktop"><p><b>Painel (taskbar):</b> barra inferior com menu iniciar (🌿), janelas abertas, relógio e bandeja do sistema. Similar à barra de tarefas do Windows.</p>
+<p style="margin-top:8px"><b>Menu Mint:</b> organizado por categorias (Internet, Escritório, Gráficos…). Possui campo de busca rápida para abrir programas.</p>
+<p style="margin-top:8px"><b>Espaços de trabalho:</b> o Cinnamon permite múltiplas áreas de trabalho virtuais — como ter várias telas em uma.</p>
+<p style="margin-top:8px"><b>Centro de Controle:</b> equivalente ao Painel de Controle do Windows. Permite configurar aparência, rede, usuários, hardware e mais.</p></div>
+        <button class="tc-more" onclick="toggleDetail('desktop')">Ver teoria completa ▸</button>
+      </div>
+      <div class="tc-foot">🎯 Questões: 04·06</div>
+    </div>
+
+    <div class="tc animate-in" id="tc-fs">
+      <div class="tc-head" style="background:#b45309">
+        <div class="tc-num">3</div>
+        <div><div class="tc-title">Sistema de Arquivos</div><div class="tc-sub">Estrutura de diretórios · /home · /etc · /usr</div></div>
+      </div>
+      <div class="tc-svg"><svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+  <rect width="220" height="110" rx="10" fill="#f0fdf4"/>
+  <text x="24" y="16" font-family="monospace" font-size="10" fill="#16a34a" font-weight="700">/</text>
+  <line x1="28" y1="18" x2="28" y2="100" stroke="#86efac" stroke-width="1"/>
+  <g font-family="monospace" font-size="8" fill="#15803d">
+    <line x1="28" y1="28" x2="38" y2="28" stroke="#86efac" stroke-width="1"/>
+    <text x="40" y="31">home</text><text x="90" y="31" font-size="7" fill="#6b7280">→ pastas dos usuários</text>
+    <line x1="28" y1="42" x2="38" y2="42" stroke="#86efac" stroke-width="1"/>
+    <text x="40" y="45">etc</text><text x="90" y="45" font-size="7" fill="#6b7280">→ arquivos de configuração</text>
+    <line x1="28" y1="56" x2="38" y2="56" stroke="#86efac" stroke-width="1"/>
+    <text x="40" y="59">usr</text><text x="90" y="59" font-size="7" fill="#6b7280">→ programas instalados</text>
+    <line x1="28" y1="70" x2="38" y2="70" stroke="#86efac" stroke-width="1"/>
+    <text x="40" y="73">var</text><text x="90" y="73" font-size="7" fill="#6b7280">→ logs e dados variáveis</text>
+    <line x1="28" y1="84" x2="38" y2="84" stroke="#86efac" stroke-width="1"/>
+    <text x="40" y="87">tmp</text><text x="90" y="87" font-size="7" fill="#6b7280">→ arquivos temporários</text>
+    <line x1="28" y1="98" x2="38" y2="98" stroke="#86efac" stroke-width="1"/>
+    <text x="40" y="101">root</text><text x="90" y="101" font-size="7" fill="#6b7280">→ home do superusuário</text>
+  </g>
+</svg></div>
+      <div class="tc-body">
+        <ul class="tc-bullets"><li>No Linux, tudo parte de / (raiz) — não há letras de drive (C:, D:)</li><li>Diretórios principais: /home (usuários), /etc (configurações), /usr (programas)</li><li>Caminhos: absoluto (/home/marcos) ou relativo (../Documentos)</li></ul>
+        <div class="tc-detail" id="det-fs"><p><b>Estrutura hierárquica:</b> tudo começa em <code>/</code> (raiz). Ao contrário do Windows, não existem C:, D:.</p>
+<p style="margin-top:8px"><b>Diretórios essenciais:</b><br>
+<code>/home/usuario</code> → arquivos pessoais do usuário (equivale a C:\Users\)<br>
+<code>/etc</code> → arquivos de configuração do sistema<br>
+<code>/usr</code> → programas instalados<br>
+<code>/var</code> → logs, banco de dados, e-mail<br>
+<code>/tmp</code> → temporários (apagados no reinício)<br>
+<code>/root</code> → home do superusuário root<br>
+<code>/dev</code> → dispositivos de hardware como arquivos</p>
+<p style="margin-top:8px"><b>~</b> (til) representa a pasta home do usuário atual: <code>~/Documentos</code> = <code>/home/marcos/Documentos</code>.</p></div>
+        <button class="tc-more" onclick="toggleDetail('fs')">Ver teoria completa ▸</button>
+      </div>
+      <div class="tc-foot">🎯 Questões: 05·06·09·10</div>
+    </div>
+
+    <div class="tc animate-in" id="tc-terminal">
+      <div class="tc-head" style="background:#1e293b">
+        <div class="tc-num">4</div>
+        <div><div class="tc-title">Terminal — Comandos Essenciais</div><div class="tc-sub">ls · cd · mkdir · rm · cp · mv · cat · man</div></div>
+      </div>
+      <div class="tc-svg"><svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+  <rect width="220" height="110" rx="10" fill="#0f172a"/>
+  <rect x="8" y="8" width="204" height="94" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <rect x="8" y="8" width="204" height="16" rx="4" fill="#1e293b"/>
+  <circle cx="18" cy="16" r="3" fill="#ef4444"/><circle cx="28" cy="16" r="3" fill="#f59e0b"/><circle cx="38" cy="16" r="3" fill="#22c55e"/>
+  <text x="110" y="19" text-anchor="middle" font-family="monospace" font-size="6" fill="#64748b">Terminal — Bash</text>
+  <g font-family="monospace" font-size="8" fill="#4ade80">
+    <text x="14" y="36"><tspan fill="#818cf8">marcos@mint</tspan><tspan fill="#64748b">:</tspan><tspan fill="#38bdf8">~</tspan><tspan fill="white">$</tspan> ls</text>
+    <text x="14" y="47" fill="#e2e8f0">Documentos  Downloads  Desktop</text>
+    <text x="14" y="58"><tspan fill="#818cf8">marcos@mint</tspan><tspan fill="#64748b">:</tspan><tspan fill="#38bdf8">~</tspan><tspan fill="white">$</tspan> pwd</text>
+    <text x="14" y="69" fill="#e2e8f0">/home/marcos</text>
+    <text x="14" y="80"><tspan fill="#818cf8">marcos@mint</tspan><tspan fill="#64748b">:</tspan><tspan fill="#38bdf8">~</tspan><tspan fill="white">$</tspan> whoami</text>
+    <text x="14" y="91" fill="#e2e8f0">marcos</text>
+    <text x="14" y="102"><tspan fill="#818cf8">marcos@mint</tspan><tspan fill="#64748b">:</tspan><tspan fill="#38bdf8">~</tspan><tspan fill="#4ade80">$</tspan><tspan fill="#4ade80"> _</tspan></text>
+  </g>
+</svg></div>
+      <div class="tc-body">
+        <ul class="tc-bullets"><li>ls: lista arquivos e diretórios; ls -la: mostra detalhes e ocultos</li><li>cd: navega entre diretórios; pwd: mostra o diretório atual</li><li>mkdir/rm/cp/mv: criar, remover, copiar e mover arquivos</li></ul>
+        <div class="tc-detail" id="det-terminal"><p><b>Navegação:</b> <code>pwd</code> (onde estou?), <code>cd /caminho</code> (entrar numa pasta), <code>cd ..</code> (voltar um nível), <code>cd ~</code> (ir para home).</p>
+<p style="margin-top:8px"><b>Listagem:</b> <code>ls</code> (arquivos), <code>ls -l</code> (detalhes), <code>ls -a</code> (inclui ocultos), <code>ls -la</code> (ambos).</p>
+<p style="margin-top:8px"><b>Manipulação:</b> <code>mkdir pasta</code> (criar diretório), <code>rm arquivo</code> (apagar), <code>rm -rf pasta</code> (apagar recursivo — cuidado!), <code>cp origem destino</code> (copiar), <code>mv origem destino</code> (mover/renomear).</p>
+<p style="margin-top:8px"><b>Leitura:</b> <code>cat arquivo</code> (mostrar conteúdo), <code>less arquivo</code> (paginar), <code>nano arquivo</code> (editar).</p>
+<p style="margin-top:8px"><b>Ajuda:</b> <code>man comando</code> (manual completo), <code>comando --help</code> (resumo rápido), <code>whatis comando</code> (descrição em uma linha).</p></div>
+        <button class="tc-more" onclick="toggleDetail('terminal')">Ver teoria completa ▸</button>
+      </div>
+      <div class="tc-foot">🎯 Questões: 07·08·09·10·11·16·17</div>
+    </div>
+
+    <div class="tc animate-in" id="tc-apt">
+      <div class="tc-head" style="background:#16a34a">
+        <div class="tc-num">5</div>
+        <div><div class="tc-title">Gerenciamento de Pacotes</div><div class="tc-sub">apt · apt-get · Software Manager · dpkg</div></div>
+      </div>
+      <div class="tc-svg"><svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+  <rect width="220" height="110" rx="10" fill="#f0fdf4"/>
+  <text x="110" y="14" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534" font-weight="700">Gerenciamento de Pacotes (APT)</text>
+  <rect x="8" y="20" width="50" height="28" rx="6" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="33" y="32" text-anchor="middle" font-size="12">🌐</text>
+  <text x="33" y="44" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#166534">Repositório</text>
+  <defs><marker id="apt-a" markerWidth="5" markerHeight="5" refX="5" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#16a34a"/></marker></defs>
+  <line x1="58" y1="34" x2="76" y2="34" stroke="#16a34a" stroke-width="1.5" marker-end="url(#apt-a)"/>
+  <rect x="78" y="20" width="64" height="28" rx="6" fill="#bbf7d0" stroke="#4ade80" stroke-width="1"/>
+  <text x="110" y="30" text-anchor="middle" font-family="monospace" font-size="7" fill="#14532d">sudo apt update</text>
+  <text x="110" y="43" text-anchor="middle" font-family="monospace" font-size="7" fill="#14532d">sudo apt install</text>
+  <line x1="142" y1="34" x2="160" y2="34" stroke="#16a34a" stroke-width="1.5" marker-end="url(#apt-a)"/>
+  <rect x="162" y="20" width="50" height="28" rx="6" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="187" y="32" text-anchor="middle" font-size="12">📦</text>
+  <text x="187" y="44" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#166534">Instalado!</text>
+  <rect x="8" y="58" width="204" height="44" rx="6" fill="#0f172a"/>
+  <g font-family="monospace" font-size="7.5" fill="#4ade80">
+    <text x="14" y="72"><tspan fill="white">$</tspan> sudo apt update       <tspan fill="#64748b"># atualiza lista</tspan></text>
+    <text x="14" y="83"><tspan fill="white">$</tspan> sudo apt install vlc   <tspan fill="#64748b"># instala programa</tspan></text>
+    <text x="14" y="94"><tspan fill="white">$</tspan> sudo apt remove vlc    <tspan fill="#64748b"># remove programa</tspan></text>
+    <text x="14" y="98" fill="#64748b">                         upgrade · autoremove</text>
+  </g>
+</svg></div>
+      <div class="tc-body">
+        <ul class="tc-bullets"><li>APT (Advanced Package Tool): instala/remove/atualiza programas via terminal</li><li>sudo apt update: atualiza a lista de pacotes disponíveis</li><li>sudo apt install nome: instala; sudo apt remove nome: remove</li></ul>
+        <div class="tc-detail" id="det-apt"><p><b>Fluxo de instalação:</b> o APT busca no repositório → baixa o pacote → instala automaticamente com todas as dependências.</p>
+<p style="margin-top:8px"><b>Comandos principais:</b><br>
+<code>sudo apt update</code> → atualiza a lista de programas disponíveis<br>
+<code>sudo apt upgrade</code> → atualiza todos os pacotes instalados<br>
+<code>sudo apt install nome</code> → instala um programa<br>
+<code>sudo apt remove nome</code> → remove (mantém configurações)<br>
+<code>sudo apt purge nome</code> → remove completamente (inclusive configurações)<br>
+<code>sudo apt autoremove</code> → remove dependências não utilizadas</p>
+<p style="margin-top:8px"><b>Interface gráfica:</b> o Software Manager (Gerenciador de Programas) do Mint oferece a mesma funcionalidade com interface visual — equivale à Microsoft Store.</p>
+<p style="margin-top:8px"><b>Repositórios:</b> servidores onde ficam os pacotes. Configurados em <code>/etc/apt/sources.list</code>. O Mint usa os repositórios do Ubuntu + repositórios próprios.</p></div>
+        <button class="tc-more" onclick="toggleDetail('apt')">Ver teoria completa ▸</button>
+      </div>
+      <div class="tc-foot">🎯 Questões: 12·13·14·18</div>
+    </div>
+
+    <div class="tc animate-in" id="tc-perm">
+      <div class="tc-head" style="background:#dc2626">
+        <div class="tc-num">6</div>
+        <div><div class="tc-title">Usuários, sudo e Permissões</div><div class="tc-sub">chmod · chown · sudo · adduser · grupos</div></div>
+      </div>
+      <div class="tc-svg"><svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+  <rect width="220" height="110" rx="10" fill="#f0fdf4"/>
+  <text x="110" y="14" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534" font-weight="700">Usuários, sudo e Permissões</text>
+  <rect x="8" y="20" width="204" height="20" rx="5" fill="#0f172a"/>
+  <text x="14" y="33" font-family="monospace" font-size="8" fill="#4ade80">-rwxr-xr-x  1  marcos  marcos  4096  script.sh</text>
+  <g font-family="sans-serif" font-size="7" text-anchor="middle">
+    <rect x="14" y="46" width="32" height="14" rx="3" fill="#dc2626" opacity=".8"/>
+    <text x="30" y="56" fill="white" font-weight="700">dono</text>
+    <text x="30" y="67" fill="#dc2626">rwx=7</text>
+    <rect x="50" y="46" width="32" height="14" rx="3" fill="#ea580c" opacity=".8"/>
+    <text x="66" y="56" fill="white" font-weight="700">grupo</text>
+    <text x="66" y="67" fill="#ea580c">r-x=5</text>
+    <rect x="86" y="46" width="32" height="14" rx="3" fill="#16a34a" opacity=".8"/>
+    <text x="102" y="56" fill="white" font-weight="700">outros</text>
+    <text x="102" y="67" fill="#16a34a">r-x=5</text>
+    <rect x="130" y="40" width="82" height="34" rx="5" fill="#dcfce7"/>
+    <text x="171" y="53" fill="#166534" font-weight="700">sudo = superusuário</text>
+    <text x="171" y="63" fill="#15803d">temporário e auditável</text>
+    <text x="171" y="73" font-family="monospace" fill="#16a34a">chmod 755 arq</text>
+  </g>
+  <rect x="8" y="82" width="204" height="22" rx="5" fill="#0f172a"/>
+  <text x="14" y="92" font-family="monospace" font-size="7.5" fill="#4ade80">$ sudo adduser aluno   $ chmod 755 script.sh   $ chown marcos arq</text>
+</svg></div>
+      <div class="tc-body">
+        <ul class="tc-bullets"><li>sudo: executa um comando como superusuário temporariamente</li><li>chmod: altera permissões — rwx (leitura, escrita, execução)</li><li>Notação octal: 7=rwx, 6=rw-, 5=r-x, 4=r--, 0=---</li></ul>
+        <div class="tc-detail" id="det-perm"><p><b>Leitura de permissões:</b> <code>-rwxr-xr-x</code> = tipo + dono (rwx) + grupo (r-x) + outros (r-x).<br>
+r=leitura(4), w=escrita(2), x=execução(1). Soma: rwx=7, rw-=6, r-x=5, r--=4.</p>
+<p style="margin-top:8px"><b>chmod:</b> <code>chmod 755 script.sh</code> → dono pode tudo (7), grupo pode ler/executar (5), outros idem (5).<br>
+<code>chmod +x script.sh</code> → adiciona permissão de execução para todos.</p>
+<p style="margin-top:8px"><b>sudo vs root:</b> <code>sudo</code> permite executar um comando como root temporariamente, com registro em log. É mais seguro do que logar como root diretamente.</p>
+<p style="margin-top:8px"><b>Gerenciamento de usuários:</b><br>
+<code>sudo adduser aluno</code> → cria usuário<br>
+<code>sudo passwd aluno</code> → define senha<br>
+<code>sudo usermod -aG sudo aluno</code> → adiciona ao grupo sudoers<br>
+<code>whoami</code> → mostra o usuário atual</p></div>
+        <button class="tc-more" onclick="toggleDetail('perm')">Ver teoria completa ▸</button>
+      </div>
+      <div class="tc-foot">🎯 Questões: 15·16·17·19</div>
+    </div>
+
+    <div class="tc animate-in" id="tc-proc">
+      <div class="tc-head" style="background:#7c3aed">
+        <div class="tc-num">7</div>
+        <div><div class="tc-title">Gerenciamento de Processos</div><div class="tc-sub">ps · top · htop · kill · killall</div></div>
+      </div>
+      <div class="tc-svg"><svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+  <rect width="220" height="110" rx="10" fill="#f0fdf4"/>
+  <text x="110" y="14" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534" font-weight="700">Processos — ps, top, kill</text>
+  <rect x="8" y="20" width="110" height="82" rx="6" fill="#0f172a"/>
+  <text x="63" y="31" text-anchor="middle" font-family="monospace" font-size="7" fill="#64748b">$ ps aux</text>
+  <g font-family="monospace" font-size="6.5" fill="#e2e8f0">
+    <text x="12" y="41" fill="#94a3b8">PID  %CPU  COMMAND</text>
+    <text x="12" y="52">1    0.0   /sbin/init</text>
+    <text x="12" y="62">892  2.1   cinnamon</text>
+    <text x="12" y="72">1024 15.3  firefox</text>
+    <text x="12" y="82">1155 0.5   bash</text>
+    <text x="12" y="92">1892 32.1  <tspan fill="#ef4444">processo_pesado</tspan></text>
+  </g>
+  <rect x="124" y="20" width="88" height="82" rx="6" fill="#dcfce7"/>
+  <text x="168" y="33" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#166534" font-weight="700">Comandos</text>
+  <g font-family="monospace" font-size="7.5" fill="#14532d">
+    <text x="128" y="48">top</text><text x="160" y="48" font-family="sans-serif" font-size="6.5" fill="#6b7280">monitor interativo</text>
+    <text x="128" y="62">ps aux</text><text x="168" y="62" font-family="sans-serif" font-size="6.5" fill="#6b7280">lista processos</text>
+    <text x="128" y="76">kill PID</text><text x="168" y="76" font-family="sans-serif" font-size="6.5" fill="#6b7280">encerra processo</text>
+    <text x="128" y="90">killall</text><text x="166" y="90" font-family="sans-serif" font-size="6.5" fill="#6b7280">por nome</text>
+  </g>
+</svg></div>
+      <div class="tc-body">
+        <ul class="tc-bullets"><li>ps aux: lista todos os processos em execução com PID e uso de CPU</li><li>top / htop: monitor interativo em tempo real (htop é mais visual)</li><li>kill PID: encerra processo pelo número; killall nome: pelo nome</li></ul>
+        <div class="tc-detail" id="det-proc"><p><b>ps aux:</b> USER, PID, %CPU, %MEM, COMMAND. Use <code>ps aux | grep firefox</code> para filtrar.</p>
+<p style="margin-top:8px"><b>top:</b> atualiza a cada 3 segundos. Pressione <b>q</b> para sair, <b>k</b> para matar um processo, <b>M</b> para ordenar por memória.</p>
+<p style="margin-top:8px"><b>htop:</b> versão visual e colorida do top. Instale com <code>sudo apt install htop</code>. Permite clicar nos processos com o mouse.</p>
+<p style="margin-top:8px"><b>Sinais de término:</b><br>
+<code>kill PID</code> → envia SIGTERM (pedido educado de encerramento)<br>
+<code>kill -9 PID</code> → envia SIGKILL (forçado, sem possibilidade de ignorar)<br>
+<code>killall firefox</code> → mata todos os processos com esse nome</p></div>
+        <button class="tc-more" onclick="toggleDetail('proc')">Ver teoria completa ▸</button>
+      </div>
+      <div class="tc-foot">🎯 Questões: 18·19</div>
+    </div>
+
+    <div class="tc animate-in" id="tc-rede">
+      <div class="tc-head" style="background:#0891b2">
+        <div class="tc-num">8</div>
+        <div><div class="tc-title">Rede e Conectividade</div><div class="tc-sub">ip addr · ping · ifconfig · DNS · Firewall</div></div>
+      </div>
+      <div class="tc-svg"><svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+  <rect width="220" height="110" rx="10" fill="#f0fdf4"/>
+  <text x="110" y="14" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534" font-weight="700">Rede — Configuração e Diagnóstico</text>
+  <rect x="8" y="20" width="204" height="50" rx="6" fill="#0f172a"/>
+  <g font-family="monospace" font-size="7" fill="#4ade80">
+    <text x="12" y="32"><tspan fill="white">$</tspan> ip addr show</text>
+    <text x="12" y="42" fill="#e2e8f0">2: enp0s3: &lt;BROADCAST&gt;</text>
+    <text x="12" y="52" fill="#86efac">   inet <tspan font-weight="700">192.168.1.10</tspan>/24</text>
+    <text x="12" y="62"><tspan fill="white">$</tspan> ping google.com   <tspan fill="#64748b">— testa conectividade</tspan></text>
+  </g>
+  <rect x="8" y="76" width="96" height="28" rx="5" fill="#dcfce7"/>
+  <text x="56" y="88" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#166534" font-weight="700">Comandos de Rede</text>
+  <text x="56" y="100" text-anchor="middle" font-family="monospace" font-size="7" fill="#15803d">ip addr · ping · ifconfig</text>
+  <rect x="112" y="76" width="100" height="28" rx="5" fill="#dcfce7"/>
+  <text x="162" y="88" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#166534" font-weight="700">Diagnóstico</text>
+  <text x="162" y="100" text-anchor="middle" font-family="monospace" font-size="7" fill="#15803d">traceroute · nslookup</text>
+</svg></div>
+      <div class="tc-body">
+        <ul class="tc-bullets"><li>ip addr show: exibe interfaces e endereços IP (substitui ifconfig)</li><li>ping hostname: testa conectividade com um host na rede</li><li>Network Manager: interface gráfica para configurar Wi-Fi e cabeado</li></ul>
+        <div class="tc-detail" id="det-rede"><p><b>Verificar rede:</b><br>
+<code>ip addr show</code> (ou <code>ip a</code>) → lista interfaces com seus IPs<br>
+<code>ifconfig</code> → versão mais antiga (instalar: <code>sudo apt install net-tools</code>)<br>
+<code>ip route</code> → mostra o gateway padrão</p>
+<p style="margin-top:8px"><b>Diagnóstico:</b><br>
+<code>ping google.com</code> → testa conectividade (Ctrl+C para parar)<br>
+<code>traceroute google.com</code> → mostra o caminho dos pacotes<br>
+<code>nslookup google.com</code> → resolve DNS<br>
+<code>wget URL</code> ou <code>curl URL</code> → baixa arquivo/conteúdo</p>
+<p style="margin-top:8px"><b>Network Manager:</b> ferramenta gráfica do Mint para configurar conexões Wi-Fi, VPN, DNS e Ethernet sem precisar do terminal.</p></div>
+        <button class="tc-more" onclick="toggleDetail('rede')">Ver teoria completa ▸</button>
+      </div>
+      <div class="tc-foot">🎯 Questões: 11·20</div>
+    </div>
+
+    <div class="tc animate-in" id="tc-comp">
+      <div class="tc-head" style="background:#2563eb">
+        <div class="tc-num">9</div>
+        <div><div class="tc-title">Linux Mint vs Windows 10</div><div class="tc-sub">Custo · Desempenho · Segurança · Compatibilidade</div></div>
+      </div>
+      <div class="tc-svg"><svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+  <rect width="220" height="110" rx="10" fill="#f0fdf4"/>
+  <text x="110" y="14" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534" font-weight="700">Linux Mint vs Windows 10</text>
+  <rect x="8" y="20" width="96" height="82" rx="6" fill="#16a34a" opacity=".15" stroke="#16a34a" stroke-width="1"/>
+  <text x="56" y="33" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#15803d" font-weight="700">🐧 Linux Mint</text>
+  <g font-family="sans-serif" font-size="7" fill="#14532d">
+    <text x="14" y="46">✅ Gratuito e open source</text>
+    <text x="14" y="57">✅ Leve — roda em PCs antigos</text>
+    <text x="14" y="68">✅ Seguro — vírus são raros</text>
+    <text x="14" y="79">✅ Sem necessidade de antivírus</text>
+    <text x="14" y="90">✅ Terminal poderoso</text>
+    <text x="14" y="101">⚠ Menos softwares comerciais</text>
+  </g>
+  <rect x="116" y="20" width="96" height="82" rx="6" fill="#2563eb" opacity=".1" stroke="#2563eb" stroke-width="1"/>
+  <text x="164" y="33" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#1d4ed8" font-weight="700">🪟 Windows 10</text>
+  <g font-family="sans-serif" font-size="7" fill="#1e40af">
+    <text x="120" y="46">💰 Pago (licença)</text>
+    <text x="120" y="57">💻 Mais pesado</text>
+    <text x="120" y="68">⚠ Mais vulnerável a vírus</text>
+    <text x="120" y="79">⚠ Requer antivírus</text>
+    <text x="120" y="90">✅ Amplo suporte de softwares</text>
+    <text x="120" y="101">✅ Interface familiar</text>
+  </g>
+</svg></div>
+      <div class="tc-body">
+        <ul class="tc-bullets"><li>Linux Mint: gratuito, open source, seguro, leve — ideal para PCs antigos</li><li>Windows 10: licença paga, mais softwares comerciais, interface familiar</li><li>Linux domina em servidores; Windows domina em desktops corporativos</li></ul>
+        <div class="tc-detail" id="det-comp"><p><b>Custo:</b> Linux Mint é 100% gratuito e continuará sendo. Windows 10 requer licença (Home ~R$500, Pro ~R$900).</p>
+<p style="margin-top:8px"><b>Hardware:</b> Mint com Xfce roda bem em PCs com 1 GB RAM e processador de 1 GHz. Windows 10 requer oficialmente 2 GB RAM e mais recursos.</p>
+<p style="margin-top:8px"><b>Segurança:</b> vírus para Linux são raros (arquitetura de permissões dificulta infecção). Windows é alvo frequente de malware por ter maior base de usuários.</p>
+<p style="margin-top:8px"><b>Software:</b> Mint tem LibreOffice, GIMP, VLC, Firefox e mais de 50.000 programas no repositório. Jogos e alguns softwares profissionais ainda têm melhor suporte no Windows.</p>
+<p style="margin-top:8px"><b>Uso no mercado:</b> Linux roda em ~96% dos servidores do mundo, em supercomputadores, Android (kernel Linux) e nuvem. No desktop, Windows ainda domina (~75%), mas Linux cresce.</p></div>
+        <button class="tc-more" onclick="toggleDetail('comp')">Ver teoria completa ▸</button>
+      </div>
+      <div class="tc-foot">🎯 Questões: 01·02·03·04·20</div>
     </div>
   </div>
+  <div style="text-align:center;margin-top:36px" class="animate-in">
+    <a href="#questoes" style="display:inline-block;padding:13px 32px;
+      background:linear-gradient(135deg,#16a34a,#0d9488);color:white;
+      font-weight:700;font-size:.88rem;letter-spacing:.06em;text-decoration:none;
+      border-radius:10px;box-shadow:0 4px 16px rgba(22,163,74,.35);transition:.3s"
+      onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+      📝 Ir para as Questões →</a>
+  </div>
+</section>
 
-  <!-- ══ ABA: CONTEÚDO ══════════════════════════════════════════ -->
-  <div class="secao ativa" id="aba-conteudo">
+<div class="divider"></div>
 
-    <div class="banner">
-      <div class="banner-label">// Apostila · Linux Mint</div>
-      <div class="banner-titulo">Do básico ao avançado</div>
-      <div class="banner-sub">Conteúdo teórico completo para consulta antes e durante a avaliação.</div>
-      <div class="banner-chips">
-        <span class="banner-chip">Sistema de Arquivos</span>
-        <span class="banner-chip">Terminal</span>
-        <span class="banner-chip">Permissões</span>
-        <span class="banner-chip">Shell Script</span>
-        <span class="banner-chip">APT</span>
-      </div>
+<!-- QUESTÕES -->
+<section class="page-sec" id="questoes">
+  <div class="sec-hdr animate-in">
+    <div class="sec-eyebrow">📝 Questões</div>
+    <h2 class="sec-title">20 Questões</h2>
+    <p class="sec-desc">Conceitos · Comandos de terminal · Comparação com Windows · Resolução de problemas</p>
+  </div>
+
+  <!-- BÁSICO -->
+  <div class="qdiff animate-in">
+    <div class="qdiff-hdr e"><div class="qdiff-ico e">F</div>
+    <div><div class="qdiff-label e">Nível Fácil</div>
+    <div class="qdiff-sub e">QUESTÕES 01–08 · CONCEITOS FUNDAMENTAIS</div></div></div>
+
+    <div class="qc fc"><div class="qh"><span class="qnum">01</span><span class="qbadge fc">Fechada</span></div>
+    <div class="qt">O Linux Mint é um sistema operacional gratuito e de código aberto. Qual das opções abaixo descreve corretamente o que significa "código aberto" (open source)?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q1" value="a" onchange="upd()"> a) O sistema só funciona com internet ativa</label>
+      <label class="opt"><input type="radio" name="q1" value="b" onchange="upd()"> b) Qualquer pessoa pode ver, modificar e distribuir o código-fonte livremente</label>
+      <label class="opt"><input type="radio" name="q1" value="c" onchange="upd()"> c) O sistema não possui interface gráfica</label>
+      <label class="opt"><input type="radio" name="q1" value="d" onchange="upd()"> d) O código pertence a uma única empresa e não pode ser modificado</label>
+    </div></div>
+
+    <div class="qc fc"><div class="qh"><span class="qnum">02</span><span class="qbadge fc">Fechada</span></div>
+    <div class="qt">Qual é a principal diferença entre o Linux Mint e o Windows 10 em relação ao <strong>custo e licença</strong>?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q2" value="a" onchange="upd()"> a) Ambos são gratuitos, mas o Windows tem mais recursos</label>
+      <label class="opt"><input type="radio" name="q2" value="b" onchange="upd()"> b) O Linux Mint é gratuito e open source; o Windows requer compra de licença</label>
+      <label class="opt"><input type="radio" name="q2" value="c" onchange="upd()"> c) O Linux Mint é pago e o Windows é gratuito para estudantes</label>
+      <label class="opt"><input type="radio" name="q2" value="d" onchange="upd()"> d) Ambos têm o mesmo custo, mas licenças diferentes</label>
+    </div></div>
+
+    <div class="qc fc"><div class="qh"><span class="qnum">03</span><span class="qbadge fc">Fechada</span></div>
+    <div class="qt">O Linux Mint possui três edições principais. Qual delas é recomendada para computadores com hardware <strong>mais antigo e limitado</strong>?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q3" value="a" onchange="upd()"> a) Cinnamon — a edição padrão com mais recursos visuais</label>
+      <label class="opt"><input type="radio" name="q3" value="b" onchange="upd()"> b) GNOME — interface moderna desenvolvida pela Red Hat</label>
+      <label class="opt"><input type="radio" name="q3" value="c" onchange="upd()"> c) Xfce — interface leve, ideal para PCs com poucos recursos</label>
+      <label class="opt"><input type="radio" name="q3" value="d" onchange="upd()"> d) KDE Plasma — repleto de efeitos visuais e personalizações</label>
+    </div></div>
+
+    <div class="qc fc"><div class="qh"><span class="qnum">04</span><span class="qbadge fc">Fechada</span></div>
+    <div class="qt">No Linux Mint com interface Cinnamon, onde fica o equivalente ao "Painel de Controle" do Windows — a ferramenta que centraliza configurações do sistema?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q4" value="a" onchange="upd()"> a) Gerenciador de Arquivos (Nemo)</label>
+      <label class="opt"><input type="radio" name="q4" value="b" onchange="upd()"> b) Monitor do Sistema</label>
+      <label class="opt"><input type="radio" name="q4" value="c" onchange="upd()"> c) Centro de Controle (System Settings)</label>
+      <label class="opt"><input type="radio" name="q4" value="d" onchange="upd()"> d) Gerenciador de Pacotes Synaptic</label>
+    </div></div>
+
+    <div class="qc ab"><div class="qh"><span class="qnum">05</span><span class="qbadge ab">Aberta</span></div>
+    <div class="qt">No Linux, qual é o diretório que armazena os arquivos pessoais de um usuário chamado <strong>marcos</strong>? Escreva o caminho completo.</div>
+    <input class="ans-in" id="ans5" type="text" placeholder="/..." oninput="upd()"></div>
+
+    <div class="qc fc"><div class="qh"><span class="qnum">06</span><span class="qbadge fc">Fechada</span></div>
+    <div class="qt">No Linux, o sistema de arquivos é organizado a partir de um único ponto chamado raiz. Como esse ponto é representado?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q6" value="a" onchange="upd()"> a) <code>C:\</code></label>
+      <label class="opt"><input type="radio" name="q6" value="b" onchange="upd()"> b) <code>/</code></label>
+      <label class="opt"><input type="radio" name="q6" value="c" onchange="upd()"> c) <code>~</code></label>
+      <label class="opt"><input type="radio" name="q6" value="d" onchange="upd()"> d) <code>root\</code></label>
+    </div></div>
+
+    <div class="qc fc"><div class="qh"><span class="qnum">07</span><span class="qbadge fc">Fechada</span></div>
+    <div class="qt">Qual comando do terminal exibe o diretório em que o usuário está trabalhando no momento?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q7" value="a" onchange="upd()"> a) <code>ls</code></label>
+      <label class="opt"><input type="radio" name="q7" value="b" onchange="upd()"> b) <code>cd</code></label>
+      <label class="opt"><input type="radio" name="q7" value="c" onchange="upd()"> c) <code>pwd</code></label>
+      <label class="opt"><input type="radio" name="q7" value="d" onchange="upd()"> d) <code>dir</code></label>
+    </div></div>
+
+    <div class="qc fc"><div class="qh"><span class="qnum">08</span><span class="qbadge fc">Fechada</span></div>
+    <div class="qt">Um aluno quer acessar a pasta <code>Documentos</code> que está dentro da sua pasta pessoal. Qual comando ele deve usar?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q8" value="a" onchange="upd()"> a) <code>ls ~/Documentos</code></label>
+      <label class="opt"><input type="radio" name="q8" value="b" onchange="upd()"> b) <code>cd ~/Documentos</code></label>
+      <label class="opt"><input type="radio" name="q8" value="c" onchange="upd()"> c) <code>mv Documentos</code></label>
+      <label class="opt"><input type="radio" name="q8" value="d" onchange="upd()"> d) <code>open Documentos</code></label>
+    </div></div>
+  </div>
+
+  <!-- MÉDIO -->
+  <div class="qdiff animate-in">
+    <div class="qdiff-hdr m"><div class="qdiff-ico m">M</div>
+    <div><div class="qdiff-label m">Nível Médio</div>
+    <div class="qdiff-sub m">QUESTÕES 09–15 · TERMINAL · APT · PERMISSÕES</div></div></div>
+
+    <div class="qc fc"><div class="qh"><span class="qnum">09</span><span class="qbadge fc">Fechada</span></div>
+    <div class="qt">O diretório <strong>/etc</strong> no Linux tem uma função específica. Qual é ela?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q9" value="a" onchange="upd()"> a) Armazena os arquivos pessoais dos usuários</label>
+      <label class="opt"><input type="radio" name="q9" value="b" onchange="upd()"> b) Contém os arquivos de configuração do sistema e dos programas</label>
+      <label class="opt"><input type="radio" name="q9" value="c" onchange="upd()"> c) Guarda os programas instalados pelo usuário</label>
+      <label class="opt"><input type="radio" name="q9" value="d" onchange="upd()"> d) É usado para arquivos temporários que são apagados no reinício</label>
+    </div></div>
+
+    <div class="qc ab"><div class="qh"><span class="qnum">10</span><span class="qbadge ab">Aberta</span></div>
+    <div class="qt">Explique a diferença entre os comandos <code>ls</code> e <code>ls -la</code> no terminal do Linux.</div>
+    <input class="ans-in" id="ans10" type="text" placeholder="Escreva a diferença entre os dois comandos…" oninput="upd()"></div>
+
+    <div class="qc fc"><div class="qh"><span class="qnum">11</span><span class="qbadge fc">Fechada</span></div>
+    <div class="qt">Um aluno quer instalar o programa <strong>VLC Media Player</strong> pelo terminal no Linux Mint. Qual sequência de comandos está <strong>correta</strong>?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q11" value="a" onchange="upd()"> a) <code>apt get vlc</code></label>
+      <label class="opt"><input type="radio" name="q11" value="b" onchange="upd()"> b) <code>install vlc</code></label>
+      <label class="opt"><input type="radio" name="q11" value="c" onchange="upd()"> c) <code>sudo apt update</code> e depois <code>sudo apt install vlc</code></label>
+      <label class="opt"><input type="radio" name="q11" value="d" onchange="upd()"> d) <code>sudo download vlc</code></label>
+    </div></div>
+
+    <div class="qc fc"><div class="qh"><span class="qnum">12</span><span class="qbadge fc">Fechada</span></div>
+    <div class="qt">Qual é a diferença entre <code>sudo apt remove vlc</code> e <code>sudo apt purge vlc</code>?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q12" value="a" onchange="upd()"> a) Não há diferença — ambos fazem exatamente a mesma coisa</label>
+      <label class="opt"><input type="radio" name="q12" value="b" onchange="upd()"> b) <code>remove</code> desinstala o programa; <code>purge</code> remove também os arquivos de configuração</label>
+      <label class="opt"><input type="radio" name="q12" value="c" onchange="upd()"> c) <code>purge</code> remove apenas as configurações, mantendo o programa instalado</label>
+      <label class="opt"><input type="radio" name="q12" value="d" onchange="upd()"> d) <code>remove</code> é mais seguro e <code>purge</code> pode danificar o sistema</label>
+    </div></div>
+
+    <div class="qc ab"><div class="qh"><span class="qnum">13</span><span class="qbadge ab">Aberta</span></div>
+    <div class="qt">Para que serve o comando <code>sudo apt update</code>? Ele instala algo no computador?</div>
+    <input class="ans-in" id="ans13" type="text" placeholder="Explique a função do comando…" oninput="upd()"></div>
+
+    <div class="qc fc"><div class="qh"><span class="qnum">14</span><span class="qbadge fc">Fechada</span></div>
+    <div class="qt">No Linux, um arquivo tem as permissões <code>-rwxr-xr--</code>. O que isso significa para o <strong>dono</strong> do arquivo?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q14" value="a" onchange="upd()"> a) Pode apenas ler o arquivo</label>
+      <label class="opt"><input type="radio" name="q14" value="b" onchange="upd()"> b) Pode ler e escrever, mas não executar</label>
+      <label class="opt"><input type="radio" name="q14" value="c" onchange="upd()"> c) Pode ler, escrever e executar (permissão total)</label>
+      <label class="opt"><input type="radio" name="q14" value="d" onchange="upd()"> d) Não tem nenhuma permissão sobre o arquivo</label>
+    </div></div>
+
+    <div class="qc ab"><div class="qh"><span class="qnum">15</span><span class="qbadge ab">Aberta</span></div>
+    <div class="qt">O que é o <code>sudo</code> no Linux e por que ele é preferível a usar diretamente o usuário <strong>root</strong>?</div>
+    <input class="ans-in" id="ans15" type="text" placeholder="Explique o que é sudo e sua vantagem…" oninput="upd()"></div>
+  </div>
+
+  <!-- DIFÍCIL -->
+  <div class="qdiff animate-in">
+    <div class="qdiff-hdr d"><div class="qdiff-ico d">D</div>
+    <div><div class="qdiff-label d">Nível Difícil</div>
+    <div class="qdiff-sub d">QUESTÕES 16–20 · ANÁLISE · RESOLUÇÃO DE PROBLEMAS</div></div></div>
+
+    <div class="qc fc"><div class="qh"><span class="qnum">16</span><span class="qbadge fc">Fechada</span></div>
+    <div class="qt">Um técnico precisa dar a um arquivo chamado <code>script.sh</code> permissão total ao dono, leitura e execução ao grupo, e apenas leitura aos demais. Qual comando está correto?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q16" value="a" onchange="upd()"> a) <code>chmod 777 script.sh</code></label>
+      <label class="opt"><input type="radio" name="q16" value="b" onchange="upd()"> b) <code>chmod 754 script.sh</code></label>
+      <label class="opt"><input type="radio" name="q16" value="c" onchange="upd()"> c) <code>chmod 644 script.sh</code></label>
+      <label class="opt"><input type="radio" name="q16" value="d" onchange="upd()"> d) <code>chmod 755 script.sh</code></label>
+    </div></div>
+
+    <div class="qc di"><div class="qh"><span class="qnum">17</span><span class="qbadge di">Discursiva</span></div>
+    <div class="qt">Um aluno quer criar uma pasta chamada <code>projetos</code> dentro da sua pasta pessoal, copiar um arquivo <code>relatorio.txt</code> da Área de Trabalho para dentro dessa pasta e depois listar o conteúdo. Escreva os três comandos que ele deve usar, em ordem.</div>
+    <div class="dhint">💡 Use os comandos mkdir, cp e ls com caminhos completos ou relativos.</div>
+    <textarea class="ans-ta" id="ans17" placeholder="Escreva os três comandos aqui, um por linha…" oninput="upd()"></textarea></div>
+
+    <div class="qc di"><div class="qh"><span class="qnum">18</span><span class="qbadge di">Discursiva</span></div>
+    <div class="qt">Um processo está consumindo 90% da CPU e travando o computador. O comando <code>ps aux</code> mostrou que o processo tem PID <strong>1892</strong>. Descreva como encerrar esse processo pelo terminal, explicando o que cada parte do comando faz.</div>
+    <div class="dhint">💡 Considere usar kill ou kill -9 e explique a diferença.</div>
+    <textarea class="ans-ta" id="ans18" placeholder="Descreva o comando e explique o processo…" oninput="upd()"></textarea></div>
+
+    <div class="qc fc"><div class="qh"><span class="qnum">19</span><span class="qbadge fc">Fechada</span></div>
+    <div class="qt">Uma escola tem computadores antigos (512 MB RAM, processador de 1 GHz) e quer instalar um sistema operacional. Considerando desempenho e custo, qual é a melhor recomendação?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q19" value="a" onchange="upd()"> a) Windows 10, pois é mais conhecido pelos alunos</label>
+      <label class="opt"><input type="radio" name="q19" value="b" onchange="upd()"> b) Linux Mint Xfce, pois é gratuito e funciona bem em hardware antigo</label>
+      <label class="opt"><input type="radio" name="q19" value="c" onchange="upd()"> c) Linux Mint Cinnamon, pois é a edição oficial mais completa</label>
+      <label class="opt"><input type="radio" name="q19" value="d" onchange="upd()"> d) Windows 7, pois é mais leve que o Windows 10</label>
+    </div></div>
+
+    <div class="qc di"><div class="qh"><span class="qnum">20</span><span class="qbadge di">Discursiva</span></div>
+    <div class="qt">Compare Linux Mint e Windows 10 em pelo menos <strong>três aspectos</strong> (custo, segurança, desempenho ou outro à sua escolha). Dê sua opinião: para qual perfil de usuário cada sistema é mais indicado?</div>
+    <div class="dhint">💡 Não existe resposta única certa — o que conta é a argumentação técnica.</div>
+    <textarea class="ans-ta" id="ans20" style="min-height:100px" placeholder="Compare os sistemas e justifique sua opinião…" oninput="upd()"></textarea></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ENVIO -->
+<section class="page-sec" id="enviar" style="padding-bottom:80px">
+  <div class="sec-hdr animate-in">
+    <div class="sec-eyebrow">📤 Envio</div>
+    <h2 class="sec-title">Enviar Respostas</h2>
+    <p class="sec-desc">Revise suas respostas e clique em enviar para o professor.</p>
+  </div>
+  <div class="submit-card animate-in">
+    <div class="sub-title">📊 Resumo da Avaliação</div>
+    <p class="sub-note">Verifique quantas questões você respondeu antes de enviar.</p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-n" id="ct">0/20</div><div class="stat-l">TOTAL</div></div>
+      <div class="stat"><div class="stat-n" id="cf" style="color:#16a34a">0/13</div><div class="stat-l">FECHADAS</div></div>
+      <div class="stat"><div class="stat-n" id="ca" style="color:#0d9488">0/4</div><div class="stat-l">ABERTAS</div></div>
+      <div class="stat"><div class="stat-n" id="cd" style="color:#1e293b">0/3</div><div class="stat-l">DISCURSIVAS</div></div>
     </div>
+    <button class="btn-submit" id="bsend" onclick="send()">📊 ENVIAR RESPOSTAS PARA O PROFESSOR</button>
+    <div id="smsg"></div>
+  </div>
+</section>
 
-    <!-- 1. O QUE É O LINUX -->
-    <div class="bloco">
-      <div class="bloco-header">
-        <div>
-          <div class="bloco-titulo">1. O que é o Linux?</div>
-          <div class="bloco-sub">Conceitos fundamentais e distribuições</div>
-        </div>
-      </div>
-      <div class="bloco-body">
-        <p style="font-size:.92rem;color:var(--txt2);line-height:1.8;margin-bottom:16px">O Linux é um sistema operacional de código aberto criado em 1991 pelo estudante finlandês <strong>Linus Torvalds</strong>. Diferente do Windows e macOS, pode ser copiado, modificado e distribuído livremente. É a base de servidores web, smartphones Android e supercomputadores.</p>
-        <div class="destaque-blue destaque">Mais de 96% dos servidores da internet rodam Linux. Google, NASA, Netflix e Instagram funcionam em servidores Linux.</div>
-        <ul class="lista">
-          <li><strong>Kernel:</strong> núcleo que faz a comunicação entre hardware e programas.</li>
-          <li><strong>Distribuição (distro):</strong> sistema completo — kernel + programas + interface gráfica. Ex.: Ubuntu, Debian, Linux Mint.</li>
-          <li><strong>Ambiente Gráfico:</strong> interface visual com janelas e menus. O Mint usa o <em>Cinnamon</em> por padrão.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- 2. SISTEMA DE ARQUIVOS -->
-    <div class="bloco">
-      <div class="bloco-header"><div><div class="bloco-titulo">2. Sistema de Arquivos</div><div class="bloco-sub">Estrutura de diretórios do Linux</div></div></div>
-      <div class="bloco-body">
-        <p style="font-size:.92rem;color:var(--txt2);margin-bottom:16px;line-height:1.75">No Linux tudo começa na raiz <code style="background:var(--surface2);padding:1px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;color:var(--green);font-size:.85em">/</code>. Não há C:\, D:\ como no Windows — há uma única árvore de diretórios.</p>
-        <table class="tabela">
-          <tr><th>Diretório</th><th>Função</th></tr>
-          <tr><td><code style="font-family:'JetBrains Mono',monospace;color:var(--green)">/</code></td><td>Raiz — ponto de partida de toda a estrutura.</td></tr>
-          <tr><td><code style="font-family:'JetBrains Mono',monospace;color:var(--green)">/home</code></td><td>Pasta pessoal de cada usuário.</td></tr>
-          <tr><td><code style="font-family:'JetBrains Mono',monospace;color:var(--green)">/etc</code></td><td>Arquivos de configuração do sistema.</td></tr>
-          <tr><td><code style="font-family:'JetBrains Mono',monospace;color:var(--green)">/bin, /usr/bin</code></td><td>Programas acessíveis a todos os usuários.</td></tr>
-          <tr><td><code style="font-family:'JetBrains Mono',monospace;color:var(--green)">/var</code></td><td>Logs do sistema e dados variáveis.</td></tr>
-          <tr><td><code style="font-family:'JetBrains Mono',monospace;color:var(--green)">/tmp</code></td><td>Arquivos temporários — limpos a cada reinicialização.</td></tr>
-          <tr><td><code style="font-family:'JetBrains Mono',monospace;color:var(--green)">/media</code></td><td>Ponto de montagem de pen drives, CDs.</td></tr>
-        </table>
-      </div>
-    </div>
-
-    <!-- 3. TERMINAL -->
-    <div class="bloco">
-      <div class="bloco-header"><div><div class="bloco-titulo">3. O Terminal</div><div class="bloco-sub">Abra com Ctrl + Alt + T</div></div></div>
-      <div class="bloco-body">
-        <div class="terminal">
-          <div class="term-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="tlbl">bash — Linux Mint</span></div>
-          <div class="term-body">
-            <span class="tcm"># estrutura: comando [opções] [argumentos]</span><br>
-            <span class="tc">$</span> <span class="to">ls</span> -la /home<br>
-            <span class="tc">$</span> <span class="to">pwd</span><br>
-            <span class="tc">$</span> <span class="to">cd</span> /etc<br>
-            <span class="tc">$</span> <span class="to">mkdir</span> projetos<br>
-            <span class="tc">$</span> <span class="to">chmod</span> 755 script.sh
-          </div>
-        </div>
-        <table class="tabela" style="margin-top:16px">
-          <tr><th>Comando</th><th>O que faz</th></tr>
-          <tr><td><code style="font-family:'JetBrains Mono',monospace;color:var(--green)">pwd</code></td><td>Mostra o diretório atual.</td></tr>
-          <tr><td><code style="font-family:'JetBrains Mono',monospace;color:var(--green)">ls -la</code></td><td>Lista arquivos com detalhes e ocultos.</td></tr>
-          <tr><td><code style="font-family:'JetBrains Mono',monospace;color:var(--green)">cd pasta</code></td><td>Entra em uma pasta. cd .. volta. cd ~ vai para /home.</td></tr>
-          <tr><td><code style="font-family:'JetBrains Mono',monospace;color:var(--green)">mkdir nome</code></td><td>Cria uma pasta.</td></tr>
-          <tr><td><code style="font-family:'JetBrains Mono',monospace;color:var(--green)">cp orig dest</code></td><td>Copia arquivo (original mantido).</td></tr>
-          <tr><td><code style="font-family:'JetBrains Mono',monospace;color:var(--green)">mv orig dest</code></td><td>Move ou renomeia (original some).</td></tr>
-          <tr><td><code style="font-family:'JetBrains Mono',monospace;color:var(--green)">rm arquivo</code></td><td>Remove arquivo. rm -r remove pasta inteira.</td></tr>
-          <tr><td><code style="font-family:'JetBrains Mono',monospace;color:var(--green)">kill PID</code></td><td>Encerra processo pelo número PID.</td></tr>
-          <tr><td><code style="font-family:'JetBrains Mono',monospace;color:var(--green)">sudo apt install</code></td><td>Instala um programa.</td></tr>
-        </table>
-      </div>
-    </div>
-
-    <!-- 4. PERMISSÕES -->
-    <div class="bloco">
-      <div class="bloco-header"><div><div class="bloco-titulo">4. Permissões de Arquivo</div><div class="bloco-sub">chmod e controle de acesso</div></div></div>
-      <div class="bloco-body">
-        <div class="terminal">
-          <div class="term-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="tlbl">ls -l</span></div>
-          <div class="term-body">
-            <span class="tc">$</span> ls -l<br>
-            -rwxr-xr--  1  marcos  alunos  4096  Jun 01  script.sh<br>
-            <span class="tcm">   [tipo][dono=rwx][grupo=r-x][outros=r--]</span>
-          </div>
-        </div>
-        <table class="tabela" style="margin-top:16px">
-          <tr><th>Valor</th><th>Permissão</th><th>Significado</th></tr>
-          <tr><td><strong>7</strong></td><td>rwx</td><td>Leitura + Escrita + Execução</td></tr>
-          <tr><td><strong>6</strong></td><td>rw–</td><td>Leitura + Escrita</td></tr>
-          <tr><td><strong>5</strong></td><td>r-x</td><td>Leitura + Execução</td></tr>
-          <tr><td><strong>4</strong></td><td>r––</td><td>Somente Leitura</td></tr>
-          <tr><td><strong>0</strong></td><td>–––</td><td>Sem permissão</td></tr>
-        </table>
-      </div>
-    </div>
-
-    <!-- 5. SHELL SCRIPT -->
-    <div class="bloco">
-      <div class="bloco-header"><div><div class="bloco-titulo">5. Shell Script</div><div class="bloco-sub">Automatizando tarefas no terminal</div></div></div>
-      <div class="bloco-body">
-        <div class="terminal">
-          <div class="term-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="tlbl">relatorio.sh</span></div>
-          <div class="term-body">
-            <span class="ts">#!/bin/bash</span><br>
-            <span class="tcm"># Comentário — não é executado</span><br>
-            <span class="to">echo</span> <span class="tk">'Olá, Mundo!'</span><br>
-            NOME=<span class="tk">'Marcos'</span><br>
-            <span class="to">echo</span> <span class="tk">"Bem-vindo, $NOME!"</span><br>
-            <span class="to">date</span><br>
-            <span class="to">free</span> -h<br>
-            <span class="to">df</span> -h /
-          </div>
-        </div>
-        <div class="destaque" style="margin-top:16px">Para executar: chmod +x script.sh → ./script.sh</div>
-      </div>
-    </div>
-
-  </div><!-- /conteudo -->
-
-  <!-- ══ ABA: FECHADAS ════════════════════════════════════════════ -->
-  <div class="secao" id="aba-fechadas">
-    <div class="banner" style="background:linear-gradient(135deg,#1e3a8a,var(--blue))">
-      <div class="banner-label">// 10 questões · 0,5 ponto cada</div>
-      <div class="banner-titulo">Questões Fechadas</div>
-      <div class="banner-sub">Marque a única alternativa correta. A barra de progresso no topo indica seu avanço.</div>
-    </div>
-
-    <div class="nivel-divisor">Nível Básico</div>
-
-    <div class="q-fechada" id="qf1">
-      <div class="q-fechada-top">
-        <span class="q-num">01</span><span class="nivel-tag nivel-f">Fácil</span>
-      </div>
-      <div class="q-body">
-        <p class="q-enunciado">Qual é o nome do estudante finlandês que criou o kernel Linux em 1991?</p>
-        <div class="alts">
-          <div class="alt" onclick="marcar('qf1','A')"><div class="alt-letra">A</div><div class="alt-txt">Bill Gates</div></div>
-          <div class="alt" onclick="marcar('qf1','B')"><div class="alt-letra">B</div><div class="alt-txt">Linus Torvalds</div></div>
-          <div class="alt" onclick="marcar('qf1','C')"><div class="alt-letra">C</div><div class="alt-txt">Richard Stallman</div></div>
-          <div class="alt" onclick="marcar('qf1','D')"><div class="alt-letra">D</div><div class="alt-txt">Steve Jobs</div></div>
-          <div class="alt" onclick="marcar('qf1','E')"><div class="alt-letra">E</div><div class="alt-txt">Dennis Ritchie</div></div>
-        </div>
-        <div class="q-sel-info" id="sel-qf1">Nenhuma alternativa selecionada</div>
-      </div>
-    </div>
-
-    <div class="q-fechada" id="qf2">
-      <div class="q-fechada-top"><span class="q-num">02</span><span class="nivel-tag nivel-f">Fácil</span></div>
-      <div class="q-body">
-        <p class="q-enunciado">O que representa o diretório <code>/home</code> no Linux?</p>
-        <div class="alts">
-          <div class="alt" onclick="marcar('qf2','A')"><div class="alt-letra">A</div><div class="alt-txt">Onde ficam os programas do sistema</div></div>
-          <div class="alt" onclick="marcar('qf2','B')"><div class="alt-letra">B</div><div class="alt-txt">Onde ficam os arquivos temporários</div></div>
-          <div class="alt" onclick="marcar('qf2','C')"><div class="alt-letra">C</div><div class="alt-txt">A pasta pessoal de cada usuário do sistema</div></div>
-          <div class="alt" onclick="marcar('qf2','D')"><div class="alt-letra">D</div><div class="alt-txt">O diretório de configuração do kernel</div></div>
-          <div class="alt" onclick="marcar('qf2','E')"><div class="alt-letra">E</div><div class="alt-txt">Local de armazenamento de logs do sistema</div></div>
-        </div>
-        <div class="q-sel-info" id="sel-qf2">Nenhuma alternativa selecionada</div>
-      </div>
-    </div>
-
-    <div class="q-fechada" id="qf3">
-      <div class="q-fechada-top"><span class="q-num">03</span><span class="nivel-tag nivel-f">Fácil</span></div>
-      <div class="q-body">
-        <p class="q-enunciado">Qual comando exibe o diretório em que o usuário se encontra no terminal Linux?</p>
-        <div class="alts">
-          <div class="alt" onclick="marcar('qf3','A')"><div class="alt-letra">A</div><div class="alt-txt">dir</div></div>
-          <div class="alt" onclick="marcar('qf3','B')"><div class="alt-letra">B</div><div class="alt-txt">ls</div></div>
-          <div class="alt" onclick="marcar('qf3','C')"><div class="alt-letra">C</div><div class="alt-txt">cd</div></div>
-          <div class="alt" onclick="marcar('qf3','D')"><div class="alt-letra">D</div><div class="alt-txt">pwd</div></div>
-          <div class="alt" onclick="marcar('qf3','E')"><div class="alt-letra">E</div><div class="alt-txt">cat</div></div>
-        </div>
-        <div class="q-sel-info" id="sel-qf3">Nenhuma alternativa selecionada</div>
-      </div>
-    </div>
-
-    <div class="q-fechada" id="qf4">
-      <div class="q-fechada-top"><span class="q-num">04</span><span class="nivel-tag nivel-f">Fácil</span></div>
-      <div class="q-body">
-        <p class="q-enunciado">Qual comando cria uma nova pasta chamada <code>projetos</code> no terminal Linux?</p>
-        <div class="alts">
-          <div class="alt" onclick="marcar('qf4','A')"><div class="alt-letra">A</div><div class="alt-txt">new projetos</div></div>
-          <div class="alt" onclick="marcar('qf4','B')"><div class="alt-letra">B</div><div class="alt-txt">touch projetos</div></div>
-          <div class="alt" onclick="marcar('qf4','C')"><div class="alt-letra">C</div><div class="alt-txt">mkdir projetos</div></div>
-          <div class="alt" onclick="marcar('qf4','D')"><div class="alt-letra">D</div><div class="alt-txt">create projetos</div></div>
-          <div class="alt" onclick="marcar('qf4','E')"><div class="alt-letra">E</div><div class="alt-txt">dir projetos</div></div>
-        </div>
-        <div class="q-sel-info" id="sel-qf4">Nenhuma alternativa selecionada</div>
-      </div>
-    </div>
-
-    <div class="nivel-divisor">Nível Médio</div>
-
-    <div class="q-fechada" id="qf5">
-      <div class="q-fechada-top"><span class="q-num">05</span><span class="nivel-tag nivel-m">Médio</span></div>
-      <div class="q-body">
-        <p class="q-enunciado">O que significa a permissão <code>rwxr-xr--</code> em um arquivo Linux?</p>
-        <div class="alts">
-          <div class="alt" onclick="marcar('qf5','A')"><div class="alt-letra">A</div><div class="alt-txt">Dono: leitura; Grupo: escrita; Outros: execução</div></div>
-          <div class="alt" onclick="marcar('qf5','B')"><div class="alt-letra">B</div><div class="alt-txt">Dono: todas as permissões; Grupo: leitura+execução; Outros: somente leitura</div></div>
-          <div class="alt" onclick="marcar('qf5','C')"><div class="alt-letra">C</div><div class="alt-txt">Dono: execução; Grupo: leitura; Outros: sem permissão</div></div>
-          <div class="alt" onclick="marcar('qf5','D')"><div class="alt-letra">D</div><div class="alt-txt">Todos os usuários têm permissão total</div></div>
-          <div class="alt" onclick="marcar('qf5','E')"><div class="alt-letra">E</div><div class="alt-txt">Apenas o root pode acessar o arquivo</div></div>
-        </div>
-        <div class="q-sel-info" id="sel-qf5">Nenhuma alternativa selecionada</div>
-      </div>
-    </div>
-
-    <div class="q-fechada" id="qf6">
-      <div class="q-fechada-top"><span class="q-num">06</span><span class="nivel-tag nivel-m">Médio</span></div>
-      <div class="q-body">
-        <p class="q-enunciado">Qual comando instala o programa <code>htop</code> no Linux Mint?</p>
-        <div class="alts">
-          <div class="alt" onclick="marcar('qf6','A')"><div class="alt-letra">A</div><div class="alt-txt">install htop</div></div>
-          <div class="alt" onclick="marcar('qf6','B')"><div class="alt-letra">B</div><div class="alt-txt">sudo get htop</div></div>
-          <div class="alt" onclick="marcar('qf6','C')"><div class="alt-letra">C</div><div class="alt-txt">apt-get install htop</div></div>
-          <div class="alt" onclick="marcar('qf6','D')"><div class="alt-letra">D</div><div class="alt-txt">sudo apt install htop</div></div>
-          <div class="alt" onclick="marcar('qf6','E')"><div class="alt-letra">E</div><div class="alt-txt">linux install htop</div></div>
-        </div>
-        <div class="q-sel-info" id="sel-qf6">Nenhuma alternativa selecionada</div>
-      </div>
-    </div>
-
-    <div class="q-fechada" id="qf7">
-      <div class="q-fechada-top"><span class="q-num">07</span><span class="nivel-tag nivel-m">Médio</span></div>
-      <div class="q-body">
-        <p class="q-enunciado">O que faz o comando <code>kill 1234</code> no terminal Linux?</p>
-        <div class="alts">
-          <div class="alt" onclick="marcar('qf7','A')"><div class="alt-letra">A</div><div class="alt-txt">Reinicia o processo de número 1234</div></div>
-          <div class="alt" onclick="marcar('qf7','B')"><div class="alt-letra">B</div><div class="alt-txt">Pausa temporariamente o processo 1234</div></div>
-          <div class="alt" onclick="marcar('qf7','C')"><div class="alt-letra">C</div><div class="alt-txt">Encerra o processo com PID 1234</div></div>
-          <div class="alt" onclick="marcar('qf7','D')"><div class="alt-letra">D</div><div class="alt-txt">Lista informações detalhadas do processo 1234</div></div>
-          <div class="alt" onclick="marcar('qf7','E')"><div class="alt-letra">E</div><div class="alt-txt">Move o processo 1234 para segundo plano</div></div>
-        </div>
-        <div class="q-sel-info" id="sel-qf7">Nenhuma alternativa selecionada</div>
-      </div>
-    </div>
-
-    <div class="q-fechada" id="qf8">
-      <div class="q-fechada-top"><span class="q-num">08</span><span class="nivel-tag nivel-m">Médio</span></div>
-      <div class="q-body">
-        <p class="q-enunciado">Qual é a linha shebang correta para indicar que o script deve ser executado pelo interpretador bash?</p>
-        <div class="alts">
-          <div class="alt" onclick="marcar('qf8','A')"><div class="alt-letra">A</div><div class="alt-txt">## /bin/bash</div></div>
-          <div class="alt" onclick="marcar('qf8','B')"><div class="alt-letra">B</div><div class="alt-txt">// bash</div></div>
-          <div class="alt" onclick="marcar('qf8','C')"><div class="alt-letra">C</div><div class="alt-txt">#!/bin/bash</div></div>
-          <div class="alt" onclick="marcar('qf8','D')"><div class="alt-letra">D</div><div class="alt-txt">#bash</div></div>
-          <div class="alt" onclick="marcar('qf8','E')"><div class="alt-letra">E</div><div class="alt-txt">@bash /bin</div></div>
-        </div>
-        <div class="q-sel-info" id="sel-qf8">Nenhuma alternativa selecionada</div>
-      </div>
-    </div>
-
-    <div class="nivel-divisor">Nível Avançado</div>
-
-    <div class="q-fechada" id="qf9">
-      <div class="q-fechada-top"><span class="q-num">09</span><span class="nivel-tag nivel-a">Avançado</span></div>
-      <div class="q-body">
-        <p class="q-enunciado">Um técnico precisa configurar um arquivo para que o dono tenha leitura e execução, o grupo tenha apenas leitura e outros não tenham nenhuma permissão. Qual comando <code>chmod</code> é correto?</p>
-        <div class="alts">
-          <div class="alt" onclick="marcar('qf9','A')"><div class="alt-letra">A</div><div class="alt-txt">chmod 640</div></div>
-          <div class="alt" onclick="marcar('qf9','B')"><div class="alt-letra">B</div><div class="alt-txt">chmod 700</div></div>
-          <div class="alt" onclick="marcar('qf9','C')"><div class="alt-letra">C</div><div class="alt-txt">chmod 540</div></div>
-          <div class="alt" onclick="marcar('qf9','D')"><div class="alt-letra">D</div><div class="alt-txt">chmod 730</div></div>
-          <div class="alt" onclick="marcar('qf9','E')"><div class="alt-letra">E</div><div class="alt-txt">chmod 711</div></div>
-        </div>
-        <div class="q-sel-info" id="sel-qf9">Nenhuma alternativa selecionada</div>
-      </div>
-    </div>
-
-    <div class="q-fechada" id="qf10">
-      <div class="q-fechada-top"><span class="q-num">10</span><span class="nivel-tag nivel-a">Avançado</span></div>
-      <div class="q-body">
-        <p class="q-enunciado">Qual arquivo do Linux armazena os hashes criptográficos das senhas dos usuários do sistema?</p>
-        <div class="alts">
-          <div class="alt" onclick="marcar('qf10','A')"><div class="alt-letra">A</div><div class="alt-txt">/etc/passwd</div></div>
-          <div class="alt" onclick="marcar('qf10','B')"><div class="alt-letra">B</div><div class="alt-txt">/etc/users</div></div>
-          <div class="alt" onclick="marcar('qf10','C')"><div class="alt-letra">C</div><div class="alt-txt">/home/passwords</div></div>
-          <div class="alt" onclick="marcar('qf10','D')"><div class="alt-letra">D</div><div class="alt-txt">/etc/shadow</div></div>
-          <div class="alt" onclick="marcar('qf10','E')"><div class="alt-letra">E</div><div class="alt-txt">/var/passwords</div></div>
-        </div>
-        <div class="q-sel-info" id="sel-qf10">Nenhuma alternativa selecionada</div>
-      </div>
-    </div>
-
-  </div><!-- /fechadas -->
-
-  <!-- ══ ABA: ABERTAS ═════════════════════════════════════════════ -->
-  <div class="secao" id="aba-abertas">
-    <div class="banner" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)">
-      <div class="banner-label">// 15 questões dissertativas</div>
-      <div class="banner-titulo">Questões Abertas</div>
-      <div class="banner-sub">Responda com suas próprias palavras. Justifique quando solicitado.</div>
-    </div>
-
-    <div class="nivel-divisor">Nível Básico</div>
-    <div class="q-aberta"><div class="q-aberta-top"><span class="q-num">01</span><span class="nivel-tag nivel-f">Fácil</span></div><div class="q-aberta-body"><p class="q-enunciado" style="margin-bottom:12px">O que é uma distribuição Linux? Cite duas diferenças entre uma distribuição Linux e o sistema operacional Windows.</p><textarea id="qa1" placeholder="Digite sua resposta..." oninput="rq('qa1',this)"></textarea><div class="char-count" id="cc-qa1">0 caracteres</div></div></div>
-    <div class="q-aberta"><div class="q-aberta-top"><span class="q-num">02</span><span class="nivel-tag nivel-f">Fácil</span></div><div class="q-aberta-body"><p class="q-enunciado" style="margin-bottom:12px">Explique o que é o kernel Linux. Qual foi o nome de seu criador e em que ano foi lançado?</p><textarea id="qa2" placeholder="Digite sua resposta..." oninput="rq('qa2',this)"></textarea><div class="char-count" id="cc-qa2">0 caracteres</div></div></div>
-    <div class="q-aberta"><div class="q-aberta-top"><span class="q-num">03</span><span class="nivel-tag nivel-f">Fácil</span></div><div class="q-aberta-body"><p class="q-enunciado" style="margin-bottom:12px">Para que serve o diretório <code>/home</code> no Linux? O que aconteceria se esse diretório fosse apagado?</p><textarea id="qa3" placeholder="Digite sua resposta..." oninput="rq('qa3',this)"></textarea><div class="char-count" id="cc-qa3">0 caracteres</div></div></div>
-    <div class="q-aberta"><div class="q-aberta-top"><span class="q-num">04</span><span class="nivel-tag nivel-f">Fácil</span></div><div class="q-aberta-body"><p class="q-enunciado" style="margin-bottom:12px">Explique a diferença entre os comandos <code>cp</code> e <code>mv</code>. Dê um exemplo prático de uso de cada um.</p><textarea id="qa4" placeholder="Digite sua resposta..." oninput="rq('qa4',this)"></textarea><div class="char-count" id="cc-qa4">0 caracteres</div></div></div>
-    <div class="q-aberta"><div class="q-aberta-top"><span class="q-num">05</span><span class="nivel-tag nivel-f">Fácil</span></div><div class="q-aberta-body"><p class="q-enunciado" style="margin-bottom:12px">O que significa "software de código aberto"? Quais as vantagens desse modelo para escolas e órgãos públicos?</p><textarea id="qa5" placeholder="Digite sua resposta..." oninput="rq('qa5',this)"></textarea><div class="char-count" id="cc-qa5">0 caracteres</div></div></div>
-
-    <div class="nivel-divisor">Nível Médio</div>
-    <div class="q-aberta"><div class="q-aberta-top"><span class="q-num">06</span><span class="nivel-tag nivel-m">Médio</span></div><div class="q-aberta-body"><p class="q-enunciado" style="margin-bottom:12px">Observe: <code>-rw-r--r-- 1 marcos alunos 2048 Jun 01 dados.txt</code><br>a) Quem é o dono? b) Quais são as permissões do grupo? c) Outros usuários podem editar? Justifique.</p><textarea id="qa6" placeholder="Digite sua resposta..." oninput="rq('qa6',this)"></textarea><div class="char-count" id="cc-qa6">0 caracteres</div></div></div>
-    <div class="q-aberta"><div class="q-aberta-top"><span class="q-num">07</span><span class="nivel-tag nivel-m">Médio</span></div><div class="q-aberta-body"><p class="q-enunciado" style="margin-bottom:12px">Explique a diferença entre <code>sudo apt update</code> e <code>sudo apt upgrade</code>. Por que é importante executar o update antes do upgrade?</p><textarea id="qa7" placeholder="Digite sua resposta..." oninput="rq('qa7',this)"></textarea><div class="char-count" id="cc-qa7">0 caracteres</div></div></div>
-    <div class="q-aberta"><div class="q-aberta-top"><span class="q-num">08</span><span class="nivel-tag nivel-m">Médio</span></div><div class="q-aberta-body"><p class="q-enunciado" style="margin-bottom:12px">O que é o <code>sudo</code>? Por que é importante ter cuidado ao usá-lo? Cite uma situação de uso incorreto que poderia danificar o sistema.</p><textarea id="qa8" placeholder="Digite sua resposta..." oninput="rq('qa8',this)"></textarea><div class="char-count" id="cc-qa8">0 caracteres</div></div></div>
-    <div class="q-aberta"><div class="q-aberta-top"><span class="q-num">09</span><span class="nivel-tag nivel-m">Médio</span></div><div class="q-aberta-body"><p class="q-enunciado" style="margin-bottom:12px">Explique o que é o shebang (<code>#!/bin/bash</code>) em um shell script e por que ele é necessário. O que aconteceria sem essa linha?</p><textarea id="qa9" placeholder="Digite sua resposta..." oninput="rq('qa9',this)"></textarea><div class="char-count" id="cc-qa9">0 caracteres</div></div></div>
-    <div class="q-aberta"><div class="q-aberta-top"><span class="q-num">10</span><span class="nivel-tag nivel-m">Médio</span></div><div class="q-aberta-body"><p class="q-enunciado" style="margin-bottom:12px">Compare o sistema APT com a instalação de programas no Windows (.exe). Quais as vantagens do APT em termos de segurança e praticidade?</p><textarea id="qa10" placeholder="Digite sua resposta..." oninput="rq('qa10',this)"></textarea><div class="char-count" id="cc-qa10">0 caracteres</div></div></div>
-
-    <div class="nivel-divisor">Nível Avançado</div>
-    <div class="q-aberta"><div class="q-aberta-top"><span class="q-num">11</span><span class="nivel-tag nivel-a">Avançado</span></div><div class="q-aberta-body"><p class="q-enunciado" style="margin-bottom:12px">Um administrador quer: dono com leitura e execução; grupo com somente leitura; outros sem nenhuma permissão. Qual comando chmod usar? Explique cada dígito.</p><textarea id="qa11" placeholder="Digite sua resposta..." oninput="rq('qa11',this)"></textarea><div class="char-count" id="cc-qa11">0 caracteres</div></div></div>
-    <div class="q-aberta"><div class="q-aberta-top"><span class="q-num">12</span><span class="nivel-tag nivel-a">Avançado</span></div><div class="q-aberta-body"><p class="q-enunciado" style="margin-bottom:12px">Explique a diferença entre <code>/bin</code>, <code>/sbin</code> e <code>/usr/bin</code>. Por que essa separação existe? Cite um exemplo de programa em cada um.</p><textarea id="qa12" placeholder="Digite sua resposta..." oninput="rq('qa12',this)"></textarea><div class="char-count" id="cc-qa12">0 caracteres</div></div></div>
-    <div class="q-aberta"><div class="q-aberta-top"><span class="q-num">13</span><span class="nivel-tag nivel-a">Avançado</span></div><div class="q-aberta-body"><p class="q-enunciado" style="margin-bottom:12px">O que é um processo zumbi no Linux? Como identificá-lo com <code>ps aux</code> e por que é prejudicial ao sistema?</p><textarea id="qa13" placeholder="Digite sua resposta..." oninput="rq('qa13',this)"></textarea><div class="char-count" id="cc-qa13">0 caracteres</div></div></div>
-    <div class="q-aberta"><div class="q-aberta-top"><span class="q-num">14</span><span class="nivel-tag nivel-a">Avançado</span></div><div class="q-aberta-body"><p class="q-enunciado" style="margin-bottom:12px">O que é o arquivo <code>/etc/passwd</code>? Por que as senhas não ficam armazenadas nele em sistemas modernos? Onde ficam e como são protegidas?</p><textarea id="qa14" placeholder="Digite sua resposta..." oninput="rq('qa14',this)"></textarea><div class="char-count" id="cc-qa14">0 caracteres</div></div></div>
-    <div class="q-aberta"><div class="q-aberta-top"><span class="q-num">15</span><span class="nivel-tag nivel-a">Avançado</span></div><div class="q-aberta-body"><p class="q-enunciado" style="margin-bottom:12px">Descreva o processo completo de boot do Linux Mint: desde o momento em que o computador é ligado até a tela de login, explicando o papel do BIOS/UEFI, GRUB e systemd.</p><textarea id="qa15" placeholder="Digite sua resposta..." oninput="rq('qa15',this)"></textarea><div class="char-count" id="cc-qa15">0 caracteres</div></div></div>
-  </div><!-- /abertas -->
-
-  <!-- ══ ABA: PRÁTICAS ════════════════════════════════════════════ -->
-  <div class="secao" id="aba-praticas">
-    <div class="banner" style="background:linear-gradient(135deg,#0891b2,#0e7490)">
-      <div class="banner-label">// Laboratório · Linux Mint instalado</div>
-      <div class="banner-titulo">Atividades Práticas</div>
-      <div class="banner-sub">Execute os comandos no terminal e registre os resultados em cada campo.</div>
-    </div>
-
-    <div class="pratica">
-      <div class="pratica-header">
-        <div><div class="pratica-num">PRÁTICA 01</div><div class="pratica-titulo">Explorando o Sistema de Arquivos</div></div>
-        <div class="pratica-badge">Terminal</div>
-      </div>
-      <div class="pratica-body">
-        <div class="passo"><div class="passo-n">1</div><div class="passo-txt">Abra o terminal com <code>Ctrl+Alt+T</code>. Execute <code>pwd</code> e anote o resultado:</div></div>
-        <input class="campo-pr" id="p1a" placeholder="Resultado do pwd:" oninput="sv('p1a',this.value)">
-        <div class="passo"><div class="passo-n">2</div><div class="passo-txt">Execute <code>ls -la</code>. Quantos arquivos ocultos aparecem?</div></div>
-        <input class="campo-pr" id="p1b" placeholder="Quantidade de arquivos ocultos:" oninput="sv('p1b',this.value)">
-        <div class="passo"><div class="passo-n">3</div><div class="passo-txt">Vá para a raiz com <code>cd /</code>, execute <code>ls</code> e anote 5 diretórios:</div></div>
-        <input class="campo-pr" id="p1c" placeholder="5 diretórios da raiz:" oninput="sv('p1c',this.value)">
-        <div class="passo"><div class="passo-n">4</div><div class="passo-txt">Crie: <code>mkdir -p escola/informatica/exercicios</code> e confirme com <code>ls -R escola</code></div></div>
-        <input class="campo-pr" id="p1d" placeholder="A estrutura foi criada? (Sim/Não)" oninput="sv('p1d',this.value)">
-        <span class="ref-lbl">Reflexão — Qual a diferença entre cd / e cd ~?</span>
-        <textarea class="ref-area" id="p1r" placeholder="Sua resposta..." oninput="sv('p1r',this.value)"></textarea>
-      </div>
-    </div>
-
-    <div class="pratica">
-      <div class="pratica-header">
-        <div><div class="pratica-num">PRÁTICA 02</div><div class="pratica-titulo">Manipulação de Arquivos e Permissões</div></div>
-        <div class="pratica-badge">chmod</div>
-      </div>
-      <div class="pratica-body">
-        <div class="passo"><div class="passo-n">1</div><div class="passo-txt">Crie 3 arquivos: <code>touch aula1.txt aula2.txt aula3.txt</code></div></div>
-        <div class="passo"><div class="passo-n">2</div><div class="passo-txt">Edite com <code>nano aula1.txt</code>, escreva uma frase e salve (Ctrl+O → Enter → Ctrl+X).</div></div>
-        <div class="passo"><div class="passo-n">3</div><div class="passo-txt">Copie para /tmp: <code>cp aula1.txt /tmp/</code> e renomeie: <code>mv aula2.txt exercicio.txt</code></div></div>
-        <div class="passo"><div class="passo-n">4</div><div class="passo-txt">Verifique com <code>ls -l</code> e anote as permissões de aula1.txt:</div></div>
-        <input class="campo-pr" id="p2a" placeholder="Permissões de aula1.txt:" oninput="sv('p2a',this.value)">
-        <div class="passo"><div class="passo-n">5</div><div class="passo-txt">Execute <code>chmod 744 exercicio.txt</code> e confirme o novo valor:</div></div>
-        <input class="campo-pr" id="p2b" placeholder="Novo valor das permissões:" oninput="sv('p2b',this.value)">
-        <span class="ref-lbl">Reflexão — Por que o Linux usa sistema de permissões? Cite uma situação real:</span>
-        <textarea class="ref-area" id="p2r" placeholder="Sua resposta..." oninput="sv('p2r',this.value)"></textarea>
-      </div>
-    </div>
-
-    <div class="pratica">
-      <div class="pratica-header">
-        <div><div class="pratica-num">PRÁTICA 03</div><div class="pratica-titulo">Diagnóstico de Rede pelo Terminal</div></div>
-        <div class="pratica-badge">Rede</div>
-      </div>
-      <div class="pratica-body">
-        <div class="passo"><div class="passo-n">1</div><div class="passo-txt">Execute <code>ip a</code> e anote o IP e a interface de rede:</div></div>
-        <input class="campo-pr" id="p3a" placeholder="IP: _______________  Interface: _______________" oninput="sv('p3a',this.value)">
-        <div class="passo"><div class="passo-n">2</div><div class="passo-txt"><code>ping -c 4 127.0.0.1</code> (loopback — testa a placa de rede):</div></div>
-        <input class="campo-pr" id="p3b" placeholder="Resultado:" oninput="sv('p3b',this.value)">
-        <div class="passo"><div class="passo-n">3</div><div class="passo-txt"><code>ping -c 4 8.8.8.8</code> (internet via IP):</div></div>
-        <input class="campo-pr" id="p3c" placeholder="Resultado:" oninput="sv('p3c',this.value)">
-        <div class="passo"><div class="passo-n">4</div><div class="passo-txt"><code>ping -c 4 google.com</code> (internet + DNS):</div></div>
-        <input class="campo-pr" id="p3d" placeholder="Resultado:" oninput="sv('p3d',this.value)">
-        <div class="passo"><div class="passo-n">5</div><div class="passo-txt"><code>nslookup youtube.com</code> — qual IP retornou?</div></div>
-        <input class="campo-pr" id="p3e" placeholder="IP do YouTube:" oninput="sv('p3e',this.value)">
-        <span class="ref-lbl">Análise — Se ping 8.8.8.8 funcionar mas google.com falhar, o que isso indica?</span>
-        <textarea class="ref-area" id="p3r" placeholder="Sua resposta..." oninput="sv('p3r',this.value)"></textarea>
-      </div>
-    </div>
-
-    <div class="pratica">
-      <div class="pratica-header">
-        <div><div class="pratica-num">PRÁTICA 04</div><div class="pratica-titulo">Gerenciamento de Processos</div></div>
-        <div class="pratica-badge">htop · kill</div>
-      </div>
-      <div class="pratica-body">
-        <div class="passo"><div class="passo-n">1</div><div class="passo-txt">Execute <code>top</code>, observe e saia com <code>q</code>. Qual processo usa mais CPU?</div></div>
-        <input class="campo-pr" id="p4a" placeholder="Processo com mais CPU:" oninput="sv('p4a',this.value)">
-        <div class="passo"><div class="passo-n">2</div><div class="passo-txt">Execute <code>sleep 300 &</code> e encontre o PID: <code>ps aux | grep sleep</code></div></div>
-        <input class="campo-pr" id="p4b" placeholder="PID do processo sleep:" oninput="sv('p4b',this.value)">
-        <div class="passo"><div class="passo-n">3</div><div class="passo-txt">Encerre com <code>kill [PID]</code> e confirme:</div></div>
-        <input class="campo-pr" id="p4c" placeholder="O processo foi encerrado? (Sim/Não)" oninput="sv('p4c',this.value)">
-        <div class="passo"><div class="passo-n">4</div><div class="passo-txt">Anote: Kernel (<code>uname -a</code>), disco livre (<code>df -h</code>), RAM total (<code>free -h</code>):</div></div>
-        <input class="campo-pr" id="p4d" placeholder="Kernel: _______  Disco: _______  RAM: _______" oninput="sv('p4d',this.value)">
-        <span class="ref-lbl">Reflexão — Para que serve o kill? Quando um técnico usaria esse recurso?</span>
-        <textarea class="ref-area" id="p4r" placeholder="Sua resposta..." oninput="sv('p4r',this.value)"></textarea>
-      </div>
-    </div>
-
-    <div class="pratica">
-      <div class="pratica-header">
-        <div><div class="pratica-num">PRÁTICA 05</div><div class="pratica-titulo">Criando seu Primeiro Shell Script</div></div>
-        <div class="pratica-badge">bash</div>
-      </div>
-      <div class="pratica-body">
-        <div class="passo"><div class="passo-n">1</div><div class="passo-txt">Crie o arquivo: <code>nano relatorio.sh</code></div></div>
-        <div class="passo"><div class="passo-n">2</div><div class="passo-txt">Digite o conteúdo abaixo e salve:</div></div>
-        <div class="terminal" style="margin:10px 0 14px">
-          <div class="term-bar"><div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div><span class="tlbl">relatorio.sh</span></div>
-          <div class="term-body">
-            <span class="ts">#!/bin/bash</span><br>
-            <span class="to">echo</span> <span class="tk">'=== RELATÓRIO DO SISTEMA ==='</span><br>
-            <span class="to">echo</span> <span class="tk">'Data:'</span> && <span class="to">date</span><br>
-            <span class="to">echo</span> <span class="tk">'Usuário:'</span> && <span class="to">whoami</span><br>
-            <span class="to">echo</span> <span class="tk">'RAM:'</span> && <span class="to">free</span> -h<br>
-            <span class="to">echo</span> <span class="tk">'Disco:'</span> && <span class="to">df</span> -h /<br>
-            <span class="to">echo</span> <span class="tk">'IP:'</span> && <span class="to">ip</span> a | grep <span class="tk">'inet '</span> | head -2
-          </div>
-        </div>
-        <div class="passo"><div class="passo-n">3</div><div class="passo-txt">Dê permissão: <code>chmod +x relatorio.sh</code></div></div>
-        <div class="passo"><div class="passo-n">4</div><div class="passo-txt">Execute: <code>./relatorio.sh</code> e anote 3 informações que apareceram:</div></div>
-        <input class="campo-pr" id="p5a" placeholder="1)" oninput="sv('p5a',this.value)">
-        <input class="campo-pr" id="p5b" placeholder="2)" oninput="sv('p5b',this.value)">
-        <input class="campo-pr" id="p5c" placeholder="3)" oninput="sv('p5c',this.value)">
-        <span class="ref-lbl">Desafio extra — Adicione hostname e top 5 processos por memória. Conseguiu?</span>
-        <textarea class="ref-area" id="p5r" placeholder="Descreva o que fez..." oninput="sv('p5r',this.value)"></textarea>
-      </div>
-    </div>
-
-    <div class="pratica" style="border-color:var(--red)">
-      <div class="pratica-header" style="background:linear-gradient(135deg,#7f1d1d,#dc2626)">
-        <div><div class="pratica-num">PRÁTICA 06 · AVANÇADO</div><div class="pratica-titulo">Servidor Web com Apache</div></div>
-        <div class="pratica-badge">Apache · HTTP</div>
-      </div>
-      <div class="pratica-body">
-        <div class="passo"><div class="passo-n">1</div><div class="passo-txt">Instale: <code>sudo apt update && sudo apt install apache2</code></div></div>
-        <div class="passo"><div class="passo-n">2</div><div class="passo-txt">Verifique: <code>sudo systemctl status apache2</code></div></div>
-        <input class="campo-pr" id="p6a" placeholder="Apache está ativo? (active/inactive)" oninput="sv('p6a',this.value)">
-        <div class="passo"><div class="passo-n">3</div><div class="passo-txt">Acesse <code>http://localhost</code> no navegador. A página padrão apareceu?</div></div>
-        <input class="campo-pr" id="p6b" placeholder="Sim / Não" oninput="sv('p6b',this.value)">
-        <div class="passo"><div class="passo-n">4</div><div class="passo-txt">Descubra seu IP com <code>ip a</code> e teste o acesso de um colega pelo IP:</div></div>
-        <input class="campo-pr" id="p6c" placeholder="IP: _______  Colega acessou? Sim/Não/Não testou" oninput="sv('p6c',this.value)">
-        <div class="passo"><div class="passo-n">5</div><div class="passo-txt">Crie sua página: <code>sudo nano /var/www/html/minha_pagina.html</code> e acesse.</div></div>
-        <input class="campo-pr" id="p6d" placeholder="Sua página abriu? (Sim/Não)" oninput="sv('p6d',this.value)">
-        <div class="passo"><div class="passo-n">6</div><div class="passo-txt">Encerre: <code>sudo systemctl stop apache2</code></div></div>
-        <span class="ref-lbl">Reflexão — O que este exercício demonstra sobre Linux e servidores na internet?</span>
-        <textarea class="ref-area" id="p6r" placeholder="Sua resposta..." oninput="sv('p6r',this.value)"></textarea>
-      </div>
-    </div>
-  </div><!-- /praticas -->
-
-  <!-- ══ ABA: ENVIAR ══════════════════════════════════════════════ -->
-  <div class="secao" id="aba-enviar">
-    <div class="envio-card">
-      <div class="envio-top">
-        <h3>Enviar respostas ao professor</h3>
-        <p>Suas questões fechadas, abertas e práticas serão enviadas diretamente para o Google Sheets do Prof. Marcos Cruz.</p>
-      </div>
-      <div class="envio-body">
-        <div class="envio-fields">
-          <div class="envio-field">
-            <label>Nome completo *</label>
-            <input id="env-nome" type="text" placeholder="Seu nome completo" oninput="sv('nome',this.value)">
-          </div>
-          <div class="envio-field">
-            <label>Turma *</label>
-            <input id="env-turma" type="text" placeholder="Ex: Inf.T3" oninput="sv('turma',this.value)">
-          </div>
-        </div>
-        <button class="btn-enviar" id="btn-enviar" onclick="enviarRespostas()">
-          Enviar respostas ao professor
-        </button>
-        <div class="msg-envio" id="msg-envio"></div>
-      </div>
-    </div>
-  </div><!-- /enviar -->
-
-</div><!-- /container -->
+<footer>
+  Prof. <a href="#">Marcos Cruz</a> · Informática Técnica · E.E. Prefeito Odílio Fernandes Costa · Santo Antônio do Retiro/MG
+</footer>
 
 <script>
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzaJLMdY_t9x1qK8OLmVFPYSJnLLfW8MlgBAuoJrUspBNL9U4Zs_IYxgmPMvWxyGF_i/exec';
-const GABARITO = { Q01:'B', Q02:'C', Q03:'D', Q04:'C', Q05:'B', Q06:'D', Q07:'C', Q08:'C', Q09:'C', Q10:'D' };
-const respostas = {};
+const SCRIPT_URL = "COLE_AQUI_URL_LINUX";
+const FC=[1,2,3,4,6,7,8,9,11,12,14,16,19];
+const AB=[5,10,13,15];
+const DI=[17,18,20];
+const ALL=[...FC,...AB,...DI];
 
-function aba(id, el) {
-  document.querySelectorAll('.secao').forEach(s => s.classList.remove('ativa'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('ativa'));
-  document.getElementById('aba-' + id).classList.add('ativa');
-  el.classList.add('ativa');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+function toggleDetail(id){
+  const d=document.getElementById('det-'+id);
+  const b=d.closest('.tc').querySelector('.tc-more');
+  d.classList.toggle('open');
+  b.textContent=d.classList.contains('open')?'Fechar ▴':'Ver teoria completa ▸';
 }
-
-function sv(id, val) { sessionStorage.setItem(id, val); }
-
-function marcar(qid, letra) {
-  respostas[qid] = letra;
-  sv('f-' + qid, letra);
-  document.querySelectorAll('#' + qid + ' .alt').forEach(a => a.classList.remove('sel'));
-  const letras = ['A','B','C','D','E'];
-  document.querySelectorAll('#' + qid + ' .alt').forEach((a, i) => {
-    if (letras[i] === letra) a.classList.add('sel');
-  });
-  const info = document.getElementById('sel-' + qid);
-  info.textContent = 'Alternativa ' + letra + ' selecionada';
-  info.classList.add('respondida');
-  atualizarProg();
+function upd(){
+  let fc=0,ab=0,di=0;
+  FC.forEach(n=>{if(document.querySelector(`input[name="q${n}"]:checked`))fc++;});
+  AB.forEach(n=>{const e=document.getElementById('ans'+n);if(e&&e.value.trim())ab++;});
+  DI.forEach(n=>{const e=document.getElementById('ans'+n);if(e&&e.value.trim())di++;});
+  const t=fc+ab+di;
+  document.getElementById('ct').textContent=t+'/20';
+  document.getElementById('cf').textContent=fc+'/'+FC.length;
+  document.getElementById('ca').textContent=ab+'/'+AB.length;
+  document.getElementById('cd').textContent=di+'/'+DI.length;
+  document.getElementById('prog-fill').style.width=(t/20*100)+'%';
+  document.getElementById('prog-txt').textContent=t+' / 20 respondidas';
 }
-
-function atualizarProg() {
-  let resp = 0;
-  for (let i = 1; i <= 10; i++) { if (respostas['qf' + i]) resp++; }
-  document.getElementById('prog-fill').style.width = (resp / 10 * 100) + '%';
-  document.getElementById('prog-txt').textContent = resp + '/10 respondidas';
+function collect(){
+  const a={};
+  FC.forEach(n=>{const s=document.querySelector(`input[name="q${n}"]:checked`);a['q'+n]=s?s.value:'(não respondida)';});
+  AB.forEach(n=>{const e=document.getElementById('ans'+n);a['q'+n]=e?(e.value.trim()||'(não respondida)'):'(não respondida)';});
+  DI.forEach(n=>{const e=document.getElementById('ans'+n);a['q'+n]=e?(e.value.trim()||'(não respondida)'):'(não respondida)';});
+  return a;
 }
-
-function rq(id, el) {
-  sv(id, el.value);
-  const cc = document.getElementById('cc-' + id);
-  if (cc) cc.textContent = el.value.length + ' caracteres';
-  if (el.value.trim().length > 10) el.classList.add('ok');
-  else el.classList.remove('ok');
+async function send(){
+  const nome=document.getElementById('nome').value.trim();
+  const turma=document.getElementById('turma').value.trim();
+  const data=document.getElementById('data-ativ').value;
+  if(!nome||!turma){msg('err','Preencha nome e turma antes de enviar.');return;}
+  const url=SCRIPT_URL;
+  if(url==='COLE_AQUI_URL_LINUX'){msg('err','Configure a URL do Apps Script para esta atividade.');return;}
+  const btn=document.getElementById('bsend');
+  btn.disabled=true; msg('loading','⏳ Enviando…');
+  try{
+    await fetch(url,{method:'POST',mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({nome,turma,data,atividade:'linux-mint',...collect()})});
+    msg('ok','✅ Respostas enviadas! O professor receberá na planilha.');
+  }catch(e){msg('err','❌ Erro ao enviar. Tente novamente.');btn.disabled=false;}
 }
-
-async function enviarRespostas() {
-  const nome  = document.getElementById('env-nome').value.trim()  || sessionStorage.getItem('nome')  || '';
-  const turma = document.getElementById('env-turma').value.trim() || sessionStorage.getItem('turma') || '';
-  const msg   = document.getElementById('msg-envio');
-  const btn   = document.getElementById('btn-enviar');
-
-  if (!nome)  { alert('Por favor, preencha seu nome antes de enviar!');  return; }
-  if (!turma) { alert('Por favor, preencha sua turma antes de enviar!'); return; }
-
-  const fechadas = {};
-  for (let i = 1; i <= 10; i++) {
-    const k = 'Q' + String(i).padStart(2, '0');
-    fechadas[k] = respostas['qf' + i] || '';
-  }
-
-  const abertas = {};
-  for (let i = 1; i <= 15; i++) {
-    const val = sessionStorage.getItem('qa' + i) || '';
-    if (val.trim()) abertas['Q' + String(i).padStart(2,'0')] = val;
-  }
-
-  const praticaIds = ['p1a','p1b','p1c','p1d','p1r','p2a','p2b','p2r','p3a','p3b','p3c','p3d','p3e','p3r','p4a','p4b','p4c','p4d','p4r','p5a','p5b','p5c','p5r','p6a','p6b','p6c','p6d','p6r'];
-  const praticasTxt = praticaIds.map(c => { const v = sessionStorage.getItem(c)||''; return v ? c+': '+v : ''; }).filter(Boolean).join(' | ');
-  if (praticasTxt) abertas['Práticas'] = praticasTxt;
-
-  btn.disabled = true;
-  btn.textContent = 'Enviando...';
-  msg.style.display = 'none';
-
-  try {
-    await fetch(SHEETS_URL, {
-      method: 'POST', mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nome, turma, disciplina: 'Informática Técnica', atividade: 'Avaliação Linux Mint', respostasFechadas: fechadas, gabarito: GABARITO, respostasAbertas: abertas })
-    });
-    btn.style.display = 'none';
-    msg.className = 'msg-envio msg-ok';
-    msg.style.display = 'block';
-    msg.innerHTML = 'Respostas enviadas com sucesso!<br><span style="font-weight:400;font-size:.82rem">O professor já pode visualizar seu desempenho no Google Sheets.</span>';
-    sessionStorage.setItem('enviado', '1');
-  } catch(err) {
-    btn.disabled = false;
-    btn.textContent = 'Enviar respostas ao professor';
-    msg.className = 'msg-envio msg-err';
-    msg.style.display = 'block';
-    msg.textContent = 'Erro ao enviar. Verifique sua conexão e tente novamente.';
-  }
-}
-
-window.addEventListener('load', () => {
-  document.querySelectorAll('input[id], textarea[id]').forEach(el => {
-    const v = sessionStorage.getItem(el.id);
-    if (v) el.value = v;
-  });
-  const n = sessionStorage.getItem('nome'),  t = sessionStorage.getItem('turma');
-  if (n) document.getElementById('env-nome').value  = n;
-  if (t) document.getElementById('env-turma').value = t;
-  for (let i = 1; i <= 10; i++) {
-    const v = sessionStorage.getItem('f-qf' + i);
-    if (v) { respostas['qf' + i] = v; marcar('qf' + i, v); }
-  }
-  for (let i = 1; i <= 15; i++) {
-    const el = document.getElementById('qa' + i);
-    const cc = document.getElementById('cc-qa' + i);
-    if (el && cc) cc.textContent = el.value.length + ' caracteres';
-  }
-  atualizarProg();
-  if (sessionStorage.getItem('enviado') === '1') {
-    document.getElementById('btn-enviar').style.display = 'none';
-    const msg = document.getElementById('msg-envio');
-    msg.className = 'msg-envio msg-ok';
-    msg.style.display = 'block';
-    msg.innerHTML = 'Respostas já enviadas!<br><span style="font-weight:400;font-size:.82rem">O professor pode visualizar seu desempenho no Google Sheets.</span>';
-  }
+function msg(t,x){const e=document.getElementById('smsg');e.className=t;e.textContent=x;e.style.display='block';}
+const obs=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
+}),{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.animate-in').forEach((el,i)=>{
+  el.style.transitionDelay=(i%4)*80+'ms'; obs.observe(el);
 });
+upd();
 </script>
 </body>
 </html>
