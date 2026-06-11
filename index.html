@@ -54,10 +54,11 @@
       background:rgba(255,255,255,.05);pointer-events:none;
     }
     .masthead .avatar {
-      width:64px;height:64px;border-radius:50%;
+      width:84px;height:84px;border-radius:50%;
       margin:0 auto 10px;display:block;
-      border:2px solid rgba(255,255,255,.3);
+      border:2px solid rgba(255,255,255,.4);
       object-fit:cover;
+      animation: avatar-flutuar 4s ease-in-out infinite, avatar-brilho 3s ease-out infinite;
     }
     .masthead .avatar-fallback {
       width:64px;height:64px;border-radius:50%;
@@ -68,6 +69,10 @@
       font-family:var(--fonte-titulo);font-weight:800;
       font-size:1.5rem;color:#fff;
     }
+    @keyframes avatar-flutuar { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+    @keyframes avatar-brilho {
+      0% { box-shadow:0 0 0 0 rgba(255,255,255,.35); }
+      70%,100% { box-shadow:0 0 0 14px rgba(255,255,255,0); } }
     .masthead .portal-nome {
       font-family:var(--fonte-titulo);font-weight:800;
       font-size:clamp(1.35rem,5vw,2rem);
@@ -306,6 +311,8 @@ const ATIVIDADES = [
     anos:["2EM","3EM"], tempo:"25 min", url:"atividades/simulado-enem.html", novo:true },
   { secao:"enem", titulo:"Quiz — Obras Literárias do ENEM", tipo:"📚 Quiz",
     anos:["2EM","3EM"], tempo:"15 min", url:"atividades/quiz-obras.html", novo:true },
+  { secao:"enem", titulo:"Quiz — Obras Literárias II", tipo:"📚 Quiz · vestibular",
+    anos:["2EM","3EM"], tempo:"15 min", url:"atividades/quiz-obras2.html", novo:true },
   { secao:"enem", titulo:"Biblioteca — 30 Obras que caem no ENEM", tipo:"🏛 Acervo",
     anos:["1EM","2EM","3EM"], tempo:"consulta", url:"obras.html", novo:true },
   { secao:"enem", titulo:"Cine-Leitura — Trailer: Central do Brasil", tipo:"🎬 Vídeo + questões",
@@ -363,5 +370,6 @@ document.getElementById("campo-busca").addEventListener("input", e => desenhar(e
 desenhar();
 </script>
 <script src="assets/js/marquinhos.js"></script>
+<script src="assets/js/animacoes.js"></script>
 </body>
 </html>
