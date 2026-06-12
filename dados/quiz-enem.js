@@ -232,6 +232,16 @@ const QUIZ_DADOS = {
         "Substituir documentos escritos como única forma de registro histórico"
       ],
       correta: "Transmitir conhecimentos e manter viva a memória ancestral por meio da repetição de práticas cotidianas",
-      explicacao: "A reprodução de gestos e técnicas \"do jeito que os mais velhos faziam\" caracteriza a tradição oral e prática como forma de preservação da memória e da identidade cultural — tema caro a textos sobre patrimônio cultural no ENEM." }
+      explicacao: "A reprodução de gestos e técnicas \"do jeito que os mais velhos faziam\" caracteriza a tradição oral e prática como forma de preservação da memória e da identidade cultural — tema caro a textos sobre patrimônio cultural no ENEM." },
+    { texto: "<img src='../assets/img/questoes/protesto-feminista.jpg' alt='Mulher em manifestação erguendo cartaz com mensagem sobre violência de gênero' style='max-width:100%; border-radius:8px; margin-bottom:10px;'><p>Foto de manifestação em que uma mulher carrega cartazes com frases de protesto contra a violência sexual e a sexualização do corpo feminino, ao lado de outras manifestantes.</p>",
+  pergunta: "Essa cena de protesto evidencia uma reflexão sobre:",
+  opcoes: [
+    "A denúncia da banalização da violência sexual e a reivindicação do direito ao próprio corpo",
+    "A defesa de que o uso de cartazes deve ser proibido em manifestações públicas",
+    "A demonstração de que as manifestações feministas ocorrem apenas em países de língua espanhola",
+    "A comprovação de que a violência contra a mulher é um problema já resolvido na atualidade"
+  ],
+  correta: "A denúncia da banalização da violência sexual e a reivindicação do direito ao próprio corpo",
+  explicacao: "Os cartazes e as inscrições no corpo da manifestante denunciam a naturalização da violência sexual e reivindicam respeito ao corpo feminino — temas centrais em textos sobre direitos humanos e movimentos sociais cobrados pelo ENEM (ex.: questões 24 e 69 da prova de 2023)." }
   ]
-};
+  };
