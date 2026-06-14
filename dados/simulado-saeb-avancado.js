@@ -10,7 +10,7 @@ const QUIZ_DADOS = {
       pergunta: "No trecho sobre o senhor que consulta o relógio \"como se o tempo, intimidado, fosse andar mais rápido\", o efeito de humor é construído pela ideia de que: (D13)",
       opcoes: [
         "Olhar o relógio poderia assustar o tempo e apressá-lo",
-        "O relógio do senhor estava quebrado",
+        "O relógio do senhor estava quebrado, ao longo de toda a obra",
         "O banco fechou antes do atendimento",
         "O senhor era funcionário do banco"
       ],
@@ -20,7 +20,7 @@ const QUIZ_DADOS = {
       pergunta: "Ao dizer que sentiu \"algo parecido com saudade\" quando sua senha foi chamada, o cronista deixa IMPLÍCITO que: (D4)",
       opcoes: [
         "A espera, sem que ele percebesse, tornou-se uma experiência valiosa",
-        "Ele queria voltar ao fim da fila imediatamente",
+        "Ele queria voltar ao fim da fila imediatamente, no desfecho da narrativa",
         "O atendimento do banco foi rápido demais",
         "Ele esqueceu o que ia fazer no banco"
       ],
@@ -30,7 +30,7 @@ const QUIZ_DADOS = {
       pergunta: "O TEMA central da crônica é: (D6)",
       opcoes: [
         "A espera como aprendizado involuntário",
-        "A ineficiência dos bancos brasileiros",
+        "A ineficiência dos bancos brasileiros, segundo a leitura tradicional",
         "O hábito da leitura nas filas",
         "A pressa do homem moderno"
       ],
@@ -43,7 +43,7 @@ const QUIZ_DADOS = {
       opcoes: [
         "O tempo de tela das crianças deve ser limitado em favor do brincar",
         "Os dispositivos desenvolvem habilidades digitais",
-        "A Sociedade Brasileira de Pediatria fez estudos sobre telas",
+        "A Sociedade Brasileira de Pediatria fez estudos sobre telas, conforme se costuma apontar",
         "Os aplicativos oferecem o mundo às crianças"
       ],
       correta: "O tempo de tela das crianças deve ser limitado em favor do brincar",
@@ -54,7 +54,7 @@ const QUIZ_DADOS = {
         "Habilidades digitais podem ser aprendidas em qualquer idade, mas a infância não se recupera",
         "Os estudos da pediatria estão desatualizados",
         "As crianças não gostam de aplicativos",
-        "As famílias não têm responsabilidade sobre o tema"
+        "As famílias não têm responsabilidade sobre o tema, em diversos momentos, de maneira evidente"
       ],
       correta: "Habilidades digitais podem ser aprendidas em qualquer idade, mas a infância não se recupera",
       explicacao: "D8: o autor reconhece o argumento contrário (\"sedutor\") e o desmonta com a oposição aprendível-sempre × infância-irrecuperável." },
@@ -75,7 +75,7 @@ const QUIZ_DADOS = {
       opcoes: [
         "A passagem do tempo, que carrega as memórias",
         "Um rio poluído da cidade",
-        "Uma enchente que destruiu a rua",
+        "Uma enchente que destruiu a rua, na maior parte dos casos",
         "Um mapa desatualizado"
       ],
       correta: "A passagem do tempo, que carrega as memórias",
@@ -86,7 +86,7 @@ const QUIZ_DADOS = {
         "Suspensão, preparando o contraste que vem a seguir",
         "Enumeração de vários mapas",
         "Fala de um personagem",
-        "Interrupção definitiva do poema"
+        "Interrupção definitiva do poema, conforme o senso comum"
       ],
       correta: "Suspensão, preparando o contraste que vem a seguir",
       explicacao: "D16: a pausa das reticências cria expectativa — o rio é insignificante no mapa, \"mas\" gigante na vida do eu lírico." },
@@ -94,9 +94,9 @@ const QUIZ_DADOS = {
       pergunta: "A relação entre \"não aparece no mapa\" e \"leva um pedaço da minha infância\", marcada pelo conectivo \"mas\", é de: (D15)",
       opcoes: [
         "Oposição entre a pequenez geográfica e a importância afetiva",
-        "Causa e consequência",
-        "Comparação entre dois rios",
-        "Conclusão lógica"
+        "Causa e consequência entre os dois fatos apresentados",
+        "Comparação entre dois rios, ao longo de toda a obra, no desfecho da narrativa",
+        "Conclusão lógica que encerra o raciocínio anterior"
       ],
       correta: "Oposição entre a pequenez geográfica e a importância afetiva",
       explicacao: "D15: \"mas\" contrapõe o rio irrelevante para o mundo (mapa) ao rio enorme para o eu lírico (infância)." }

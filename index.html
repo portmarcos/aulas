@@ -12,6 +12,12 @@
   <meta property="og:url" content="https://portmarcos.github.io/">
   <meta property="og:type" content="website">
 
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Portal do Professor Marcos Cruz">
+  <meta name="twitter:description" content="Quizzes, flashcards, escape rooms e avaliações de Literatura, Gramática, Informática e Arte.">
+  <meta name="twitter:image" content="https://portmarcos.github.io/assets/img/og-capa.png">
+  <link rel="canonical" href="https://portmarcos.github.io/">
+
   <link rel="icon" href="favicon.ico">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0D1B2A">
@@ -150,6 +156,10 @@
       font-weight:800;font-size:.72rem;letter-spacing:.06em;
       text-transform:uppercase;color:var(--cor-sec);
     }
+  /* ── Modo escuro: suavizar o masthead (cores já vêm das variáveis) ── */
+  @media (prefers-color-scheme: dark) {
+    .masthead { filter: saturate(.9) brightness(.92); }
+  }
   </style>
 </head>
 <body>
@@ -184,13 +194,13 @@
   <!-- Navegação por conteúdo -->
   <nav class="nav-categorias">
     <div class="container trilho">
-      <a class="nav-cat" href="#literatura"  style="--cor-cat:#2E7D32">Literatura</a>
-      <a class="nav-cat" href="#gramatica"   style="--cor-cat:#00695C">Gramática</a>
-      <a class="nav-cat" href="#informatica" style="--cor-cat:#1565C0">Informática</a>
-      <a class="nav-cat" href="#arte"        style="--cor-cat:#E65100">Arte</a>
-      <a class="nav-cat" href="#saeb"        style="--cor-cat:#6A1B9A">SAEB · SIMAVE</a>
-      <a class="nav-cat" href="#bncc"        style="--cor-cat:#AD1457">BNCC · CRMG</a>
-      <a class="nav-cat" href="#enem"        style="--cor-cat:#C62828">ENEM</a>
+      <a class="nav-cat" href="#literatura"  style="--cor-cat:var(--verde)">Literatura</a>
+      <a class="nav-cat" href="#gramatica"   style="--cor-cat:var(--teal)">Gramática</a>
+      <a class="nav-cat" href="#informatica" style="--cor-cat:var(--azul)">Informática</a>
+      <a class="nav-cat" href="#arte"        style="--cor-cat:var(--laranja)">Arte</a>
+      <a class="nav-cat" href="#saeb"        style="--cor-cat:var(--roxo)">SAEB · SIMAVE</a>
+      <a class="nav-cat" href="#bncc"        style="--cor-cat:var(--magenta)">BNCC · CRMG</a>
+      <a class="nav-cat" href="#enem"        style="--cor-cat:var(--vermelho)">ENEM</a>
       <a class="nav-cat" href="obras.html"   style="--cor-cat:#8E24AA">📚 Obras</a>
     </div>
   </nav>
@@ -224,13 +234,13 @@ fetch("https://api.countapi.xyz/hit/portmarcos.github.io/portal-v2")
 
 /* ── Catálogo de atividades ── */
 const SECOES = [
-  { id:"literatura",  rotulo:"Literatura",  cor:"#2E7D32", breve:"Cronologia Interativa da Literatura · Duelo de Personagens" },
-  { id:"gramatica",   rotulo:"Gramática",   cor:"#00695C", breve:"Detetive Gramatical · Conectivos em Contexto" },
-  { id:"informatica", rotulo:"Informática", cor:"#1565C0", breve:"Simulador de Terminal Linux · Montador de Rede" },
-  { id:"arte",        rotulo:"Arte",        cor:"#E65100", breve:"Criador de Op Art · Galeria do Barroco Mineiro" },
-  { id:"saeb",        rotulo:"SAEB · SIMAVE", cor:"#6A1B9A", breve:"Simulado completo · Questões por descritor · Caderno de treino" },
-  { id:"bncc",        rotulo:"BNCC · CRMG",   cor:"#AD1457", breve:"Atividades por habilidade · Sequências didáticas alinhadas" },
-  { id:"enem",        rotulo:"ENEM",          cor:"#C62828", breve:"Simulado Linguagens II · Redação nota 1000 · Cine-Leitura: novos vídeos" }
+  { id:"literatura",  rotulo:"Literatura",  cor:"var(--verde)", breve:"Cronologia Interativa da Literatura · Duelo de Personagens" },
+  { id:"gramatica",   rotulo:"Gramática",   cor:"var(--teal)", breve:"Detetive Gramatical · Conectivos em Contexto" },
+  { id:"informatica", rotulo:"Informática", cor:"var(--azul)", breve:"Simulador de Terminal Linux · Montador de Rede" },
+  { id:"arte",        rotulo:"Arte",        cor:"var(--laranja)", breve:"Criador de Op Art · Galeria do Barroco Mineiro" },
+  { id:"saeb",        rotulo:"SAEB · SIMAVE", cor:"var(--roxo)", breve:"Simulado completo · Questões por descritor · Caderno de treino" },
+  { id:"bncc",        rotulo:"BNCC · CRMG",   cor:"var(--magenta)", breve:"Atividades por habilidade · Sequências didáticas alinhadas" },
+  { id:"enem",        rotulo:"ENEM",          cor:"var(--vermelho)", breve:"Simulado Linguagens II · Redação nota 1000 · Cine-Leitura: novos vídeos" }
 ];
 
 const ATIVIDADES = [
@@ -383,5 +393,13 @@ desenhar();
 </script>
 <script src="assets/js/marquinhos.js"></script>
 <script src="assets/js/animacoes.js"></script>
+<script>
+  /* Liga o modo offline. Se algo der errado, o site segue normal. */
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js").catch(() => {});
+    });
+  }
+</script>
 </body>
 </html>
